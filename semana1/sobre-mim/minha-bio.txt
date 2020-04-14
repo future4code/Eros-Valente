@@ -1,0 +1,21 @@
+    Olá, me chamo Eros Pinder Valente, nasci na cidade de São Paulo, em 01/22/1988, e por lá morei praticamente toda a vida, 
+em diversos bairros - Lapa, Saúde, Santo Amaro, Vila Mariana, Aclimação e Centro. Hoje, moro em São Caetano. Sou casado 
+com uma mulher sensacional chamada Georgia e juntos temos dois filhos, Benjamim, de 4 anos, e João, de 2.
+    Os períodos de tempo livre se dividem em dois: com filhos e sem filhos. No tempo livre com nossos filhos,
+o que gostamos de fazer é sair para um parque, ir a um teatro infantil, ao Sesc, ler bastante para eles, assistir 
+um filme (eles gostam muito de "Meu amigo Totoro", e nós também, talvez até mais que eles, hahaha) E nas horas livres sem 
+filhos (uma raridade) gostamos basicamente das mesmas coisas, sair, encontrar os amigos onde quer que seja (atualmente, só online),
+assistir a um filme ou série, ler, cozinhar, jogar (video-game ou tabuleiro), enfim, uma infinidade de coisas, ou então 
+simplesmente dormir, já que a vida de pai e mãe nos rouba algumas horas de sono.
+    Sobre as minhas formação e profissão anterior, bem, eu me formei em Engenharia Mecânica na FEI, em São Bernardo do Campo, 
+estagiei na CETESB, com emissão de poluentes, e depois de formado trabalhei em uma empresa de máquinas, familiar, no Brás. A 
+área sofreu o reflexo da crise econômica e, no final de 2015, pouco antes do nosso primeiro filho nascer, eu fui demitido. Antes de começar 
+a me interessar por programação, eu trabalhava na área administrativa de uma imobiliária, onde comecei a ler sobre experiência de usuário
+e, a partir disso, sobre linguagens de programação e então percebi meu interesse e que poderia trilhar um novo caminho profissionalmente.
+    Comecei um curso de Python básico através do Coursera e junto com o curso fiz outros dois cursos curtos, mais introdutórios, de Web 
+na Mastertech. Sempre me interessei por tecnologia, ouço podcast que falam sobre isso, vejo videos, acompanho lançamentos no mercado, mas 
+ter contato direto com esse mundo é muito mais fascinante. Saber que a tecnologia possibilita desde uma simples entrega de compras em sua casa,
+até um computador controlando o funcionamento de um ônibus espacial, é incrível, e pensar na possibilidade de fazer parte do desenvolvimento
+disso, por mais que demore anos para chegar em qualquer um dos dois níveis, ou que talvez nunca chegue, é sensacional, só o fato de ter feito 
+uma simples "página de internet" já foi sensacional.
+    Bom, acho que é isso, bora pro terminal.
