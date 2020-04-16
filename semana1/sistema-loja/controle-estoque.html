@@ -4,46 +4,56 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Controle de estoque</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <h1>Controle de estoque</h1>
-    <table border="1">
-        <tr>
-            <th>Foto</th>
-            <th>Descrição</th>
-            <th>Modelo</th>
-            <th>Preço</th>
-            <th>Quantidade</th>
-        </tr>
-        <tr>
-            <td><img src="imagens/naves/speeder.jpg" width="150" heigth="150" alt="foto de um Speeder usado"></td>
-            <td>Speeders</td>
-            <td>Usados em bom estado</td>
-            <td>CG$20.000,00</td>
-            <td>15</td>
-        </tr>
-        <tr>
-            <td><img src="imagens/naves/tie-fighter.jpg" width="150" heigth="150" alt="foto de uma tie-fighter usada"></td>
-            <td>Tie-figthers</td>
-            <td>Pouco tempo de uso</td>
-            <td>CG$30.000,00</td>
-            <td>5</td>
-        </tr>
-        <tr>
-            <td><img src="imagens/naves/xwing.jpg" width="150" heigth="150" alt="foto de uma x-wing usada"></td>
-            <td>X-wings usadas</td>
-            <td>USadas reformadas</td>
-            <td>CG$100.000,00</td>
-            <td>2</td>
-        </tr>
-        <tr>
-            <td><img src="imagens/naves/millenium.jpg" width="150" heigth="150" alt="foto da millenium falcon usada"></td>
-            <td>Millenium Falcon</td>
-            <td>Em perfeito estado</td>
-            <td>CG$800.000,00</td>
-            <td>1</td>
-        </tr>
-    </table>
-    
+    <header>
+        <img class="logo" src="imagens/logos/logo2.png" alt="logotipo da loja">
+        <span class="texto-logo">Nave Mãe - Comércio de naves usadas</span>
+        <div class="usuario">
+            <img src="imagens/icones/iconeuser.png" alt="icone de usuário">
+            <p class="texto-usuario">Usuário x</p>
+        </div>
+    </header>
+    <main>
+        <h1>Controle de estoque</h1>
+        <table class="tabela-produtos" border=1>
+            <tr id="linha1">
+                <th>Foto</th>
+                <th>Modelo</th>
+                <th>Descrição</th>
+                <th>Preço</th>
+                <th>Quantidade</th>
+            </tr>
+            <tr id="linha2">
+                <td><img src="imagens/naves/speeder.jpg" width="100" heigth="100" alt="foto de um Speeder usado"></td>
+                <td>Speeders</td>
+                <td>Usados em bom estado</td>
+                <td>CG$20.000,00</td>
+                <td>15</td>
+            </tr>
+            <tr id="linha3">
+                <td><img src="imagens/naves/tie-fighter.jpg" width="100" heigth="100" alt="foto de uma tie-fighter usada"></td>
+                <td>Tie-figthers</td>
+                <td>Pouco tempo de uso</td>
+                <td>CG$30.000,00</td>
+                <td>5</td>
+            </tr>
+            <tr id="linha4">
+                <td><img src="imagens/naves/xwing.jpg" width="100" heigth="100" alt="foto de uma x-wing usada"></td>
+                <td>X-wings usadas</td>
+                <td>Reformadas</td>
+                <td>CG$100.000,00</td>
+                <td>2</td>
+            </tr>
+            <tr id="linha5">
+                <td><img src="imagens/naves/millenium.jpg" width="100" heigth="100" alt="foto da millenium falcon usada"></td>
+                <td>Millenium Falcon</td>
+                <td>Em perfeito estado</td>
+                <td>CG$800.000,00</td>
+                <td>1</td>
+            </tr>
+        </table>
+    </main>
 </body>
 </html>
