@@ -1,0 +1,89 @@
+*{
+    margin:0;
+    padding:0;
+}
+
+header{
+    height:15vh;
+    background-image: url(../imagens/ceu.jpg);
+}
+
+.logo{
+    height: 100px;
+}
+
+.texto-logo{
+    color: white;
+    font-size: 40px;
+    font-family: fantasy;
+    position: relative;
+    bottom: 40%;
+        
+}
+
+.usuario{
+    display: inline;
+}
+.usuario img{
+    display: inline;
+    height: 40px;
+    padding: 20px 0 20px 70px;
+      
+}
+
+.texto-usuario {
+    color: white;
+    font-family: fantasy;
+    display: inline;
+    position: relative;
+    bottom:30%;
+}
+
+
+main{
+    background-color: #b3a9a9;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    height: 70vh;
+}
+
+main h2{
+    padding:10px;
+    color: white;
+    }
+
+.menu li{
+    padding:10px;
+    background-color: white;
+    display: inline;
+    font-size: 15px;
+    
+}
+
+.menu-link{
+    text-decoration: none;
+    padding: 15px;
+}
+
+.tabela-produtos{
+    padding:20px;
+}
+
+#linha1{
+    background-color: white;
+}
+
+#linha2{
+    background-color: lavender;
+}
+
+#linha3{
+    background-color: white;
+}
+
+#linha4{
+    background-color: lavender;
+}
+
+#linha5{
+    background-color: white;
+}
