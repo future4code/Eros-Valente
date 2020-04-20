@@ -7,35 +7,38 @@
     <title>Portfólio Eros</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
-    <section class="menu">
+<body class="corpo-site">
+    <div class="menu">
         <div>
             <img class="minha-foto" src="imagens/fotoeros.jpg" alt="foto Eros Pinder Valente">
-            <h1>Eros Pinder Valente</h1>
+            <h1 class="nome-menu">Eros Pinder Valente</h1>
         </div>    
         <div>
             <a class="itens-menu" href="sobremim.html">sobre mim</a>
             <a class="itens-menu" href="projetos.html">projetos</a>
-            <ul>
-                <li>eros.pv@gmail.com</li>
-                <li>github.com/erospv</li>
-                <li>linkedin</li>
-            </ul>
-        </div>    
-        <div class="contateme">
-        <a class="link-contato" href="contateme.html">contate-me</a>
         </div>
-    </section>
-    <section class="projetos">
+        <ul class="lista-contatos">
+            <li id="email-contato" class="item-contatos">eros.pv@gmail.com</li>
+            <li id="github=contato" class="item-contatos">github.com/erospv</li>
+            <li id="linkedin-contato"class="item-contatos">linkedin</li>
+        </ul>    
+    </div>
+    <div class="projetos">
         <h1 class="titulo-proj">PROJETOS</h1>
-        <div>
-            <a class="link-proj" href="projeto-procseletivo-f4.html"><img class="foto-proj" src="imagens/prints-projetos/projetoFuture4.JPG"
-            alt="foto projeto do processo seletivo future4"></a>
-            <a class="link-proj" href="projeto-copify.html"><img class="foto-proj" src="imagens/prints-projetos/copify.JPG"
-            alt="foto do projeto do site Copify"></a>
-            <a class="link-proj" href="projeto-navemae.html"><img class="foto-proj" src="imagens/prints-projetos/navemae.jpg"
-            alt="foto do projeto do site Nave Mãe"></a>
+        <div class="imagens">
+            <a class="link-proj" href="projeto-procseletivo-f4.html">
+            <img class="foto-proj proj-f4" src="imagens/prints-projetos/projetoFuture4.JPG"
+            alt="foto projeto do processo seletivo future4"><p>Seleção Future4</p></a>
+            <a class="link-proj" href="projeto-copify.html">
+            <img class="foto-proj proj-copify" src="imagens/prints-projetos/copify.JPG"
+            alt="foto do projeto do site Copify"><p>Copify</p></a>
+            <a class="link-proj" href="projeto-navemae.html">
+            <img class="foto-proj proj navemãe" src="imagens/prints-projetos/navemae.jpg"
+            alt="foto do projeto do site Nave Mãe"><p>Nave Mãe</p></a>
         </div>
-    </section>
+    </div>
+    <div class="div-link-contato">
+        <a class="link-contato" href="contateme.html">contate-me</a>
+    </div>
 </body>
 </html>

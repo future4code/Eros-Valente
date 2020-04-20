@@ -7,23 +7,23 @@
     <title>Portfólio Eros</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
-    <section class="menu">
+<body class="corpo-site">
+    <div class="menu">
         <div>
             <img class="minha-foto" src="imagens/fotoeros.jpg" alt="foto Eros Pinder Valente">
-            <h1>Eros Pinder Valente</h1>
+            <h1 class="nome-menu">Eros Pinder Valente</h1>
         </div>    
         <div>
             <a class="itens-menu" href="sobremim.html">sobre mim</a>
             <a class="itens-menu" href="projetos.html">projetos</a>
-            <ul>
-                <li>eros.pv@gmail.com</li>
-                <li>github.com/erospv</li>
-                <li>linkedin</li>
-            </ul>
-        </div>    
-    </section>
-    <section class="form-contato">
+        </div>
+        <ul class="lista-contatos">
+            <li id="email-contato" class="item-contatos">eros.pv@gmail.com</li>
+            <li id="github=contato" class="item-contatos">github.com/erospv</li>
+            <li id="linkedin-contato"class="item-contatos">linkedin</li>
+        </ul>    
+    </div>
+    <div class="form-contato">
         <h2 class="titulo-formulario">Contato</h2>
         <form>
             <div>
@@ -36,12 +36,12 @@
             </div>
             <div>
                 <label for="msg">Mensagem:</label>
-                <textarea rows="10" cols="40"></textarea>
+                <textarea rows="15" cols="50"></textarea>
             </div>
             <div class=btn>
                 <button type="submit">Envie sua mensagem</button>
             </div>   
         </form>
-    </section>
+    </div>
 </body>
 </html>
