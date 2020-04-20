@@ -43,6 +43,7 @@ div>p:first-child {
     border-radius: 5px;
     font-size: 20px;
     color: white;
+    outline: none;
 }
 
 .botao-amarelo:hover {
@@ -125,6 +126,7 @@ td button {
     border-radius: 5px;
     color: black;
     cursor: pointer;
+    outline: none;
 }
 
 td button:hover{
@@ -150,6 +152,7 @@ td button:active{
     border-radius: 5px;
     font-size: 10px;
     color: black;
+    outline:none;
 }
 
 #back-button:hover {
