@@ -55,6 +55,7 @@ div>p:first-child {
 .icone {
     height: 40px;
     width: 40px;
+    cursor: pointer;
 }
 
 .conteudo-descriçao{
@@ -113,8 +114,16 @@ td button {
     height: 30px;
     border-radius: 5px;
     color: black;
+    cursor: pointer;
 }
 
+td button:hover{
+    background-color: #bea949;
+}
+
+td button:active{
+    color: white
+}
 
 
 .container-do-search {
