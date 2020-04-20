@@ -91,6 +91,12 @@ div>p:first-child {
     display: block;
 }
 
+ol{
+    position: relative;
+    width:250px;
+    margin: auto;
+    padding: 20px;
+}
 
 /**
   *
