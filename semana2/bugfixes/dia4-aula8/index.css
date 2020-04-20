@@ -59,7 +59,10 @@ div img {
     height: 15px;
 }
 
-
+.conteudo-descriçao{
+    position: relative;
+    top: 80px;
+}
 /** 
   *
   *  ESTILOS HOME 
