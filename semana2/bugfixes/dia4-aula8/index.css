@@ -22,6 +22,7 @@ input {
     width: 500px;
     border: none;
     border-bottom: 3px solid rgb(238, 238, 238);
+    outline: none;
 }
 
 button:focus {
@@ -60,6 +61,14 @@ div>p:first-child {
     height: 40px;
     width: 40px;
     cursor: pointer;
+}
+
+.icone:hover{
+    opacity: 40%;
+}
+
+.icone:active{
+    opacity:100%;
 }
 
 .conteudo-descriçao{
@@ -163,3 +172,4 @@ table img{
     width: 60px;
     height: 60px;
 }
+
