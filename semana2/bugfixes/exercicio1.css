@@ -1,0 +1,15 @@
+a:first-of-type {
+    color: red;
+}
+
+span a:last-of-type {
+    color: green;
+}
+
+p {
+    color: blue;
+}
+
+span p:last-child{
+    color: yellow;
+}
