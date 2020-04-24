@@ -1,0 +1,16 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+header{
+    display: flex;
+    height: 10vh;
+    background-color: orangered;
+    color: white;
+}
+
+main{
+    display: flex;
+    justify-content: center;
+}
