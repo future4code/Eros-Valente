@@ -115,7 +115,7 @@ if (possuiOssos === "s") {
       if (racional === "s") {
          console.log("Ser humano")
       } else{
-         console.log("Mamífero não humano")
+         console.log("Mamífero não humano") 
       }
    } else if (possuiPelos === "n"){
       let possuiPenas = prompt("O animal possui penas?")
@@ -138,6 +138,164 @@ if (possuiOssos === "s") {
    }
 } else {
    console.log("Invertebrado")
+}
+
+
+// DESAFIO
+console.log("")
+console.log("DESAFIO")
+console.log("")
+
+let nomeCompleto = prompt("Informe seu nome completo")
+let tipoJogo = prompt("Escolha o tipo de jogo")
+let etapa = prompt("Esolha a etapa")
+let categoria = prompt("Escolha a categoria")
+let quantidadeIngressos = Number(prompt("Escolha a quantidade de ingressos?"))
+let valorIngresso = 0
+
+if (tipoJogo === "DO") {
+   switch (etapa) {
+      case "SF":
+         tipoJogo = "Semifinal"
+         switch (categoria) {
+            case "1":
+               valorIngresso = 1300
+               break;
+            
+            case "2":
+               valorIngresso = 880
+               break;
+            
+            case "3":
+               valorIngresso = 550
+               break;
+            
+            case "4":
+               valorIngresso = 220
+               break;   
+         }
+         break;
+      case "DT":
+         tipoJogo = "Decisão do 3º lugar"
+         switch (categoria) {
+            case "1":
+               valorIngresso = 660
+               break;
+            
+            case "2":
+               valorIngresso = 440
+               break;
+            
+            case "3":
+               valorIngresso = 330
+               break;
+            
+            case "4":
+               valorIngresso = 170
+               break;   
+         }
+         break;
+      case "FI":
+         tipoJogo = "Final"
+         switch (categoria) {
+            case "1":
+               valorIngresso = 1980
+               break;
+            
+            case "2":
+               valorIngresso = 1320
+               break;
+            
+            case "3":
+               valorIngresso = 880
+               break;
+            
+            case "4":
+               valorIngresso = 330
+               break;   
+         }
+         break;   
+   }
+   console.log("---Dados da compra---")
+   console.log("Nome do cliente:", nomeCompleto)
+   console.log("Estapa do jogo:", tipoJogo)
+   console.log("Categoria:", categoria)
+   console.log("Quantidade de Ingressos:",quantidadeIngressos, "ingressos")
+   console.log("---Valores---")
+   console.log("Valor do ingresso: R$", valorIngresso)
+   console.log("Valor Total: R$", quantidadeIngressos * valorIngresso)
+} else {
+   switch (etapa) {
+      case "SF":
+         tipoJogo = "Semifinal"
+         switch (categoria) {
+            case "1":
+               valorIngresso = 1300
+               break;
+            
+            case "2":
+               valorIngresso = 880 
+               break;
+            
+            case "3":
+               valorIngresso = 550 
+               break;
+            
+            case "4":
+               valorIngresso = 220
+               break;   
+         }
+         break;
+      case "DT":
+         tipoJogo = "Decisão do 3º lugar"
+         switch (categoria) {
+            case "1":
+               valorIngresso = 660
+               break;
+            
+            case "2":
+               valorIngresso = 440
+               break;
+            
+            case "3":
+               valorIngresso = 330
+               break;
+            
+            case "4":
+               valorIngresso = 170
+               break;   
+         }
+         break;
+      case "FI":
+         tipoJogo = "Final"
+         switch (categoria) {
+            case "1":
+               valorIngresso = 1980
+               break;
+            
+            case "2":
+               valorIngresso = 1320
+               break;
+            
+            case "3":
+               valorIngresso = 880
+               break;
+            
+            case "4":
+               valorIngresso = 330
+               break;   
+         }
+         break;   
+   }
+   valorIngresso /= 4.10 
+   console.log("---Dados da compra---")
+   console.log("Nome do cliente:", nomeCompleto)
+   console.log("Estapa do jogo:", tipoJogo)
+   console.log("Categoria:", categoria)
+   console.log("Quantidade de Ingressos:",quantidadeIngressos, "ingressos")
+   console.log("---Valores---")
+   console.log("Valor do ingresso: U$", valorIngresso)
+   console.log("Valor Total: U$", quantidadeIngressos * valorIngresso)
 }
 
 
