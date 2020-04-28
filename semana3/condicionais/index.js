@@ -39,7 +39,7 @@ usando o let (e ai não importaria elas terem o mesmo nome) ou criar uma variave
 
 --------------------------------------------------
 */
-/*
+
 console.log("EXERCÍCIOS DE ESCRITA DE CÓDIGO")
 // EXERCÍCIO 4
 console.log("EXERCÍCIO 4")
@@ -96,7 +96,7 @@ if (primeiroNumero == segundoNumero && segundoNumero == terceiroNumero) {
    console.log(terceiroNumero, primeiroNumero, segundoNumero)
 } 
 
-*/
+
 // EXERCÍCIO 5
 
 // item a. https://drive.google.com/file/d/1oBerVx9pGRTuK3DwSN98lXUSlQd6FRhi/view?usp=sharing
