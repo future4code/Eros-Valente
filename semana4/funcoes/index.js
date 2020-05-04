@@ -53,82 +53,70 @@ function dadosPessoa (nome, idade, endereco, estudante) {
    return dadosConcatenados
 }
 */
-
+/*
 // EXERCÍCIO 5
 console.log("")
 console.log("EXERCÍCIO 5.")
 
-
-
-/*
-//item d
-console.log("")
-console.log("item d.")
-
-i = 0
-let arrayString = []
-while (i < arrayOriginal.length){
-  let itemArrayOriginal = String(arrayOriginal[i])
-  let itemNovoArray = `O elemento do index ${i} é o ${itemArrayOriginal}`
-  arrayString.push(itemNovoArray)
-  i += 1
-}  
-console.log(arrayString)
-
-
-// DESAFIO 2
-console.log("")
-console.log("DESAFIO 2 ")
-console.log("")
-
-let numeroPensado = Number(prompt("Escolha um número"))
-console.log("Vamos jogar!")
-numeroErrado = true
-let tentativas = 1
-
-while(numeroErrado){
-   let numeroChutado = Number(prompt("Qual número eu pensei?"))
-   console.log(`O número chutado foi ${numeroChutado}`)
-   if(numeroChutado === numeroPensado){
-      numeroErrado = false
-      console.log("Acertou!")
-      console.log(`O número de tentivas foi ${tentativas}`)
-   } else if (numeroChutado > numeroPensado) {
-      console.log("Errrrrrrrou, é menor")
-   } else {
-      console.log("Errrrrrrrou, é maior")
-   }
-   tentativas++  
+function informaSeculo(ano) {
+   let seculosNumRomanos = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII", "XIII", "XIV", "XV", "XVI", "XVII", "XVIII", "XIX", "XX", "XXI"]
+   let seculoAnoInformado = Math.ceil(ano/100)
+   let seculoAnoEmRomanos = `O ano ${ano} pertence ao século ${seculosNumRomanos[(seculoAnoInformado - 1)]}`
+   
+   return seculoAnoEmRomanos
 }
 
-// DESAFIO 3
-console.log("")
-console.log("DESAFIO 3 ")
-console.log("")
-
-let numeroAleatorioEscolhido = Math.floor(Math.random() * 100) + 1
-console.log("Vamos jogar!")
-numeroErrado = true
-let tentativasJogo2 = 1
-
-while(numeroErrado){
-   numeroChutado = Number(prompt("Qual número eu pensei?"))
-   console.log(`O número chutado foi ${numeroChutado}`)
-   if(numeroChutado === numeroAleatorioEscolhido){
-      numeroErrado = false
-      console.log("Acertou!")
-      console.log(`O número de tentivas foi ${tentativasJogo2}`)
-   } else if (numeroChutado > numeroAleatorioEscolhido) {
-      console.log("Errrrrrrrou, é menor")
-   } else {
-      console.log("Errrrrrrrou, é maior")
-   }
-   tentativasJogo2++  
-}
 
 */
+//EXERCÍCIO 6
+// item a
 
 
+//const array = [10, 23, 45, 78, 90, 52, 35, 67, 84, 22]
+
+let quantidadeElementos = (array) => {
+   return array.length 
+}
+
+// item b
+
+function ehPar (numero) {
+   let paridade = undefined
+   if (numero % 2 === 0) {
+      paridade = true
+   } else {
+      paridade = false
+   }
+   
+   return paridade
+}
+
+// item c
+
+function quantidadeDePares(array) {
+   let pares = 0
+   for (let i = 0; i < array.length; i++) {
+      let paridade = array[i] % 2
+      if (paridade === 0) {
+         pares += 1
+      } 
+   }
+
+   return pares
+}
+
+// item d
+
+function quantidadePares(array) {
+   let pares = 0
+   for (let numero of array) {
+      if (ehPar(numero) === true){
+         pares += 1
+      }
+   }
+  
+   return pares
+}
 
 
 
