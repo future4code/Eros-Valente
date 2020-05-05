@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="index.js" defer></script>
+</head>
+<body>
+    <header>
+        <label for="novaTarefa">Tarefa:</label>
+        <input type="text" name="Tarefa" id="novaTarefa">
+        <select name="diaDaSemana" id="diaDaSemana">
+            <option value="seg">Segunda-feira</option>
+            <option value="ter">Terça-feira</option>
+            <option value="qua">Quarta-feira</option>
+            <option value="qui">Quinta-feira</option>
+            <option value="sex">Sexta-feira</option>
+            <option value="sab">Sábado</option>
+            <option value="dom">Domingo</option>            
+        </select>
+        <button onclick="adicionarTarefa()">Adicionar Tarefa</button>
+    </header>
+    <main >
+        <div id="seg">Segunda-Feira
+            <ul class="tarefasDoDia">
+
+            </ul>
+        </div>
+        <div id="ter">Terça-Feira
+            <ul class="tarefasDoDia">
+
+            </ul>
+        </div>
+        <div id="qua">Quarta-Feira
+            <ul class="tarefasDoDia">
+
+            </ul>
+        </div>
+        <div id="qui">Quinta-Feira
+            <ul class="tarefasDoDia">
+
+            </ul>
+        </div>
+        <div id="sex">Sexta-Feira
+            <ul class="tarefasDoDia">
+
+            </ul>
+        </div>
+        <div id="sab">Sábado
+            <ul class="tarefasDoDia">
+
+            </ul>
+        </div>
+        <div id="dom">Domingo
+            <ul class="tarefasDoDia">
+
+            </ul>
+        </div>
+    </main>
+    
+</body>
+</html>
