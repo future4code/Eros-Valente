@@ -1,9 +1,17 @@
 const tarefaAdicionada = document.getElementById("novaTarefa")
-const dia = document.getElementById("diaDaSemana")
+const diaSeletor = document.getElementById("diaDaSemana")
 
 function adicionarTarefa() {
     let tarefa = tarefaAdicionada.value
-    console.log(tarefa) // APAGAR ANTES DE FINALIZAR
-    let diaEscolhido = dia.value
-
+    if (tarefa === "") {
+        alert("Nenhuma tarefa foi digitada!")
+    } else {
+        let diaEscolhido = diaSeletor.value
+        let divDia = document.getElementById(diaEscolhido)
+        divDia.getElementsByTagName("ul")[0].innerHTML += `<li>${tarefa}</li>`
+    }
+    tarefaAdicionada.value = ""
 }
+
+
+

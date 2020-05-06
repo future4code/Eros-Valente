@@ -8,8 +8,9 @@
     <script src="index.js" defer></script>
 </head>
 <body>
+    <div class="margemCaderno"></div>
     <header>
-        <label for="novaTarefa">Tarefa:</label>
+        <label>Tarefa:</label>
         <input type="text" name="Tarefa" id="novaTarefa">
         <select name="diaDaSemana" id="diaDaSemana">
             <option value="seg">Segunda-feira</option>
@@ -21,11 +22,13 @@
             <option value="dom">Domingo</option>            
         </select>
         <button onclick="adicionarTarefa()">Adicionar Tarefa</button>
+        <button onclick="limparTarefas()">Limpar Tarefas</button>
     </header>
+    <hr>
     <main >
         <div id="seg">Segunda-Feira
-            <ul class="tarefasDoDia">
-
+            <ul onclick="riscarTarefa()" class="tarefasDoDia">
+                    
             </ul>
         </div>
         <div id="ter">Terça-Feira
