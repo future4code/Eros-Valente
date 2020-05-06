@@ -11,7 +11,7 @@
     <div class="margemCaderno"></div>
     <header>
         <label>Tarefa:</label>
-        <input type="text" name="Tarefa" id="novaTarefa">
+        <input type="text" name="Tarefa" id="novaTarefa" onkeydown="apertaEnter(event)">
         <select name="diaDaSemana" id="diaDaSemana">
             <option value="seg">Segunda-feira</option>
             <option value="ter">Terça-feira</option>
@@ -27,7 +27,7 @@
     <hr>
     <main >
         <div id="seg">Segunda-Feira
-            <ul onclick="riscarTarefa()" class="tarefasDoDia">
+            <ul class="tarefasDoDia">
                     
             </ul>
         </div>
