@@ -25,20 +25,12 @@ function cadastraDespesa() {
         valorDespesa.value = tipoDespesa.value = descricaoDespesa.value = ""
         console.log(despesas)   
     }
-    despesas.forEach((gasto, idx, arr) => {
-        document.getElementById("lista-despesas").innerHTML += `<li>R$${gasto[arr.length - 1].valor} - ${gasto[arr.length - 1].tipo} - ${gasto[arr.length - 1].descricao}</li>`
-    })
     
+    document.getElementById("lista-despesas").innerHTML += "<li class='lista-despesas'></li>"
+    let itensLista = document.getElementsByClassName("lista-despesas")
+    itensLista[itensLista.length - 1].innerText += `R$ ${despesas[despesas.length - 1].valor},00 --- ${despesas[despesas.length - 1].tipo} ---  ${despesas[despesas.length - 1].descricao}` 
+    
+}
 
 
-}   
 
-
-
-// console.log(despesasTotais)
-
-// function filtraDespesas() {
-//     despesas = cadastraDespesa()  
-//     console.log(desepesas)
-
-// }
