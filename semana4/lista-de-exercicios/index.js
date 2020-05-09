@@ -33,7 +33,7 @@ depois disso temos dois console.log, o primeiro imprime o valor da variável nov
 
 EXERCÍCIO 3
 
-No escopo global são declaradas três variáveis a numeros que recebe um array com vários números, array1 e array2 que recebem arrays vazios
+No escopo global são declaradas três variáveis como constanttes a numeros que recebe um array com vários números, array1 e array2 que recebem arrays vazios
 um laço do tipo for of irá percorrer cada número do array numeros, dentro do bloco do for of a condicional if irá fazer a operação de resto da divisão entre o número atual do array por 2 e caso o resultado dessa divisão seja 0 esse número será adicionado ao array1
 caso contrário a condicional vai para o else que adicionará o número no array2, o for of portanto, percorre o array numeros e adiciona os números pares no array1 e os impares no array2
 
@@ -41,6 +41,19 @@ os console.log após o for-of irão respectivamente imprimir, o tamanho do array
 
 ---------------------------------------------------------------------------------------------
 
+EXERCÍCIO 4
+
+No escopo global a constante numeros é declarada e recebe um array com vários números inclusive negativo.
+a váriável numero1 recebe um valor infinito e a variável numero2 recebe o valor 0
+um laço for-of com duas condicionais if em seu bloco irá percorrer o array numeros e para cada numero do array as condicionais if irão fazer as seguintes comparações, 
+o primeiro irá comparar o número com a váriavel numero1 (valor infinito) se o número for menor a variável numuero1 passará a receber o valor do número atual do array
+e assim sucessivamente até que seu valor seja o menor número eistente no array.
+O segundo if do laço irá comparar o número atual do array à variável numero2 (valor 0) se o número  for maior, numero2 receberá o valor do número atual
+Fora do laço dois console.log, o primeiro imprime o valor de numero1 que será o menor número do array numeros
+o segundo imprime o o valor de numero2 que será o maior número do array numeros
+
+=======
+ 
 
 
 
