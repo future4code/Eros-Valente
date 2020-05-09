@@ -52,34 +52,40 @@ O segundo if do laço irá comparar o número atual do array à variável numero
 Fora do laço dois console.log, o primeiro imprime o valor de numero1 que será o menor número do array numeros
 o segundo imprime o o valor de numero2 que será o maior número do array numeros
 
-=======
- 
+=======================================================================================================
 
+EXERCÍCIOS DE LÓGICA DE PROGRAMAÇÃO
 
+EXERCÍCIO 1
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Usando as estruturas de laços como o while, for-of ou até mesmo uma função callback como o forEach
 
 */
+
+function logicaExercicio1(){ 
+    const numeros = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    let numerosDobro = []
+    let numerosDobroNegativos = []
+    
+    
+    let i = 0
+    while (i < numeros.length) {   // exemplo de iteração com while
+        let novoNumero = numeros[i]*2
+        numerosDobro.push(novoNumero)
+        i++
+    }
+    console.log(numerosDobro)
+    
+    for(numero of numeros) {     // exemplo de iteraçao com for-of        
+        let numeroNegativo = numero*-1
+        numerosDobroNegativos
+    }
+     
+    let numerosPares = []
+    numeros.forEach((numero, index, array) =>{    // exemplo de iteração com forEach
+        if (numero % 2 === 0) {
+            numerosPares.push(numero)
+        }
+    })
+}
+
