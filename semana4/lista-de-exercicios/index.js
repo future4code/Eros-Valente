@@ -30,3 +30,43 @@ e a variável segundoMontante receberá a função investeDinheiro com a string 
 depois disso temos dois console.log, o primeiro imprime o valor da variável novoMontante que é 165 e o segundo imprime o valor da variável segundoMontante porém essa variável não tem valor o que ela recebeu na verdade foi o alert que já foi exibido na tela, então será impresso undefined.
 
 ---------------------------------------------------------------------------------------------
+
+EXERCÍCIO 3
+
+No escopo global são declaradas três variáveis a numeros que recebe um array com vários números, array1 e array2 que recebem arrays vazios
+um laço do tipo for of irá percorrer cada número do array numeros, dentro do bloco do for of a condicional if irá fazer a operação de resto da divisão entre o número atual do array por 2 e caso o resultado dessa divisão seja 0 esse número será adicionado ao array1
+caso contrário a condicional vai para o else que adicionará o número no array2, o for of portanto, percorre o array numeros e adiciona os números pares no array1 e os impares no array2
+
+os console.log após o for-of irão respectivamente imprimir, o tamanho do array número (Quantidade total de números 14), tamanho do array1 (6) e tamanho do array2 (8)
+
+---------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*/
