@@ -89,3 +89,22 @@ function logicaExercicio1(){
     })
 }
 
+/*
+
+EXERCÍCIO 2 
+
+a) false
+
+b) false
+
+c) true
+
+d) true
+
+e) true
+
+------------------------------------------------------------------------
+
+
+
+*/
