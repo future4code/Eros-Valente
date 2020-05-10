@@ -145,4 +145,30 @@ function classificaTriangulo (a, b, c) {
         classificacao = "não é triangulo"
     }
     return classificacao
+};
+
+// EXERCÍCIO 5
+
+function doisNumeros(numero1, numero2) {
+    let maiorNumero = 0
+    let menorNumero = 0
+    let maiorDivisivelMenor = ""
+
+    if (numero1 > numero2) {
+        maiorNumero = numero1
+        menorNumero = numero2
+        if (maiorNumero % menorNumero === 0){
+            maiorDivisivelMenor = `${maiorNumero} é divisível por ${menorNumero}`
+        } else {
+            maiorDivisivelMenor =`${maiorNumero} não é divisível por ${menorNumero}`
+
+        }
+    }else {
+        maiorNumero = numero2
+        menorNumero = numero1
+    }
+    let menorDivisivelMaior = `${menorNumero} não é divisível por ${maiorNumero}`
+    let diferenca = maiorNumero - menorNumero
+
+    console.log(`O maior é: ${maiorNumero} \n${menorDivisivelMaior} \n${maiorDivisivelMenor} \nA diferença entre eles é ${diferenca}`)
 }
