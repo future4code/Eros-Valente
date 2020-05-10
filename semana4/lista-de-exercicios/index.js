@@ -326,7 +326,7 @@ let retiraDaFila = (pessoasNaFila) => {
 
 
 // EXERCÍCIO 4
-/*
+
 const consultas = [
 	{ nome: "João", genero: "masculino", cancelada: true, dataDaConsulta: "01/10/2019" },
 	{ nome: "Pedro", genero: "masculino", cancelada: false, dataDaConsulta: "02/10/2019" },
@@ -343,21 +343,21 @@ let criaEmailConsultas = (consultas) => {
             return {pronome: "Sra.", lembrete: "lembrá-la"}
         }
     })
-
-    const emailClientes = consultas.map((paciente, index) => {
-        let email = `Olá, ${paciente.pronome} ${paciente.nome}. Estamos enviando esta mensagem para ${paciente.lembrete} da sua consultá no dia ${paciente.dataDaConsulta}. Por favor, acuse o recebimento deste e-mail`
-        return email    
-    })
     
-    const listaEmails = (consultas, generoPronomeTratamento) => {
-
-    }
-
-
-    return emailClientes
+    const listaEmails = consultas.map((paciente, index) => {
+        if (paciente.cancelada === true) {
+            let emailCancelamento = `Olá, ${generoPronomeTratamento[index].pronome} ${paciente.nome}. Infelizmente, sua consulta marcada para o dia ${paciente.dataDaConsulta} foi cancelada. Se quiser, pode entrar em 
+            contato conosco para remarcá-la`
+            return emailCancelamento
+        } else {
+            let emailConfirmacao = `Olá, ${generoPronomeTratamento[index].pronome} ${paciente.nome}. Estamos enviando esta mensagem para ${generoPronomeTratamento[index].lembrete} da sua consulta no dia ${paciente.dataDaConsulta}. Por favor, acuse o recebimento deste e-mail.`
+            return emailConfirmacao 
+        }
+    })
+    return listaEmails
 }
 
-*/
+
 
 // EXERCÍCIO 5
 
