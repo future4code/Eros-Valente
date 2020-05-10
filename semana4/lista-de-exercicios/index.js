@@ -179,16 +179,7 @@ function doisNumeros(numero1, numero2) {
 
 // function segundoMaiorMenor(arrayDeNumeros) {
 //     let menor = Infinity
-//     let listaOrdenada = []
-//     let i = 0
-
-//     while (i < 2){
-//         if numero
-
-//     }
-
-
-// }
+//     
 
 // EXERCÍCIO 2
 
@@ -197,3 +188,26 @@ let saudacao = () => {
 }
 
 const exibeSaudacao = saudacao()
+
+/* 
+EXERCÍCIOS DE OBJETOS
+
+EXERCÍCIO 1
+
+
+
+
+
+*/
+
+// EXERCÍCIO 2
+
+let criaRetangulo = (lado1, lado2) => {
+    const retangulo = {
+        largura: lado1,
+        altura: lado2,
+        perimetro: (2 * (lado1 + lado2)),
+        area: (lado1 * lado2)
+    }
+    return retangulo
+}
