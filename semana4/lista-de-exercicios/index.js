@@ -211,3 +211,17 @@ let criaRetangulo = (lado1, lado2) => {
     }
     return retangulo
 }
+
+// EXERCÍCIO 3
+
+function filmeFavorito() {
+    const meuFilmeFavorito = {
+        titulo: "Apocalypse Now",
+        ano: "1979",
+        diretor: "Francis Ford Coppola",
+        elenco: ["Martin Sheen", " Marlon Brando", " Robert Duvall", " Denis Hopper", " Laurence Fishburn", " Harrison Ford"]
+    }
+
+    console.log(`Venha assistir ao filme ${meuFilmeFavorito.titulo}, de ${meuFilmeFavorito.ano}, dirigido por ${meuFilmeFavorito.diretor} e estrelado por ${meuFilmeFavorito.elenco}`)
+
+}
