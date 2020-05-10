@@ -225,3 +225,20 @@ function filmeFavorito() {
     console.log(`Venha assistir ao filme ${meuFilmeFavorito.titulo}, de ${meuFilmeFavorito.ano}, dirigido por ${meuFilmeFavorito.diretor} e estrelado por ${meuFilmeFavorito.elenco}`)
 
 }
+
+// EXERCÍCIO 4
+
+const dadosPessoa = {
+    nome: "Frank Vincent Zappa",
+    idade: 80,
+    email: "centralscrutinizer@gmail.com",
+    endereco: "7885 Woodrow Wilson Drive, LA, CA"
+}
+
+const anonimizarPessoa = (dadosPessoa) => {
+    dadosPessoaAnonima = {
+        ...dadosPessoa,
+        nome: "ANÔNIMO" 
+    }
+    return dadosPessoaAnonima
+}
