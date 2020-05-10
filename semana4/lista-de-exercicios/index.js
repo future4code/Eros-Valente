@@ -172,3 +172,28 @@ function doisNumeros(numero1, numero2) {
 
     console.log(`O maior é: ${maiorNumero} \n${menorDivisivelMaior} \n${maiorDivisivelMenor} \nA diferença entre eles é ${diferenca}`)
 }
+
+// EXERCICÍOS DE FUNÇÕES
+
+// EXERCÍCIO 1
+
+// function segundoMaiorMenor(arrayDeNumeros) {
+//     let menor = Infinity
+//     let listaOrdenada = []
+//     let i = 0
+
+//     while (i < 2){
+//         if numero
+
+//     }
+
+
+// }
+
+// EXERCÍCIO 2
+
+let saudacao = () => {
+    alert("Hello Future4")
+}
+
+const exibeSaudacao = saudacao()
