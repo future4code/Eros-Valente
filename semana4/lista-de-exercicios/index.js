@@ -131,6 +131,7 @@ function quantidadeDePares() {
     }
 }
 
+//--------------------------------------------------------------------------------------
 // EXERCÍCIO 4
 
 function classificaTriangulo (a, b, c) {
@@ -147,6 +148,7 @@ function classificaTriangulo (a, b, c) {
     return classificacao
 };
 
+// ----------------------------------------------------------------------------------
 // EXERCÍCIO 5
 
 function doisNumeros(numero1, numero2) {
@@ -177,19 +179,33 @@ function doisNumeros(numero1, numero2) {
 
 // EXERCÍCIO 1
 
-// function segundoMaiorMenor(arrayDeNumeros) {
-//     let menor = Infinity
-//     
+function exercicioUmFuncoes() { // criei essa função apenas para não imprimir no console sem que ela seja chamada
+    
+    function segundoMaiorMenor (listaNumeros) {
+        function comparaNumeros (numero1, numero2) {
+            return numero1 - numero2
+        }
+        let listaOrdenadaCrescente = listaNumeros.sort(comparaNumeros)
+        let segundoMenor = listaOrdenadaCrescente[1]
+        let segundoMaior = listaOrdenadaCrescente[listaOrdenadaCrescente.length - 2]
+        console.log(`Segundo número menor da lista: ${segundoMenor} \nSegundo número maior da lista: ${segundoMaior}`)
+    }
+    
+    segundoMaiorMenor([3, 5, 3, 40, 10, -3, 12, 30, 11, 23])
+}
+
 
 // EXERCÍCIO 2
 
 let saudacao = () => {
-    alert("Hello Future4")
+    alert("Hello Labenu")
 }
 
 const exibeSaudacao = saudacao()
 
 /* 
+==========================================================================================================
+
 EXERCÍCIOS DE OBJETOS
 
 EXERCÍCIO 1
@@ -199,6 +215,8 @@ e assim se quisermos acessar as informações dessas ficha separadamente ou faze
 Acredito que devemos utilizar objetos ou array sempre que quisermos armazenar de forma mais adequada, para poder acessar com mais facilidade um conjunto de informações sobre um mesmo objeto. 
 
 */
+
+//---------------------------------------------------------------------------------------------------------
 
 // EXERCÍCIO 2
 
@@ -211,6 +229,8 @@ let criaRetangulo = (lado1, lado2) => {
     }
     return retangulo
 }
+
+// --------------------------------------------------------------------------------------------------------
 
 // EXERCÍCIO 3
 
@@ -225,6 +245,8 @@ function filmeFavorito() {
     console.log(`Venha assistir ao filme ${meuFilmeFavorito.titulo}, de ${meuFilmeFavorito.ano}, dirigido por ${meuFilmeFavorito.diretor} e estrelado por ${meuFilmeFavorito.elenco}`)
 
 }
+
+//-------------------------------------------------------------------------------------------------------
 
 // EXERCÍCIO 4
 
@@ -242,6 +264,8 @@ const anonimizarPessoa = (dadosPessoa) => {
     }
     return dadosPessoaAnonima
 }
+
+// =======================================================================================
 
 // EXERCÍCIOS DE FUNÇÕES DE ARRAY
 
@@ -265,6 +289,8 @@ const listaMaiorDe20 = listaPessoas.filter((pessoa, index, array) => {
 const listaMenorDe20 = listaPessoas.filter((pessoa) => {
     return pessoa.idade < 20
 })
+
+// --------------------------------------------------------------------------------------------------------------------
 
 // EXERCÍCIO 2
 
@@ -293,6 +319,8 @@ const arrayStringParImpar = array.map((numero) => {
         return impar
     }
 })
+
+// ------------------------------------------------------------------------------------------------------------------------
 
 // EXERCÍCIO 3
 
@@ -324,6 +352,7 @@ let retiraDaFila = (pessoasNaFila) => {
     return pessoasNaoPermitidas
 }
 
+// ---------------------------------------------------------------------------------------------------------------------
 
 // EXERCÍCIO 4
 
@@ -357,7 +386,7 @@ let criaEmailConsultas = (consultas) => {
     return listaEmails
 }
 
-
+// --------------------------------------------------------------------------------------------------------------------
 
 // EXERCÍCIO 5
 
