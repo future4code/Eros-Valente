@@ -130,3 +130,19 @@ function quantidadeDePares() {
         i++
     }
 }
+
+// EXERCÍCIO 4
+
+function classificaTriangulo (a, b, c) {
+    let classificacao = ""
+    if (a === 0 || b === 0 || c === 0) {
+        classificacao = "Não é triângulo"
+    }else if (a === b && b === c) {
+        classificacao = "Equilátero"
+    } else if (a === b || a === c || c === b) {
+        classificacao = "Isósceles"    
+    } else {
+        classificacao = "não é triangulo"
+    }
+    return classificacao
+}
