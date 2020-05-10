@@ -242,3 +242,26 @@ const anonimizarPessoa = (dadosPessoa) => {
     }
     return dadosPessoaAnonima
 }
+
+// EXERCÍCIOS DE FUNÇÕES DE ARRAY
+
+// EXERCÍCIO 1
+
+// a)
+
+const listaPessoas = [
+	{ nome: "Pedro", idade: 20 },
+	{ nome: "João", idade: 10 },
+	{ nome: "Paula", idade: 12 },
+	{ nome: "Artur", idade: 89 } 
+]
+
+const listaMaiorDe20 = listaPessoas.filter((pessoa, index, array) => {
+    return pessoa.idade >= 20 
+})
+
+// b)
+
+const listaMenorDe20 = listaPessoas.filter((pessoa) => {
+    return pessoa.idade < 20
+})
