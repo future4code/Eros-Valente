@@ -194,9 +194,9 @@ EXERCÍCIOS DE OBJETOS
 
 EXERCÍCIO 1
 
-
-
-
+Objetos são estruturas com capacidade de armazenar e representar dados mais complexos, um objeto pode por exemplo armazenar todas as informações de uma ficha cadastral dos alunos de uma escola
+e assim se quisermos acessar as informações dessas ficha separadamente ou fazer qualquer alteração nas informações, nós conseguimos graças a estrutura de sintaxe do objeto.
+Acredito que devemos utilizar objetos ou array sempre que quisermos armazenar de forma mais adequada, para poder acessar com mais facilidade um conjunto de informações sobre um mesmo objeto. 
 
 */
 
@@ -264,4 +264,32 @@ const listaMaiorDe20 = listaPessoas.filter((pessoa, index, array) => {
 
 const listaMenorDe20 = listaPessoas.filter((pessoa) => {
     return pessoa.idade < 20
+})
+
+// EXERCÍCIO 2
+
+const array = [1, 2, 3, 4, 5, 6]
+
+// a)
+
+const arrayVezesDois = array.map((numero, index, arr) => {
+    return numero * 2
+})
+
+// b) 
+
+const arrayVezesTresString = array.map((numero) => {
+    return String(numero * 3)
+})
+
+// c)
+
+const arrayStringParImpar = array.map((numero) => {
+    if (numero % 2 === 0) {
+       let par =  `${numero} é par`
+       return par
+    } else {
+        let impar = `${numero} é impar`
+        return impar
+    }
 })
