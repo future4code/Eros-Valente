@@ -54,7 +54,7 @@ o segundo imprime o o valor de numero2 que será o maior número do array numero
 
 =======================================================================================================
 
-EXERCÍCIOS DE LÓGICA DE PROGRAMAÇÃO
+EXERCÍCIOS DE LÓGICA DE PROGRAMAÇÃO  (como proposto estou colocando os exercícios dentro de funções não sei bem se da forma como foi solicitado, mas foi como eu entendi para fazer)
 
 EXERCÍCIO 1
 
@@ -62,31 +62,36 @@ Usando as estruturas de laços como o while, for-of ou até mesmo uma função c
 
 */
 
-function logicaExercicio1(){ 
-    const numeros = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-    let numerosDobro = []
-    let numerosDobroNegativos = []
+function iteraLista(listaDeNumeros){ 
+    
+    let dobroListaDeNumeros = []
+    let listaDeNegativos = []
     
     
     let i = 0
-    while (i < numeros.length) {   // exemplo de iteração com while
-        let novoNumero = numeros[i]*2
-        numerosDobro.push(novoNumero)
+    while (i < listaDeNumeros.length) {   // exemplo de iteração com while
+        let novoNumero = listaDeNumeros[i]*2
+        dobroListaDeNumeros.push(novoNumero)
         i++
     }
-    console.log(numerosDobro)
     
-    for(numero of numeros) {     // exemplo de iteraçao com for-of        
+    
+    for(numero of listaDeNumeros) {     // exemplo de iteraçao com for-of        
         let numeroNegativo = numero*-1
-        numerosDobroNegativos
+        listaDeNegativos.push(numeroNegativo)
     }
      
     let numerosPares = []
-    numeros.forEach((numero, index, array) =>{    // exemplo de iteração com forEach
+    listaDeNumeros.forEach((numero, index, array) =>{    // exemplo de iteração com forEach
         if (numero % 2 === 0) {
             numerosPares.push(numero)
         }
     })
+    
+    console.log(dobroListaDeNumeros)
+    console.log(listaDeNegativos)
+    console.log(numerosPares)
+
 }
 
 /*
@@ -103,8 +108,25 @@ d) true
 
 e) true
 
-------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------
 
 
+EXERCÍCIO 3
+
+O código não funcionará adequadamente primeiro porque quantidadeDeNumeros está declarado como const mas sem valor,
+e isso ira retornar um erro no console, outro problema é que se quisermos que esse número seja digitado pelo usuário
+precisáriamos atribuir ela a um prompt e quantidadeDeNumeros sendo declarado com const não vai nos permitir alterar seu valor
+Um outro erro no código que notei é que a condição de parada do while está como i maior ou igual ao número passado, isso irá imprimir um número a mais do que o esperado
+E por ultimo a variável i tem o valor 0 e está sem incremento dentro do laço, isso vai gerar um loop infinito.
+Abaixo o código com algumas alterações para conseguirmos o comportamento esperado.
 
 */
+
+function quantidadeDePares() {  
+    let quantidadeDeNumerosPares = Number(prompt("Digite um número:"))
+    let i = 0 
+    while(i < quantidadeDeNumerosPares) {
+        console.log(i*2)
+        i++
+    }
+}
