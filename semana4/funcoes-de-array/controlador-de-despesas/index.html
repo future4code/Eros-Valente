@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="index.js" defer></script>
+</head>
+<body>
+    <section class="secao-controlador" id="cadastra-despesa">
+        <h1>Controlador de Despesas</h1>
+        <h3>Cadastrar despesas</h3>
+        <form>
+            <label for="valor">Valor</label>
+            <input type="number" id="valor">
+            <label for="seletor-tipo">Tipo</label>
+            <select id="seletor-tipo">
+                <option>Casa</option>
+                <option>Alimentação</option>
+                <option>Transporte</option>
+            </select>
+            <label for="descricao">Descrição</label>
+            <input type="text" id="descricao">
+        </form>
+        <button onclick="cadastraDespesa()">Cadastrar Despesa</button>
+    </section>
+    <section class="secao-controlador" id="filtra-despesa">
+        <h1>Despesas Detalhadas</h1>
+        <form>
+            <label for="filtra-tipo">Tipo</label>
+            <select id="filtra-tipo">
+                <option value="casa">Casa</option>
+                <option value="alimento">Alimentação</option>
+                <option value="transporte">Transporte</option>
+            </select>
+            <label for="filtro-valor-min">Valor mínimo</label>
+            <input type="number" id="filtro-valor-min">
+            <label for="filtro-valor-max">Valor máximo</label>
+            <input type="number" id="filtro-valor-max">
+        </form>
+        <button onclick="filtraDespesas()">Filtrar</button>
+        <button onclick="limpaFiltros()">Limpar Filtros</button>
+        <ul id="lista-despesas">
+
+        </ul>
+
+        </section>
+        <section class="secao-controlador" id="extrato">
+            <h1>Extrato</h1>
+            <h3 id="valor-total">Valor total:</h3>
+
+        </section>
+    
+</body>
+</html>
