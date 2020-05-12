@@ -15,7 +15,7 @@ function App() {
         <CardGrande 
           imagem={ minhaImagem }
           nome="Eros Pinder Valente" 
-          descricao="Oi, eu sou o Olá, meu nome é Eros Pinder Valente, sou formado em Engenharia Mecânica, mas atualmente estudo para me tornar desenvolvedor web."
+          descricao="Olá, meu nome é Eros Pinder Valente, sou formado em Engenharia Mecânica, mas atualmente estudo para me tornar desenvolvedor web."
         />
         
         <ImagemButton 
