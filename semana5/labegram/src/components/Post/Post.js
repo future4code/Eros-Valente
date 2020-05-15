@@ -1,5 +1,6 @@
 import React from 'react'
 import './Post.css'
+import styled from 'styled-components'
 import {IconeComContador} from '../IconeComContador/IconeComContador'
 import iconeCoracaoBranco from '../../img/favorite-white.svg'
 import iconeCoracaoPreto from '../../img/favorite.svg'
@@ -10,6 +11,29 @@ import iconeCompartilhar from '../../img/send.svg'
 import {SecaoComentario} from '../SecaoComentario/SecaoComentario'
 import {IconeSemContador} from '../IconeSemContador/IconeSemContador'
 import { SecaoCompartilhar } from '../SecaoCompartilhar/SecaoCompartilhar'
+
+// Styled Components
+
+const ContainerPost = styled.div`
+  border: 1px solid gray;
+  width: 300px;
+  margin-bottom: 10px;
+`
+
+const PostHead = styled.div`
+  height: 40px;
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+`
+const PostFooter = styled.div`
+  height: 40px;
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  justify-content: flex-start;  
+`
+
 
 class Post extends React.Component {
   state = {
@@ -86,17 +110,17 @@ class Post extends React.Component {
       componenteComentario = <SecaoComentario aoEnviar={this.aoEnviarComentario}/>
     }
 
-    return <div className={'post-container'}>
-      <div className={'post-header'}>
+    return <ContainerPost>
+      <PostHead>
         <img className={'user-photo'} src={this.props.fotoUsuario} alt={'Imagem do usuario'}/>
         <p>{this.props.nomeUsuario}</p>
-      </div>
+      </PostHead>
 
       <img className={'post-photo'} src={this.props.fotoPost} alt={'Imagem do post'}/>
 
       {componenteCompartilhamento}
 
-      <div className={'post-footer'}>
+      <PostFooter>
         <IconeComContador
           icone={iconeCurtida}
           onClickIcone={this.onClickCurtida}
@@ -119,9 +143,9 @@ class Post extends React.Component {
           icone={iconeMarcacao}
           onClickIcone={this.onClickMarcacao}
         />  
-      </div>
+      </PostFooter>
       {componenteComentario}
-    </div>
+    </ContainerPost>
   }
 }
 
