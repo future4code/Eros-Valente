@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import PerguntaAberta from '../PerguntaAberta/PerguntaAberta';
 
 const EtapaContainer = styled.div`
     font-family: sans-serif;
@@ -7,28 +8,15 @@ const EtapaContainer = styled.div`
     flex-direction: column;
     text-align: center;
 `
- 
-const Label = styled.label`
-    margin: 10px;
-`
-const Inputs = styled.input`
-    width: 50%;
-    align-self: center;
-`
 
 class Etapa2 extends React.Component {
     
-  proximaEtapa = () => {}
-
-
   render () {
       return (
         <EtapaContainer>
             <h3>ETAPA 2 - INFORMAÇÕES DO ENSINO SUPERIOR</h3>
-            <Label>5. Qual curso?</Label>
-            <Inputs type="text"></Inputs>
-            <Label>6. Qual a unidade de ensino?</Label>
-            <Inputs type="text"></Inputs>
+            <PerguntaAberta pergunta={"5. Qual curso?"}/>
+            <PerguntaAberta pergunta={"6. Qual Instituição de ensino?"}/>
         </EtapaContainer>
       )
 

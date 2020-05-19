@@ -8,13 +8,11 @@ import FimFormulario from './components/FimFormulario/FimFormulario';
 
 
 const AppContainer = styled.div`
-    width: 100vw;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    text-align: center;
 `
 const Botao = styled.button`
     margin: 20px;
+    align-self: center;
 
 `
 
