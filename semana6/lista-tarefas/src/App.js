@@ -1,5 +1,5 @@
 import React from 'react'
-import styled, { ThemeConsumer } from 'styled-components'
+import styled from 'styled-components'
 import './styles.css'
 
 const TarefaList = styled.ul`
@@ -24,7 +24,6 @@ class App extends React.Component {
       inputValue: '',
       filter: 'pendentes'
     }
-    
 
   componentDidMount() {
       const tarefasSalvas = JSON.parse(localStorage.getItem("tarefas"))
@@ -34,32 +33,31 @@ class App extends React.Component {
   };
 
   componentDidUpdate() {
-      localStorage.setItem("tarefas", JSON.stringify(this.state.tarefas))
+    localStorage.setItem("tarefas", JSON.stringify(this.state.tarefas))
   };
 
   onChangeInput = (event) => {
-      this.setState({inputValue: event.target.value})
+    this.setState({inputValue: event.target.value})
   }
 
   criaTarefa = () => {
-      if (this.state.inputValue === "") {
-          alert ("Campo de tarefa vazio")
-      }  else {
-        const novaTarefa = {
-            id: Date.now(),
-            texto: this.state.inputValue, 
-            completa: false
-        }
-      
-        const copiaListaTarefas = [novaTarefa, ...this.state.tarefas]
+    if (this.state.inputValue === "") {
+        alert ("Campo de tarefa vazio")
+    }  else {
+      const novaTarefa = {
+          id: Date.now(),
+          texto: this.state.inputValue, 
+          completa: false
+      }
+    
+      const copiaListaTarefas = [novaTarefa, ...this.state.tarefas]
 
-        this.setState({
-            tarefas: copiaListaTarefas,
-            inputValue: "",
-        })
-      } 
+      this.setState({
+          tarefas: copiaListaTarefas,
+          inputValue: "",
+      })
+    } 
   }
-  
 
   selectTarefa = (id) => {
     const novaListaTarefas = this.state.tarefas.map(tarefa => {
@@ -76,17 +74,22 @@ class App extends React.Component {
   }
 
   onChangeFilter = (event) => {
-      this.setState({ filter: event.target.value })
+    this.setState({ filter: event.target.value })
   }
 
   onKeyEnterPress = (event) => {
-      if(event.key === "Enter" ) {
-          this.criaTarefa()
-      }
+    if(event.key === "Enter" ) {
+        this.criaTarefa()
+    }
+  }
+
+  removeTarefa = (id) => {
+      const novaListaTarefas = this.tarefas.filter(tarefa => {
+
+      })
   }
 
   render() {
-    
     const listaFiltrada = this.state.tarefas
       .filter(tarefa => {
         switch (this.state.filter) {
@@ -103,7 +106,11 @@ class App extends React.Component {
       <div className="App">
         <h1>Lista de tarefas</h1>
         <InputsContainer>
-          <input value={this.state.inputValue} onChange={this.onChangeInput} onKeyPress={this.onKeyEnterPress}/>
+          <input
+            value={this.state.inputValue}
+            onChange={this.onChangeInput}
+            onKeyPress={this.onKeyEnterPress}
+          /> 
           <button onClick={this.criaTarefa}>Adicionar</button>
         </InputsContainer>
         <br/>
@@ -135,3 +142,4 @@ class App extends React.Component {
 }
 
 export default App
+
