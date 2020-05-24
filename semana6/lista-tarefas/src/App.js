@@ -1,5 +1,5 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled, { ThemeConsumer } from 'styled-components'
 import './styles.css'
 
 const TarefaList = styled.ul`
@@ -22,16 +22,19 @@ class App extends React.Component {
     state = {
       tarefas: [],
       inputValue: '',
-      filter: ''
+      filter: 'pendentes'
     }
     
 
-  componentDidUpdate() {
+  componentDidMount() {
+      const tarefasSalvas = JSON.parse(localStorage.getItem("tarefas"))
+
+      this.setState({tarefas: tarefasSalvas})
 
   };
 
-  componentDidMount() {
-
+  componentDidUpdate() {
+      localStorage.setItem("tarefas", JSON.stringify(this.state.tarefas))
   };
 
   onChangeInput = (event) => {
@@ -39,31 +42,47 @@ class App extends React.Component {
   }
 
   criaTarefa = () => {
-      const data = new Date()
-
-      const novaTarefa = {
-          id: data.getTime(),
-          texto: this.state.inputValue, 
-          completa: false
-      }
+      if (this.state.inputValue === "") {
+          alert ("Campo de tarefa vazio")
+      }  else {
+        const novaTarefa = {
+            id: Date.now(),
+            texto: this.state.inputValue, 
+            completa: false
+        }
       
-      const novaListaTarefas = [...this.state.tarefas, novaTarefa]
+        const copiaListaTarefas = [novaTarefa, ...this.state.tarefas]
 
-      this.setState({
-          terefas: novaListaTarefas,
-          inputValue: ""
-      })
-     
-     console.log(novaListaTarefas)
+        this.setState({
+            tarefas: copiaListaTarefas,
+            inputValue: "",
+        })
+      } 
   }
   
 
   selectTarefa = (id) => {
-
+    const novaListaTarefas = this.state.tarefas.map(tarefa => {
+        if(tarefa.id === id) {
+            const copiaTarefa = {...tarefa};
+            copiaTarefa.completa = !copiaTarefa.completa
+            return copiaTarefa
+        } else {
+            return tarefa
+        }   
+    })  
+    this.setState({ tarefas: novaListaTarefas 
+     })
   }
 
   onChangeFilter = (event) => {
+      this.setState({ filter: event.target.value })
+  }
 
+  onKeyEnterPress = (event) => {
+      if(event.key === "Enter" ) {
+          this.criaTarefa()
+      }
   }
 
   render() {
@@ -84,7 +103,7 @@ class App extends React.Component {
       <div className="App">
         <h1>Lista de tarefas</h1>
         <InputsContainer>
-          <input value={this.state.inputValue} onChange={this.onChangeInput}/>
+          <input value={this.state.inputValue} onChange={this.onChangeInput} onKeyPress={this.onKeyEnterPress}/>
           <button onClick={this.criaTarefa}>Adicionar</button>
         </InputsContainer>
         <br/>
@@ -101,6 +120,7 @@ class App extends React.Component {
           {listaFiltrada.map(tarefa => {
             return (
               <Tarefa
+                key={tarefa.id}
                 completa={tarefa.completa}
                 onClick={() => this.selectTarefa(tarefa.id)}
               >
