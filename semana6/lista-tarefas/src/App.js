@@ -9,13 +9,21 @@ const TarefaList = styled.ul`
 
 const Tarefa = styled.li`
   text-align: left;
+  display: inline;
   text-decoration: ${({completa}) => (completa ? 'line-through' : 'none')};
+  cursor: pointer;
 `
 
 const InputsContainer = styled.div`
   display: grid;
   grid-auto-flow: column;
   gap: 10px;
+`
+const DeletarTarefa = styled.button`
+  display: inline;
+  margin: 10px;
+  font-size: 10px;
+
 `
 
 class App extends React.Component {
@@ -84,9 +92,9 @@ class App extends React.Component {
   }
 
   removeTarefa = (id) => {
-      const novaListaTarefas = this.tarefas.filter(tarefa => {
+      const novaListaTarefas = this.state.tarefas.filter(tarefa => tarefa.id !== id)
+      this.setState({tarefas: novaListaTarefas})
 
-      })
   }
 
   render() {
@@ -126,13 +134,17 @@ class App extends React.Component {
         <TarefaList>
           {listaFiltrada.map(tarefa => {
             return (
-              <Tarefa
-                key={tarefa.id}
-                completa={tarefa.completa}
-                onClick={() => this.selectTarefa(tarefa.id)}
-              >
-                {tarefa.texto}
-              </Tarefa>
+            
+                <div key={tarefa.id}>
+                    <Tarefa
+                      completa={tarefa.completa}
+                      onClick={() => this.selectTarefa(tarefa.id)}
+                    >
+                      {tarefa.texto}
+                    </Tarefa>
+                    <DeletarTarefa onClick={() => this.removeTarefa(tarefa.id)}>Deletar</DeletarTarefa>
+                </div>
+            
             )
           })}
         </TarefaList>
@@ -142,4 +154,3 @@ class App extends React.Component {
 }
 
 export default App
-
