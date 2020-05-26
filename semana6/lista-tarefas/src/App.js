@@ -34,10 +34,11 @@ class App extends React.Component {
     }
 
   componentDidMount() {
+    if (localStorage.getItem("tarefas")) { 
       const tarefasSalvas = JSON.parse(localStorage.getItem("tarefas"))
 
       this.setState({tarefas: tarefasSalvas})
-
+    }
   };
 
   componentDidUpdate() {
