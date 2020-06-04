@@ -1,8 +1,9 @@
 import React  from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
+import InfoUsuario from '../InfoUsuario/InfoUsuario';
 
-const ItemLista = styled.li`
+const ItemLista = styled.span`
     cursor: pointer;
 `
 
@@ -11,6 +12,20 @@ const BotaoDeletar = styled.button`
     margin: 5px;
     cursor: pointer;
 `
+const Carregando =styled.div`
+    border: 6px solid rgba(0, 0, 0, .3);
+    border-left-color: #22a6b3;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+
+    @keyframes spin {
+        to {transform: rotate(360deg);}
+        
+    }
+`
+
 const axiosConfig = {
     headers: {
         Authorization: "eros-valente-mello"
@@ -55,28 +70,27 @@ class ListaUsuarios extends React.Component {
     }
 
     pegarIdUsuario = (idUsuario) => {
+        console.log(idUsuario)
         this.setState({id: idUsuario})
         console.log(this.state.id)
     }
 
 
     render() {
-        const carregando = this.state.usuariosCadastrados.length === 0 && <div>Carregando...</div>
+        const carregando = this.state.usuariosCadastrados.length === 0 && <Carregando></Carregando>
         const listaUsuarios = this.state.usuariosCadastrados.map(usuario => {
-            if(this.state.id = "")
             return (
-                <ItemLista key= {usuario.id} onClick={() => this.pegarIdUsuario(usuario.id)}>
-                    {usuario.name}
+                <li>
+                    <ItemLista onClick={() => this.pegarIdUsuario(usuario.id)}>{usuario.name}</ItemLista>
                     <BotaoDeletar onClick={() => this.deletarUsuario(usuario.id)}>X</BotaoDeletar>
-                </ItemLista>
-            )
+                </li>
+            )    
         })
-
 
         return (
             <ul>
                 {carregando}
-                {listaUsuarios}
+                {this.state.id === "" ? listaUsuarios : <InfoUsuario deletarUsuario={() => {this.deletarUsuario(this.state.id)}} idUsuario={this.state.id}/>}
             </ul>
         )
     }        
