@@ -1,6 +1,40 @@
 import React from 'react'
 import './Post.css'
 
+import styled from 'styled-components'
+import {IconeComContador} from '../IconeComContador/IconeComContador'
+import iconeCoracaoBranco from '../../img/favorite-white.svg'
+import iconeCoracaoPreto from '../../img/favorite.svg'
+import iconeComentario from '../../img/comment_icon.svg'
+import iconeMarcacaoPreto from '../../img/bookmark-black.svg'
+import iconeMarcacaoBranco from '../../img/bookmark-white.svg'
+import iconeCompartilhar from '../../img/send.svg'
+import {SecaoComentario} from '../SecaoComentario/SecaoComentario'
+import {IconeSemContador} from '../IconeSemContador/IconeSemContador'
+import { SecaoCompartilhar } from '../SecaoCompartilhar/SecaoCompartilhar'
+
+// Styled Components
+
+const ContainerPost = styled.div`
+  border: 1px solid gray;
+  width: 300px;
+  margin-bottom: 10px;
+`
+
+const PostHead = styled.div`
+  height: 40px;
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+`
+const PostFooter = styled.div`
+  height: 40px;
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  justify-content: flex-start;  
+`
+
 import {IconeComContador} from '../IconeComContador/IconeComContador'
 
 import iconeCoracaoBranco from '../../img/favorite-white.svg'
@@ -8,12 +42,15 @@ import iconeCoracaoPreto from '../../img/favorite.svg'
 import iconeComentario from '../../img/comment_icon.svg'
 import {SecaoComentario} from '../SecaoComentario/SecaoComentario'
 
+
 class Post extends React.Component {
   state = {
     curtido: false,
     numeroCurtidas: 0,
     comentando: false,
-    numeroComentarios: 0
+    numeroComentarios: 0,
+    marcacao: false,
+    compartilhar: false
   }
 
   onClickCurtida = () => {
@@ -33,6 +70,19 @@ class Post extends React.Component {
     }) 
   }
 
+
+  onClickMarcacao = () => {
+    this.setState({
+      marcacao: !this.state.marcacao
+    })
+  }
+
+  onClickCompartilhar = () => {
+    this.setState({
+      compartilhar: !this.state.compartilhar
+    })
+  }
+
   aoEnviarComentario = () => {
     this.setState({
       comentando: false,
@@ -49,21 +99,40 @@ class Post extends React.Component {
       iconeCurtida = iconeCoracaoBranco
     }
 
+
+    let iconeMarcacao
+
+    if(this.state.marcacao) {
+      iconeMarcacao = iconeMarcacaoPreto
+    } else {
+      iconeMarcacao = iconeMarcacaoBranco
+    }
+
+    let componenteCompartilhamento
+
+    if (this.state.compartilhar) {
+      componenteCompartilhamento = <SecaoCompartilhar/>
+    }
+
     let componenteComentario
 
     if(this.state.comentando) {
       componenteComentario = <SecaoComentario aoEnviar={this.aoEnviarComentario}/>
     }
 
-    return <div className={'post-container'}>
-      <div className={'post-header'}>
+
+    return <ContainerPost>
+      <PostHead>
         <img className={'user-photo'} src={this.props.fotoUsuario} alt={'Imagem do usuario'}/>
         <p>{this.props.nomeUsuario}</p>
-      </div>
+      </PostHead>
 
       <img className={'post-photo'} src={this.props.fotoPost} alt={'Imagem do post'}/>
 
-      <div className={'post-footer'}>
+      {componenteCompartilhamento}
+
+      <PostFooter>
+        
         <IconeComContador
           icone={iconeCurtida}
           onClickIcone={this.onClickCurtida}
@@ -75,9 +144,20 @@ class Post extends React.Component {
           onClickIcone={this.onClickComentario}
           valorContador={this.state.numeroComentarios}
         />
-      </div>
+        
+        <IconeSemContador
+          icone={iconeCompartilhar}
+          onClickIcone={this.onClickCompartilhar}
+        />
+
+        <IconeSemContador
+          id={'icon-bookmark'}
+          icone={iconeMarcacao}
+          onClickIcone={this.onClickMarcacao}
+        />  
+      </PostFooter>
       {componenteComentario}
-    </div>
+    </ContainerPost>
   }
 }
 
