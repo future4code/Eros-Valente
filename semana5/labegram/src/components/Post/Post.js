@@ -1,5 +1,6 @@
 import React from 'react'
 import './Post.css'
+
 import styled from 'styled-components'
 import {IconeComContador} from '../IconeComContador/IconeComContador'
 import iconeCoracaoBranco from '../../img/favorite-white.svg'
@@ -34,6 +35,13 @@ const PostFooter = styled.div`
   justify-content: flex-start;  
 `
 
+import {IconeComContador} from '../IconeComContador/IconeComContador'
+
+import iconeCoracaoBranco from '../../img/favorite-white.svg'
+import iconeCoracaoPreto from '../../img/favorite.svg'
+import iconeComentario from '../../img/comment_icon.svg'
+import {SecaoComentario} from '../SecaoComentario/SecaoComentario'
+
 
 class Post extends React.Component {
   state = {
@@ -61,6 +69,7 @@ class Post extends React.Component {
       comentando: !this.state.comentando
     }) 
   }
+
 
   onClickMarcacao = () => {
     this.setState({
@@ -90,6 +99,7 @@ class Post extends React.Component {
       iconeCurtida = iconeCoracaoBranco
     }
 
+
     let iconeMarcacao
 
     if(this.state.marcacao) {
@@ -110,6 +120,7 @@ class Post extends React.Component {
       componenteComentario = <SecaoComentario aoEnviar={this.aoEnviarComentario}/>
     }
 
+
     return <ContainerPost>
       <PostHead>
         <img className={'user-photo'} src={this.props.fotoUsuario} alt={'Imagem do usuario'}/>
@@ -121,6 +132,7 @@ class Post extends React.Component {
       {componenteCompartilhamento}
 
       <PostFooter>
+        
         <IconeComContador
           icone={iconeCurtida}
           onClickIcone={this.onClickCurtida}

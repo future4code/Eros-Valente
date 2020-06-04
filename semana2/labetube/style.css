@@ -67,6 +67,8 @@ p{
 
 footer{
     background-color: grey;
+    position: fixed;
+    bottom: 0;
     color: white;
     height: 10vh;
     display:flex;
