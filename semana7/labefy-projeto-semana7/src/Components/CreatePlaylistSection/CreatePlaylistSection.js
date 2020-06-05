@@ -23,7 +23,7 @@ const axiosConfig = {
 
 class CreatePlaylistSection extends React.Component {
     state = {
-        playlistsCriadas: [],
+        createdPlaylists: [],
         inputName: ""
     }
 
@@ -47,10 +47,21 @@ class CreatePlaylistSection extends React.Component {
         axiosConfig
         )
         .then(() => {
-            this.setState({inputName: ""})
-            console.log("playlist criada")
+            const newPlaylist = this.state.inputName
+            const newCreatedPalylists = [...this.state.createdPlaylists, newPlaylist]
+            this.setState({
+                createdPlaylists: newCreatedPalylists,
+                inputName: ""
+            })
+            console.log(this.state.playlistsCriadas)
+            
         }).catch((error) => {
+            // const newPlaylist = this.state.inputName
+            // const existingPlaylist = this.state.createdPlaylists.findIndex(playlist => playlist === newPlaylist)
+            // if (existingPlaylist !== -1) {
+            //     window.alert("Playlista já existe")
 
+            // }
             window.alert("Erro ao cadastrar playlist")
         })
     }
