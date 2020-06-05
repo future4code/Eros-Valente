@@ -23,68 +23,57 @@ const Table = styled.table`
 }
 `
 
-
 class CardInfoPlanet extends React.Component {
     state = {
-        infoPlanet: ""
+        infoPlanet: "",
+        urlPlanet: this.props.planetSelected
     }
 
     componentDidMount = () => {
-        this.planetInfo()
-
+        this.showPlanetInfo()
     }
-
-    planetInfo = async () => {
-        console.log()
+   
+    showPlanetInfo = async () => {
         try {
-            const response = await axios.get(`http://swapi.dev/api/planets/1/`)
-            console.log(response)
-            this.setState({infoPlanet: response})
+            const response = await axios.get(`${this.props.planetSelected}`)
+            this.setState({infoPlanet: response.data})
         } catch(error) {
             console.log(error)
         }
     }
     
-
-
-
-
-
     render () {
         console.log(this.props.planetSelected)
         
         return (
             <Container>
                 <Table>
-                    <tr>
-                        <th>Nome</th>
-                        <td>{this.state.name}</td>
-                    </tr>
-                    <tr>
-                        <th>Periodo de Rotação</th>
-                        <td>{this.state.rotation_period} horas terrestres</td>
-                    </tr>
-                    <tr>
-                        <th>Periodo Orbital</th>
-                        <td>{this.state.orbital_period} dias terrestres</td>
-                    </tr>
-                    <tr>
-                        <th>Diâmetro</th>
-                        <td>{this.state.diameter} km</td>
-                    </tr>
-                    <tr>
-                        <th>População</th>
-                        <td>{this.state.population} habitantes</td>
-                    </tr>
+                    <tbody>
+                        <tr>
+                            <th>Nome</th>
+                            <td>{this.state.infoPlanet.name}</td>
+                        </tr>
+                        <tr>
+                            <th>Periodo de Rotação</th>
+                            <td>{this.state.infoPlanet.rotation_period} horas terrestres</td>
+                        </tr>
+                        <tr>
+                            <th>Periodo Orbital</th>
+                            <td>{this.state.infoPlanet.orbital_period} dias terrestres</td>
+                        </tr>
+                        <tr>
+                            <th>Diâmetro</th>
+                            <td>{this.state.infoPlanet.diameter} km</td>
+                        </tr>
+                        <tr>
+                            <th>População</th>
+                            <td>{this.state.infoPlanet.population} habitantes</td>
+                        </tr>
+                    </tbody>
                 </Table>
-                
-                
             </Container>
-
         )
-
     }
-    
 }
 
 export default CardInfoPlanet;
