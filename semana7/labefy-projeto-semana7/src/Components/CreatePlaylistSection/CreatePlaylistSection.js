@@ -1,9 +1,11 @@
 import React from 'react';
-import axios from 'axios';
 import styled from 'styled-components'
 
 const Container = styled.div`
-    margin: 8px;
+    margin: 16px;
+`
+const Titulo = styled.h4`
+    margin-bottom: 8px;
 `
 const Label = styled.label`
     display: block;
@@ -13,18 +15,11 @@ const Label = styled.label`
 const Button = styled.button`
     display: block;
     margin-top: 16px;
+    margin-bottom: 16px;
 `
-const axiosConfig = {
-    headers: {
-        Authorization: "eros-valente-mello"
-    }
-}
-
-
 class CreatePlaylistSection extends React.Component {
     state = {
-        createdPlaylists: [],
-        inputName: ""
+        inputName: "",
     }
 
     onChangeInputName = (event) => {
@@ -33,47 +28,21 @@ class CreatePlaylistSection extends React.Component {
 
     onKeyEnterPress = (event) => {
         if(event.key === "Enter" || event.which === 13) {
-            this.createPlaylist()
+            this.props.functionCreatePlaylist(this.state.inputName)
+            this.setState({inputName: ""})
         }
     }
-    
-    createPlaylist = () => {
-        const body = {
-            "name": this.state.inputName
-        }
 
-        axios.post("https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists", 
-        body, 
-        axiosConfig
-        )
-        .then(() => {
-            const newPlaylist = this.state.inputName
-            const newCreatedPalylists = [...this.state.createdPlaylists, newPlaylist]
-            this.setState({
-                createdPlaylists: newCreatedPalylists,
-                inputName: ""
-            })
-            console.log(this.state.playlistsCriadas)
-            
-        }).catch((error) => {
-            // const newPlaylist = this.state.inputName
-            // const existingPlaylist = this.state.createdPlaylists.findIndex(playlist => playlist === newPlaylist)
-            // if (existingPlaylist !== -1) {
-            //     window.alert("Playlista já existe")
-
-            // }
-            window.alert("Erro ao cadastrar playlist")
-        })
+    handleClickButton = () => {
+        this.props.functionCreatePlaylist(this.state.inputName)
+        this.setState({inputName: ""})
     }
     
-    
-    
-  
     render () {
 
         return (
             <Container>
-                <h3>Criar Playlist</h3>
+                <Titulo>CRIAR PLAYLIST</Titulo>
                 <div>
                     <Label>Nome</Label>
                     <input
@@ -83,18 +52,9 @@ class CreatePlaylistSection extends React.Component {
                         onKeyPress={this.onKeyEnterPress}
                         value={this.state.inputName}
                     />
-                    {/*<Label>Descrição</Label>
-                     <textarea 
-                        placeholder="Descrição da sua playlist." 
-                        rows="5" 
-                        cols="30"
-                        onChange={this.onChangeInputDescription}
-                        value={this.state.inputDescription}
-                        
-                        
-                        /> */}
                 </div>
-                <Button onClick={this.createPlayist}>Criar</Button>
+                <Button onClick={this.handleClickButton} >Criar</Button>
+                <hr></hr>
             </Container>
 
         )
