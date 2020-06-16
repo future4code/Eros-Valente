@@ -10,11 +10,11 @@ const AppContainer = styled.div`
     justify-content: center;
 `
 function App() {
-  return (
-      <AppContainer>
-          <MainLayout/>
-      </AppContainer>
-  )
+    return (
+        <AppContainer>
+            <MainLayout/>
+        </AppContainer>
+    )
 }
 
 export default App;
