@@ -15,11 +15,23 @@ function ChoosePerson() {
             const response = await axios.get("https://us-central1-missao-newton.cloudfunctions.net/astroMatch/eros/person")
             setProfile(response.data.profile)
         } catch (error) {
-            alert()
+            alert("Algum erro ocorreu")
         }
     }
     
-    
+    const likePerson = async (userChoice) => {
+        const body = {
+            id: profile.id,
+            choice: userChoice
+        }
+        try {
+            const response = await axios.post("https://us-central1-missao-newton.cloudfunctions.net/astroMatch/eros/choose-person", body)
+            console.log(response.data)
+            getProfile()
+        } catch (error) {
+            alert("Ocorreu um erro")
+        }
+    }
 
     return (
         
@@ -29,8 +41,8 @@ function ChoosePerson() {
             
             />
             <ButtonsDiv>
-                <DislikeButton onClick={getProfile}>X</DislikeButton>
-                <LikeButton>♥️</LikeButton>
+                <DislikeButton onClick={() => {likePerson(false)}}>X</DislikeButton>
+                <LikeButton onClick={() => {likePerson(true)}}>♥️</LikeButton>
             </ButtonsDiv>
         </ChoosePersonContainer>
     )

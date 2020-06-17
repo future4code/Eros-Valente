@@ -1,14 +1,10 @@
-import React, {useState, useEffect} from 'react';
+import React, {useEffect} from 'react';
 import {PersonInfo, Photo, Bio, PersonalData, FilterBlur} from './styles.js';
 import axios from 'axios';
 
 
 
 function PersonCard(props) {
-
-    // useEffect(() => {
-    //     getProfile()
-    // }, [props.profileInfo]);
     
     return (
             <PersonInfo>
