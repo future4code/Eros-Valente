@@ -6,15 +6,6 @@ export const ChoosePersonContainer = styled.div`
     align-items: center;
     flex-direction: column;
     padding: 24px 24px 0px;
-    
-`
-export const PersonCard = styled.div`
-    display: flex;
-    flex-direction: column;
-    box-shadow: rgba(117, 117, 117, 0.8) 0px 1px 10px;
-    width: 100%;
-    height: 390px;
-    border-radius: 5px;
 `
 
 export const ButtonsDiv = styled.div` 

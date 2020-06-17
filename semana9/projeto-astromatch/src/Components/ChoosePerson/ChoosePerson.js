@@ -1,8 +1,7 @@
 import React, {useState, useEffect} from 'react';
-import {ChoosePersonContainer, PersonCard, ButtonsDiv, DislikeButton, LikeButton} from './styles.js';
+import PersonCard from '../PersonCard/PersonCard.js'
+import {ChoosePersonContainer, ButtonsDiv, DislikeButton, LikeButton} from './styles.js';
 import axios from 'axios';
-
-const baseUrl = "https://us-central1-missao-newton.cloudfunctions.net/astroMatch/:aluno/person"
 
 function ChoosePerson() {
     const [profile, setProfile] = useState({})
@@ -10,31 +9,27 @@ function ChoosePerson() {
     useEffect(() => {
         getProfile()
     }, []);
-    
-    
 
     const getProfile = async () => {
         try {
-            const response = await axios.get({baseUrl})
-            console.log(response)
+            const response = await axios.get("https://us-central1-missao-newton.cloudfunctions.net/astroMatch/eros/person")
+            setProfile(response.data.profile)
         } catch (error) {
-            console.log(error.response)
+            alert()
         }
     }
-
-
-
+    
+    
 
     return (
         
         <ChoosePersonContainer>
-            <PersonCard>
-                <div>filter blur</div>
-                <div>foto</div>
-                <div>informações</div>
-            </PersonCard>
+            <PersonCard
+                personInfo={profile}
+            
+            />
             <ButtonsDiv>
-                <DislikeButton>X</DislikeButton>
+                <DislikeButton onClick={getProfile}>X</DislikeButton>
                 <LikeButton>♥️</LikeButton>
             </ButtonsDiv>
         </ChoosePersonContainer>
