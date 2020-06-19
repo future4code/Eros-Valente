@@ -1,25 +1,22 @@
-import React, {useEffect} from 'react';
-import {PersonInfo, Photo, Bio, PersonalData, FilterBlur} from './styles.js';
-import axios from 'axios';
-
-
+import React from 'react';
+import {Profile, Photo, Bio, PersonalData, FilterBlur, Info, Name, Age} from './styles.js';
 
 function PersonCard(props) {
     
     return (
-            <PersonInfo>
+            <Profile>
                 <FilterBlur urlPhoto={props.personInfo.photo}></FilterBlur>
                 <Photo src={props.personInfo.photo}/>
                 <PersonalData>
-                    <div>
-                        <p>{props.personInfo.name}, </p>
-                        <span>{props.personInfo.age}</span>
-                    </div>
+                    <Info>
+                        <Name>{props.personInfo.name},</Name>
+                        <Age>{props.personInfo.age}</Age>
+                    </Info>
                     <Bio>
                         {props.personInfo.bio}
                     </Bio>
                 </PersonalData>
-            </PersonInfo>
+            </Profile>
     )
 }
 

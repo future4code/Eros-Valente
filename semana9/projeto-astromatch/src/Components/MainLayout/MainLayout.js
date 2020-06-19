@@ -1,71 +1,69 @@
-import React from 'react';
-import {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import ChoosePerson from '../ChoosePerson/ChoosePerson.js';
 import Matches from '../Matches/Matches.js';
-import styled from 'styled-components';
+import axios from 'axios';
+import {HeaderContainer, MainLayoutContainer, MatchesIcon, SwitchIcon} from './styles.js'
 
-const HeaderContainer = styled.div`
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 8px;
-    border-bottom: 1px solid lightgrey;
-` 
-
-const MainLayoutContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    top: 50%;
-    right: 50%;
-    position: fixed;
-    transform: translate(50%, -50%);
-    width: 400px;
-    height: 560px;
-    background-color: white;
-    border: 1px solid black;
-    border-radius: 5px;
-`
 
 function MainLayout() {
-    const [mainScreen, setMainScreen] = useState("choose")
+    const [currentScreen, setCurrentScreen] = useState("choose")
+
+    const clearAll = async () => {
+        try {
+            const response = await axios.put("https://us-central1-missao-newton.cloudfunctions.net/astroMatch/eros/clear")
+            console.log(response.data.message)
+            
+        } catch (error) {
+            alert("Erro ao resetar")
+        }
+    }
     
-
-
-
     const onClickSwipeIcon = () => {
-        setMainScreen("choose")
+        setCurrentScreen("choose")
     }
 
     const onClickMatchesIcon = () => {
-        setMainScreen("matches")
+        setCurrentScreen("matches")
     }
 
     const changeMainScreen = () => {
-        switch (mainScreen) {
+        switch (currentScreen) {
             case "choose":
                 return (
-                    <ChoosePerson/>
+                    <ChoosePerson
+                        clearAll={clearAll}
+                    />
                 )
             case "matches":
                 return (
-                    <Matches/>
-                )    
-            default: 
+                    <Matches
+                        clearAll={clearAll}
+                    />
+                )
+            default:
                 return (
-                    <ChoosePerson/>
-                )        
-        }
+                    <ChoosePerson
+                        clearAll={clearAll}
+                    />
+                )
+        }            
+            
     }
 
-
-
     return (
-        
         <MainLayoutContainer>
             <HeaderContainer>
-                <p onClick={onClickMatchesIcon}>matches</p>
+                <SwitchIcon 
+                    currentScreen={currentScreen} 
+                    fontSize="large" 
+                    onClick={onClickSwipeIcon}
+                />
                 <p>AstroMatch</p>
-                <p onClick={onClickSwipeIcon}>perfis</p>
+                <MatchesIcon 
+                    currentScreen={currentScreen} 
+                    fontSize="large" 
+                    onClick={onClickMatchesIcon}
+                />
             </HeaderContainer>
             {changeMainScreen()}
         </MainLayoutContainer>
