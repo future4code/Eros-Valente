@@ -18,6 +18,25 @@ export const Loading = styled.div`
 
 `
 
+export const PulsingHeart = styled.img`
+    width: 20%;
+    height: 20%;
+    animation: pulsingHeart 1s infinite;
+
+    @keyframes pulsingHeart {
+        0% {transform: scale(1);}
+        15% {transform: scale(.97);}
+        25% {transform: scale(.9);}
+        35% {transform: scale(1.1);}
+        45% {transform: scale(.9);}
+        45% {transform: scale(1.1);}
+        65% {transform: scale(1.05);}
+        100% {transform: scale(1);}
+    }
+
+
+`
+
 export const ButtonsDiv = styled.div` 
     display: flex;
     width: 100%;
@@ -34,6 +53,7 @@ export const LikeButton = styled.button`
     border-radius: 50%;
     border: 1px solid green;
     box-shadow: rgba(200, 200, 200, 1) 0px 0px 10px 0px;
+    display: ${props => props.profiles === null ? "none" : "inline"};
     transform: scale(0.9);
     transition: 0.3s;
     &:hover{
@@ -54,6 +74,7 @@ export const DislikeButton = styled.button`
     color: red;
     border: 1px solid red;
     border-radius: 50%;
+    display: ${props => props.profiles === null ? "none" : "inline"};
     box-shadow: rgba(200, 200, 200, 1) 0px 0px 10px 0px;
     transform: scale(0.9);
     transition: 0.3s;

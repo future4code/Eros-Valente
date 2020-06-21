@@ -10,6 +10,18 @@ export const HeaderContainer = styled.div`
     border-bottom: 1px solid lightgrey;
 ` 
 
+export const AppName = styled.p`
+    font-weight: bold;
+    font-size: 20px;
+    margin: 16px;
+    color: #45525b;
+    ::after{
+        content: "Match";
+        color: #fe7e02;
+    }
+
+`
+
 export const MainLayoutContainer = styled.div`
     display: flex;
     flex-direction: column;

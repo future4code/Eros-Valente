@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import PersonCard from '../PersonCard/PersonCard.js'
-import {ChoosePersonContainer, ButtonsDiv, DislikeButton, LikeButton, Loading, ResetButton} from './styles.js';
+import heart from '../../images/heart.png'
+import {ChoosePersonContainer, ButtonsDiv, DislikeButton, LikeButton, Loading, ResetButton, PulsingHeart} from './styles.js';
 import axios from 'axios';
 
 function ChoosePerson(props) {
@@ -37,26 +38,42 @@ function ChoosePerson(props) {
         }
     }
 
-    const resetAll = () => {
-        props.clearAll()
+    const resetAll = async () => {
+        await props.clearAll()
         getProfile()
+    }
+
+    const renderContent = () => {
+        if (profile === undefined) {
+            return (
+                <Loading> 
+                    <PulsingHeart
+                        src={heart} 
+                        alt="pulsing heart"
+                    />    
+            
+            
+                </Loading>
+            )    
+        } else if (profile === null) {
+            return (<div>FIM DOS PERFIS. POR FAVOR CLIQUE NO BOTÃO PARA RESETAR</div>)
+        } else {
+            return (
+            <PersonCard
+                personInfo={profile}
+            />
+            )
+        }
     }
 
     return (
         <ChoosePersonContainer >
-            {profile === undefined 
-               ? <Loading>carregando...</Loading>
-               : <PersonCard
-                    personInfo={profile}
-                 />
-            }            
-                
+            {renderContent()}              
             <ButtonsDiv>
-                <DislikeButton onClick={() => {likePerson(false)}}><span role="img" aria-label="x">X</span></DislikeButton>
-                <LikeButton onClick={() => {likePerson(true)}}><span role="img" aria-label="heart emoji">♥️</span></LikeButton>
+                <DislikeButton profiles={profile} onClick={() => {likePerson(false)}}><span role="img" aria-label="x">X</span></DislikeButton>
+                <LikeButton profiles={profile} onClick={() => {likePerson(true)}}><span role="img" aria-label="heart emoji">♥️</span></LikeButton>
             </ButtonsDiv>
             <ResetButton onClick={resetAll}>Resetar matches e swipes</ResetButton>
-
         </ChoosePersonContainer>
     )
 }

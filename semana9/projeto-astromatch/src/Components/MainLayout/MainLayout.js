@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import ChoosePerson from '../ChoosePerson/ChoosePerson.js';
 import Matches from '../Matches/Matches.js';
 import axios from 'axios';
-import {HeaderContainer, MainLayoutContainer, MatchesIcon, SwitchIcon} from './styles.js'
+import {HeaderContainer, MainLayoutContainer, MatchesIcon, SwitchIcon, AppName} from './styles.js'
 
 
 function MainLayout() {
@@ -11,8 +11,6 @@ function MainLayout() {
     const clearAll = async () => {
         try {
             const response = await axios.put("https://us-central1-missao-newton.cloudfunctions.net/astroMatch/eros/clear")
-            console.log(response.data.message)
-            
         } catch (error) {
             alert("Erro ao resetar")
         }
@@ -58,7 +56,7 @@ function MainLayout() {
                     fontSize="large" 
                     onClick={onClickSwipeIcon}
                 />
-                <p>AstroMatch</p>
+                <AppName>Astro</AppName>
                 <MatchesIcon 
                     currentScreen={currentScreen} 
                     fontSize="large" 
