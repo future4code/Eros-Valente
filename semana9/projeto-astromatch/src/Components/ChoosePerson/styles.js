@@ -33,8 +33,6 @@ export const PulsingHeart = styled.img`
         65% {transform: scale(1.05);}
         100% {transform: scale(1);}
     }
-
-
 `
 
 export const ButtonsDiv = styled.div` 
@@ -90,4 +88,9 @@ export const DislikeButton = styled.button`
 
 export const ResetButton = styled.button`
     height: 30px;
+`
+
+export const EndMessage = styled.p`
+    margin: 0;
+    text-align: center;
 `

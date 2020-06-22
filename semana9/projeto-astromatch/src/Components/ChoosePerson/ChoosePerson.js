@@ -1,13 +1,11 @@
 import React, {useState, useEffect} from 'react';
-import PersonCard from '../PersonCard/PersonCard.js'
-import heart from '../../images/heart.png'
-import {ChoosePersonContainer, ButtonsDiv, DislikeButton, LikeButton, Loading, ResetButton, PulsingHeart} from './styles.js';
+import PersonCard from '../PersonCard/PersonCard.js';
+import heart from '../../images/heart.png';
+import {ChoosePersonContainer, ButtonsDiv, DislikeButton, LikeButton, Loading, ResetButton, PulsingHeart, EndMessage} from './styles.js';
 import axios from 'axios';
 
 function ChoosePerson(props) {
     const [profile, setProfile] = useState()
-    const [itsMatch, setItsMatch] = useState(undefined)
-    
     
     useEffect(() => {
         getProfile()
@@ -15,7 +13,6 @@ function ChoosePerson(props) {
     
 
     const getProfile = async () => {
-        setProfile()
         try {
             const response = await axios.get("https://us-central1-missao-newton.cloudfunctions.net/astroMatch/eros/person")
             setProfile(response.data.profile)
@@ -31,7 +28,7 @@ function ChoosePerson(props) {
         }
         try {
             const response = await axios.post("https://us-central1-missao-newton.cloudfunctions.net/astroMatch/eros/choose-person", body)
-            setItsMatch(response.data)
+            setProfile(undefined)
             getProfile()
         } catch (error) {
             alert("Ocorreu um erro")
@@ -39,6 +36,7 @@ function ChoosePerson(props) {
     }
 
     const resetAll = async () => {
+        setProfile(undefined)
         await props.clearAll()
         getProfile()
     }
@@ -51,12 +49,21 @@ function ChoosePerson(props) {
                         src={heart} 
                         alt="pulsing heart"
                     />    
-            
-            
                 </Loading>
             )    
         } else if (profile === null) {
-            return (<div>FIM DOS PERFIS. POR FAVOR CLIQUE NO BOTÃO PARA RESETAR</div>)
+            return (
+                <div>
+                    <Loading> 
+                        <PulsingHeart
+                            src={heart} 
+                            alt="pulsing heart"
+                        />    
+                    </Loading>
+                    <EndMessage>FIM DOS PERFIS.</EndMessage>
+                    <EndMessage>POR FAVOR CLIQUE NO BOTÃO PARA RESETAR.</EndMessage>
+                </div>            
+            )
         } else {
             return (
             <PersonCard
@@ -68,7 +75,7 @@ function ChoosePerson(props) {
 
     return (
         <ChoosePersonContainer >
-            {renderContent()}              
+            {renderContent()}  
             <ButtonsDiv>
                 <DislikeButton profiles={profile} onClick={() => {likePerson(false)}}><span role="img" aria-label="x">X</span></DislikeButton>
                 <LikeButton profiles={profile} onClick={() => {likePerson(true)}}><span role="img" aria-label="heart emoji">♥️</span></LikeButton>
