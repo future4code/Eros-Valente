@@ -27,7 +27,6 @@ function Router() {
             </Route>
             <Route exact path="/trips/details">
                 <TripDetailsPage />
-
             </Route>
         </Switch>
       </BrowserRouter>

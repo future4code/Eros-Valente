@@ -1,9 +1,22 @@
 import React, {useState, useEffect} from 'react';
+import axios from'axios'
 
 
 
 
 function ApplicationFormPage() {
+    const [trips, setTrips] = useState([])
+    
+    useEffect ( async () => {
+        try {
+            const response = await axios.get("https://us-central1-labenu-apis.cloudfunctions.net/labeX/eros-mello/trips")
+            setTrips(response.data.trips)
+        } catch (error) {
+            console.log (error)
+        }
+        
+    }, [])
+    console.log(trips)
     
 
 
@@ -17,7 +30,7 @@ function ApplicationFormPage() {
             <input placeholder="Idade" type="number"/>
             <input placeholder="Porque você deve ir?" type="text"/>
             <input placeholder="Profissão" type="text"/>
-            <select name="paises">
+            <select name="country">
                 <option value=""></option>
 	            <option value="Brasil">Brasil</option>
 	            <option value="Afeganistão">Afeganistão</option>
@@ -272,9 +285,9 @@ function ApplicationFormPage() {
             </select>
             <select name="trips">
                 <option value=""></option>
-	            <option value="Marte">Marte</option>
-	            <option value="Plutão">Plutão</option>
-	            <option value="Jupiter">Jupiter</option>
+                {trips.map(trip => {
+                    return <option value={trip.planet}>{trip.planet}</option>
+                })}
             </select>
             <button>me inscrever</button>
         </div>
