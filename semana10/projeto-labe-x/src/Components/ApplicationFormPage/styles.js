@@ -18,7 +18,7 @@ export const Card =styled.div`
     height: 60%;
 `
 
-export const Form = styled.div`
+export const Form = styled.form`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -28,17 +28,13 @@ export const Form = styled.div`
         margin-bottom: 8px;
         width: 100%;
         height: 24px;
+        
     }
     select{
         width: 100%;
         height:24px;
         margin-bottom: 8px;
         display: block;
-    }
-
-    textarea{
-        width: 100%;
-        margin-bottom: 16px;
     }
 
     button{

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import logo from '../../images/LabeX_logo_white.png'
 import { useHistory } from 'react-router-dom';
 import { AppBarContainer, Logo, Login } from './styles.js'
@@ -6,6 +6,12 @@ import { AppBarContainer, Logo, Login } from './styles.js'
 
 function AppBar() {
     const history = useHistory()
+    const [isLogged, setIsLogged ] = useState(localStorage.getItem("token") !== null)
+
+    useEffect(() => {
+        const token = localStorage.getItem("token")
+        setIsLogged(token !== null)
+    }, [history])
     
 
     const goToHomePage = () => {
@@ -13,6 +19,7 @@ function AppBar() {
     }
 
     const goToLoginPage = () => {
+        
         history.push("/login")
     }
 
@@ -23,30 +30,15 @@ function AppBar() {
     const handleLogout = () => {
         localStorage.clear()
         history.push("/")
+        setIsLogged(false)
       }
-
-    const renderLoginLogout = () => {
-        const token = localStorage.getItem("token")
-        console.log("token")
-
-        if (token) {
-            return (
-                <p onClick={handleLogout}>logout</p>
-            )
-        } else if (token === null) {
-            return <p onClick={goToLoginPage}>login</p>
-
-        }
-    }
-
     
-
-  return (
-    <AppBarContainer>
-        <Logo src={logo} alr="logo" onClick={goToHomePage}/>
-        <p onClick={goToTripListPage}>lista de viagens</p>
-        {renderLoginLogout()}
-    </AppBarContainer>
+    return (
+        <AppBarContainer>
+            <Logo src={logo} alr="logo" onClick={goToHomePage}/>
+            <p onClick={goToTripListPage}>lista de viagens</p>
+            {isLogged ? <p onClick={handleLogout}>sair</p> : <p onClick={goToLoginPage}>entrar</p>  }
+        </AppBarContainer>
    
   )
 }

@@ -1,19 +1,27 @@
 import React, {useState, useEffect} from 'react';
 import { WrappAll, Card, Form} from './styles.js'
+import { baseUrl} from '../LoginPage/LoginPage'
 import axios from'axios'
-import useInputValue from '../../hooks/useInputValue.js';
-
-
+import useForm from '../../hooks/useForm';
 
 
 function ApplicationFormPage() {
     const [trips, setTrips] = useState([])
-    const [name, handleChangeName] = useInputValue("")
-    const [age, handleChangeAge] = useInputValue("")
-    const [profession, handleChangeProfession] = useInputValue("")
-    const [country, handleChangeCountry] = useInputValue("")
-    const [application, handleChangeApplication] = useInputValue("")
-    const [trip, handleChangeTrip] = useInputValue("")
+    const [form, onChange, resetForm] = useForm({
+        name: "",
+        age: "",
+        profession: "", 
+        country: "",
+        applicationText: "",
+        trip: ""
+    }) 
+
+    const handleInputChange = event => {
+        const { name, value } = event.target
+
+        onChange(name, value)
+        
+    }
     
     
     useEffect (() => {
@@ -25,8 +33,22 @@ function ApplicationFormPage() {
         })
     }, [])
 
-    const applyToTrip = () => {
+    const applyToTrip = async (event) => {
+        event.preventDefault()
 
+        try{
+            const response = await axios.post(`${baseUrl}/trips/${form.trip}/apply`, form)
+        }
+        
+
+
+
+
+
+
+
+
+       
     }
     
     
@@ -38,27 +60,40 @@ function ApplicationFormPage() {
         <Card>
             <h2>Viaje conosco</h2>
             <Form>
-                <input 
-                    placeholder="Nome" 
+                <input
+                    name="name" 
+                    placeholder="Nome completo" 
                     type="text" 
-                    value={name}
-                    onChange={handleChangeName}
+                    value={form.name}
+                    onChange={handleInputChange}
+                    pattern="[A-Za-z ]{3,}"
+                    title="Nome com pelo menos 3 letras"
+                    required
+
                 />
-                <input 
+                <input
+                    name="age" 
                     placeholder="Idade" 
                     type="number" 
-                    value={age}
-                    onChange={handleChangeAge}
+                    value={form.age}
+                    onChange={handleInputChange}
+                    min="18"                   
+                    required
                 />
-                <input 
+                <input
+                    name="profession" 
                     placeholder="Profissão" 
                     type="text"
-                    value={profession}
-                    onChange={handleChangeProfession}
+                    value={form.profession}
+                    onChange={handleInputChange}
+                    pattern="[A-Za-z ]{10,}"
+                    required
                 />
                 <select 
                     name="country"
-                    onChange={handleChangeCountry}    
+                    onChange={handleInputChange}
+                    required
+
                 >
                     <option value="">País</option>
                     <option value="Brasil">Brasil</option>
@@ -308,22 +343,26 @@ function ApplicationFormPage() {
                     <option value="Zâmbia">Zâmbia</option>
                 </select>
                 <select 
-                    name="trips"
-                    onChange={handleChangeTrip}
+                    name="trip"
+                    value={form.trip}
+                    onChange={handleInputChange}
+                    required
                 >
                     <option value="">Viagem</option>
                     {trips.map(trip => {
-                        return <option value={trip.planet}>{trip.planet}</option>
+                        return <option value={trip.id}>{trip.name} ({trip.planet})</option>
                     })}
                 </select>
-                <textarea 
-                    rows="5" 
+                <input 
+                    name="applicationText"
                     placeholder="Porque você deve ir?" 
                     type="text"
-                    value={application}
-                    onChange={handleChangeApplication}
+                    value={form.applicationText}
+                    onChange={handleInputChange}
+                    pattern="[A-Za-z0-9 ]{,30}"
+                    required
                 />
-                <button>me inscrever</button>
+                <button type="submit">me inscrever</button>
             </Form>
         </Card>
     </WrappAll>

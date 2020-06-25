@@ -1,52 +1,60 @@
-import React, {useState} from 'react';
+import React from 'react';
 import axios from 'axios'
-import useInputValue from '../../hooks/useInputValue.js'
-import { LoginPageContainer, LoginForm } from './styles.js'
+import useForm from '../../hooks/useForm.js'
+import { LoginPageContainer, Card } from './styles.js'
 import { useHistory } from 'react-router-dom';
 
-const baseUrl = "https://us-central1-labenu-apis.cloudfunctions.net/labeX/eros-mello" 
+export const baseUrl = "https://us-central1-labenu-apis.cloudfunctions.net/labeX/eros-mello" 
 
 function LoginPage() {
     const history = useHistory()
-    const [email, handleChangeEmail] = useInputValue("")
-    const [password, handleChangePassword] = useInputValue("")
+    const [form, onChange, resetForm] = useForm({ email: "", password: ""})
 
-    const handleLogin = async () => {
-        const body ={
-            email: email,
-            password: password
-        }
+    const handleInputChange = event => {
+        const {name, value} = event.target
+
+        onChange(name, value)
+    }
+
+    const handleLogin = async (event) => {
+        event.preventDefault()
 
         try {
-            const response = await axios.post(`${baseUrl}/login`, body)
+            const response = await axios.post(`${baseUrl}/login`, form)
 
             window.localStorage.setItem("token", response.data.token)
             history.replace("/trips/list")
-
         } catch (error) {
             alert(error.response.data.message)
         }
-    }
 
+        resetForm()
+    }
 
   return (
     <LoginPageContainer>
-        <LoginForm>
+        <Card>
             <h3>Logar como administrador</h3>
-            <input 
-                value={email} 
-                onChange={handleChangeEmail}
-                placeholder="email" 
-                type="email"
-            />
-            <input 
-                value={password}
-                onChange={handleChangePassword} 
-                placeholder="senha" 
-                type="password"
-            />
-            <button onClick={handleLogin}>Login</button>
-        </LoginForm>
+            <form onSubmit={handleLogin}>
+                <input 
+                    name="email" 
+                    value={form.email} 
+                    onChange={handleInputChange}
+                    placeholder="email" 
+                    type="email"  
+                    required            
+                />
+                <input 
+                    name="password"
+                    value={form.password}
+                    onChange={handleInputChange} 
+                    placeholder="senha" 
+                    type="password"
+                    required                
+                />
+                <button type="submit">Login</button>
+            </form>
+        </Card>
     </LoginPageContainer>
   );
 }

@@ -1,13 +1,17 @@
-import React from "react";
+import {useEffect} from "react";
+import { useHistory } from 'react-router-dom';
 
 const useToken = () => {
-  const token = window.localStorage.getItem("token")
+    const history = useHistory()
+    const token = localStorage.getItem("token")
 
-  if (token === null) {
-      history.push("/login")
-  }
+    useEffect(() => {
+       if (token === null) {
+           history.push("/login");
+       }
+    }, [history, token]);
 
-  return token;
+    return token
 }
 
 export default useToken;

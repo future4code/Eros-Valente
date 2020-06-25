@@ -8,8 +8,6 @@ import { Main } from './styles.js';
 function HomePage() {
     const history = useHistory()
 
-    
-
     const goToApplicationFormPage = () => {
         history.push("/application-form")
     }
@@ -18,7 +16,7 @@ function HomePage() {
     <div>
         <Main>
             <h1>LabeX</h1>
-            <p>Encontre as melhores viagens espaciais!</p>
+            <h3>Encontre as melhores viagens espaciais!</h3>
             <button onClick={goToApplicationFormPage}>quero me cadastrar!</button>
         </Main>
         <div>

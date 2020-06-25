@@ -1,18 +1,11 @@
 import React, {useEffect} from 'react';
+import useToken from '../../hooks/useToken'
 import { useHistory } from 'react-router-dom';
 
 
 function ListTripsPage() {
     const history = useHistory()
-
-    useEffect(() => {
-       const token = localStorage.getItem("token");
-    
-       if (token === null) {
-           history.push("/login");
-       }
-    }, [history]);
-
+    useToken()
 
     const goToTripDetailsPage = () => {
         history.push("/trips/details")

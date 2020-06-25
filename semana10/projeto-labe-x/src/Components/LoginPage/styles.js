@@ -9,13 +9,13 @@ export const LoginPageContainer = styled.div`
     
 `
 
-export const LoginForm = styled.div`
+export const Card = styled.div`
     background-color: #FFFFFF;
     width: 400px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 8px 32px;
+    padding: 8px 32px 32px;
     position: absolute;
     top: 30%;
     border-radius: 5px;
@@ -23,9 +23,15 @@ export const LoginForm = styled.div`
     input{
         margin-bottom: 8px;
         width: 50%;
+        height:30px;
     }
 
     button{
         width: 50%;
+        height: 25px;
+    }
+
+    form{
+        text-align: center;
     }
 `
