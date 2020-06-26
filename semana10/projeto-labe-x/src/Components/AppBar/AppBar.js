@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import logo from '../../images/LabeX_logo_white.png'
+import useToken from '../../hooks/useToken'
 import { useHistory } from 'react-router-dom';
-import { AppBarContainer, Logo, Login } from './styles.js'
+import { AppBarContainer, Logo, LoginContainer } from './styles.js'
+import { MenuItem } from './styles.js'
 
 
 function AppBar() {
@@ -19,8 +21,11 @@ function AppBar() {
     }
 
     const goToLoginPage = () => {
-        
-        history.push("/login")
+        if (isLogged !== null) {
+            history.push("/trips/list")
+        } else {
+            history.push("/login")
+        }   
     }
 
     const goToTripListPage = () => {
@@ -36,8 +41,10 @@ function AppBar() {
     return (
         <AppBarContainer>
             <Logo src={logo} alr="logo" onClick={goToHomePage}/>
-            <p onClick={goToTripListPage}>lista de viagens</p>
-            {isLogged ? <p onClick={handleLogout}>sair</p> : <p onClick={goToLoginPage}>entrar</p>  }
+            <LoginContainer>
+                <MenuItem onClick={goToTripListPage}>Área do administrador</MenuItem>
+                {(isLogged)  ? <MenuItem onClick={handleLogout}>Sair</MenuItem> : <MenuItem onClick={goToLoginPage}>Entrar</MenuItem>  }
+            </LoginContainer>
         </AppBarContainer>
    
   )

@@ -1,4 +1,4 @@
-import {useEffect} from "react";
+import  {useEffect} from "react";
 import { useHistory } from 'react-router-dom';
 
 const useToken = () => {
@@ -9,7 +9,7 @@ const useToken = () => {
        if (token === null) {
            history.push("/login");
        }
-    }, [history, token]);
+    }, [history]);
 
     return token
 }

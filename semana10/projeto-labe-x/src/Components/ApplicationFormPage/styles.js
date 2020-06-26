@@ -25,7 +25,7 @@ export const Form = styled.form`
     align-items: center;
     width: 50%;
     input{
-        margin-bottom: 8px;
+        margin-bottom: 16px;
         width: 100%;
         height: 24px;
         
@@ -33,7 +33,7 @@ export const Form = styled.form`
     select{
         width: 100%;
         height:24px;
-        margin-bottom: 8px;
+        margin-bottom: 16px;
         display: block;
     }
 

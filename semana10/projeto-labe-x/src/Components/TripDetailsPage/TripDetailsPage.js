@@ -1,8 +1,17 @@
-import React from 'react';
-import { useHistory } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import useToken from '../../hooks/useToken'
+import { useHistory, useParams } from 'react-router-dom';
+
 
 
 function TripDetailsPage() {
+    const { tripId } = useParams()
+    useToken()
+    
+
+    useEffect(() => {
+
+    })
 
   return (
     <div>
