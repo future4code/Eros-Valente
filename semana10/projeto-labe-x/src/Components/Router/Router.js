@@ -25,7 +25,7 @@ function Router() {
             <Route exact path="/trips/list">
                 <ListTripsPage />
             </Route>
-            <Route exact path="/trips/details/:tripId">
+            <Route exact path="/trips/details/:id">
                 <TripDetailsPage />
             </Route>
             <Route exact path="/create-trip">

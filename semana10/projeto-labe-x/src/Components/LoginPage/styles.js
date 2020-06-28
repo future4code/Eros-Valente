@@ -2,6 +2,14 @@ import styled from 'styled-components'
 
 export const LoginPageContainer = styled.div`
     background-color: #1a1a1a;
+    background-image: url("https://www.spacex.com/static/images/backgrounds/rideshare_feature.webp");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-color: black;
+    position: absolute;
+    top: 0;
+    z-index: -1;
+    width: 100%;
     height: 100vh;
     display: flex;
     justify-content: center;

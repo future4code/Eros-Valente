@@ -1,8 +1,7 @@
 import React from 'react';
 import AppBar from '../AppBar/AppBar.js'
 import { useHistory } from 'react-router-dom';
-import { Main } from './styles.js';
-
+import { Main, Button } from './styles.js';
 
 
 function HomePage() {
@@ -13,16 +12,11 @@ function HomePage() {
     }
 
   return (
-    <div>
-        <Main>
-            <h1>LabeX</h1>
-            <h3>Encontre as melhores viagens espaciais!</h3>
-            <button onClick={goToApplicationFormPage}>quero me cadastrar!</button>
-        </Main>
-        <div>
-            FOOTER (ICONES DE REDES SOCIAIS)
-        </div>
-    </div>
+      <Main>
+          <h1>Encontre as melhores viagens espaciais!</h1>
+          <Button onClick={goToApplicationFormPage}>quero me cadastrar</Button>
+      </Main>
+
   );
 }
 

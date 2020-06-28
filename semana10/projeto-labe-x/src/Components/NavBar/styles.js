@@ -3,8 +3,9 @@ import styled from 'styled-components'
 export const WrappAll = styled.div`
     display: flex;
     justify-content: space-around;
+    border-top: 1px solid #f2f2f2;
     border-bottom: 1px solid #f2f2f2;
-    background-color: #1a1a1a;
+    background-color: transparent;
     color: white;
     font-size: 20px;
     cursor: pointer; 

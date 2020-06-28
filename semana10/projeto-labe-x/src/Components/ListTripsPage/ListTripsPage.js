@@ -1,45 +1,42 @@
 import React, {useState, useEffect} from 'react';
 import NavBar from '../NavBar/NavBar'
 import useToken from '../../hooks/useToken'
+import useRequestData from '../../hooks/useRequestData'
 import { useHistory } from 'react-router-dom';
-import axios from 'axios'
+import { WrappAll, TripsList } from './styles';
 
 
+const baseUrl = "https://us-central1-labenu-apis.cloudfunctions.net/labeX/eros-mello"
 
 function ListTripsPage() {
     const history = useHistory()
-    const [trips, setTrips] = useState([])
     useToken()
+    
+    const trips = useRequestData(`${baseUrl}/trips`,"", []).trips
+    console.log(trips)
 
     const goToTripDetailsPage = (tripId) => {
         history.push(`/trips/details/${tripId}`)
     }
 
-    useEffect (() => {
-        axios.get("https://us-central1-labenu-apis.cloudfunctions.net/labeX/eros-mello/trips")
-        .then ((response) => {
-            setTrips(response.data.trips)
-        }).catch ((error) => {
-            console.log (error)
-        })
-    }, [])
-
     return (
-      <div>
-          <NavBar/>
-          <ul>
-              <h2>Viagens</h2>
-              {trips.map(trip => {
-                  return (
-                      <div>
-                          <p>{trip.name} ({trip.planet})</p>
-                          <button onClick={() => goToTripDetailsPage(trip.id)}>Detalhes da viagem</button>
-                      </div>
-                  )
-              })}
-          </ul>
-     
-      </div>
+        <div>
+            <NavBar/>
+            <WrappAll>
+            <TripsList>
+                <h2>VIAGENS</h2>
+                {trips ? (trips.map(trip => {
+                    return ( 
+                        <div>
+                            <p>{trip.name} ({trip.planet})</p>
+                            <button onClick={() => goToTripDetailsPage(trip.id)}>Detalhes da viagem</button>
+                        </div>
+                    )
+                    })) : <div>carregando...</div>
+                }
+            </TripsList>
+            </WrappAll>
+        </div>
     );
 }
 

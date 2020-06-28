@@ -1,9 +1,8 @@
 import styled from 'styled-components';
 
 export const AppBarContainer = styled.div`
-    background-color: #1a1a1a;
+    background-color: transparent;    
     font-size:22px;
-    border-bottom: 1px solid #f2f2f2;
     display: flex;
     justify-content: space-around;
     box-sizing: border-box;
@@ -23,7 +22,6 @@ export const LoginContainer = styled.div`
         margin: 0 16px;
     }
 `
-
 export const MenuItem = styled.p`
     position: relative;
     &:before{
@@ -43,6 +41,7 @@ export const MenuItem = styled.p`
         transform: scaleX(1);
     }
 `
+
 
 // export const Login =styled.p`
 //     font-weight: bold;

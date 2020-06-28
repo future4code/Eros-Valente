@@ -1,12 +1,22 @@
 import styled from 'styled-components';
 
 export const WrappAll = styled.div`
-    background-color: #1a1a1a;
-    height: 100vh;
+    
     display: flex;
     padding: 32px;
     justify-content: center;
     align-items: flex-start;
+`
+export const Background = styled.div`
+    background-image: url("https://www.spacex.com/static/images/updates/starlinkstreak_mobile.webp");
+    background-color: #1a1a1a;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: absolute;
+    top: 0;
+    z-index: -1;
+    width: 100vw;
+    height: 100vh;
 `
 
 export const Card =styled.div`
@@ -42,6 +52,7 @@ export const Form = styled.form`
     button{
         height: 32px;
         width: 100%;
+        margin-bottom: 16px;
 
     }
 

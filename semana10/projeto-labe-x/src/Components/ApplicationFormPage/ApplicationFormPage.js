@@ -1,4 +1,6 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
+import useRequestData from '../../hooks/useRequestData'
+import { useHistory }  from 'react-router-dom'
 import { countries } from './paises.js'
 import { WrappAll, Card, Form} from './styles.js'
 import { baseUrl} from '../LoginPage/LoginPage'
@@ -7,7 +9,8 @@ import useForm from '../../hooks/useForm';
 
 
 function ApplicationFormPage() {
-    const [trips, setTrips] = useState([])
+    const history = useHistory()
+    const trips = useRequestData(`${baseUrl}/trips`, "",  []).trips
     const [form, onChange, resetForm] = useForm({
         name: "",
         age: "",
@@ -23,32 +26,19 @@ function ApplicationFormPage() {
         onChange(name, value)
     }
     
-    
-    useEffect (() => {
-        axios.get("https://us-central1-labenu-apis.cloudfunctions.net/labeX/eros-mello/trips")
-        .then ((response) => {
-            setTrips(response.data.trips)
-        }).catch ((error) => {
-            console.log (error)
-        })
-    }, [])
 
     const applyToTrip = async (event) => {
         event.preventDefault()
 
         try{
             const response = await axios.post(`${baseUrl}/trips/${form.trip}/apply`, form)
-            console.log(response)
+            alert("Sua candidatura para essa viagem foi realizada com sucesso!\nAguarde nosso contato.")
+            history.push("/")
         } catch (error) {
             console.log(error)
-
         }
         resetForm()
     }
-    
-    
-
-
 
   return (
     <WrappAll>
@@ -103,7 +93,7 @@ function ApplicationFormPage() {
                     required
                 >
                     <option value="">Viagem</option>
-                    {trips.map(trip => {
+                    {trips && trips.map(trip => {
                         return <option key={trip.id} value={trip.id}>{trip.name} ({trip.planet})</option>
                     })}
                 </select>
@@ -113,7 +103,7 @@ function ApplicationFormPage() {
                     type="text"
                     value={form.applicationText}
                     onChange={handleInputChange}
-                    pattern="[A-Za-z0-9 ]{30,}"
+                    pattern="[A-Za-z0-9áãâéêíîóôõúç ]{30,}"
                     required
                 />
                 <button type="submit">me inscrever</button>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { WrappAll, Card, Form } from './styles'
+import { WrappAll, Card, Form, Background } from './styles'
 import useForm from '../../hooks/useForm';
 import axios from 'axios'
 import useToken from '../../hooks/useToken'
@@ -27,7 +27,10 @@ function CreateTripPage() {
     const createTrip = async (event) => {
         event.preventDefault()
         const axiosConfig = {
-            auth: token
+            headers: {
+                auth: token
+            }
+            
         }
         try {
             const response = await axios.post(`${baseUrl}/trips`, form, axiosConfig)
@@ -41,6 +44,7 @@ function CreateTripPage() {
 
   return (
     <div>
+        <Background></Background>
         <NavBar/>
         <WrappAll>
             <Card>
@@ -69,7 +73,7 @@ function CreateTripPage() {
                     </select>
                     <input
                         name="date" 
-                        placeholder="Data" 
+                        placeholder="dd/mm/aaaa" 
                         type="text"
                         value={form.date}
                         onChange={handleInputChange}
