@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import axios from 'axios'
 import NavBar from '../NavBar/NavBar'
-import { WrappAll, Background } from './styles'
+import { WrappAll, Background, DetailsContainer } from './styles'
 import useToken from '../../hooks/useToken'
 import useRequestData from '../../hooks/useRequestData'
 import { useHistory, useParams } from 'react-router-dom';
@@ -25,7 +25,6 @@ function TripDetailsPage() {
         }
         try {
             const response = await axios.put(`${baseUrl}/trips/${pathParams.id}/candidates/${candidateId}/decide`, body, axiosConfig)
-            console.log(response.data)
         } catch (error) {
             console.log(error.response)
         }
@@ -39,11 +38,16 @@ function TripDetailsPage() {
         <NavBar />
         {trip && (
         <WrappAll>
-            <h1>DETALHES DA VIAGEM</h1>
-            <h2>{trip.name}</h2>
-            <h2>{trip.planet}</h2>
+            
+            <DetailsContainer>
+                <h1>DETALHES DA VIAGEM</h1>
+                <h2>{trip.name} ({trip.planet})</h2>
+                <p>Data: {trip.date}</p>
+                <p>Duração: {trip.durationInDays}</p>
+            </DetailsContainer>
             <div>
                 <ul>
+                    <h1>CANDIDATOS</h1>
                     {trip.candidates.map(candidate => {
                         return (
                             <div>
@@ -54,6 +58,17 @@ function TripDetailsPage() {
                         )
                     })}
                 </ul>
+            </div>
+            <div>
+                <ul>
+                    <h1>CANDIDATOS APROVADOS</h1>
+                    {trip.approved.map(candidate => {
+                        return <li>{candidate.name}</li>
+                    })}    
+                    
+                </ul>
+                
+
             </div>
         </WrappAll>)}
     </div>

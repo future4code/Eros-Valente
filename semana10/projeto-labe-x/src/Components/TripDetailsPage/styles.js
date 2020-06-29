@@ -16,13 +16,17 @@ export const Background = styled.div`
 
 export const WrappAll = styled.div`
     display: flex;
-    flex-direction: column;
     padding: 32px;
-    justify-content: flex-start;
+    justify-content: space-evenly;
     align-items: flex-start;
     color: white;
    
+`
 
+export const DetailsContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    
 
 
 `
