@@ -1,0 +1,39 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+header{
+    display: flex;
+    justify-content: center;
+    height: 8vh;
+    align-items: center;
+}
+
+header > *{
+    margin: 0 5px;
+}
+main{
+    background-color: #f5f5f5;
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    font-size: 1.0em;
+    padding: 10px 0;
+    height: 92vh;
+}
+
+main div{
+    font-size: 1.2em;
+    border: 1px  solid #1f6acc;
+    border-top: 0;
+    border-bottom: 0;
+    width: 150px;
+    padding: 10px;
+}
+
+.tarefasDoDia{
+    line-height: 1.3em;
+    margin-top: 5px;
+    padding: 10px;
+}
