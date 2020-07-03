@@ -43,7 +43,7 @@ function AppBar() {
             <Logo src={logo} alr="logo" onClick={goToHomePage}/>
             <LoginContainer>
                 <MenuItem onClick={goToTripListPage}>Área do administrador</MenuItem>
-                {(isLogged)  ? <MenuItem onClick={handleLogout}>Sair</MenuItem> : <MenuItem onClick={goToLoginPage}>Entrar</MenuItem>  }
+                {(isLogged)  ? <p onClick={handleLogout}>Sair</MenuItem> : <MenuItem onClick={goToLoginPage}>Entrar</MenuItem>  }
             </LoginContainer>
         </AppBarContainer>
    

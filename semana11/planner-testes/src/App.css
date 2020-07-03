@@ -3,16 +3,20 @@
     padding: 0;
 }
 
-header{
+.inputForm{
+
+    
     display: flex;
     justify-content: center;
     height: 8vh;
     align-items: center;
 }
 
-header > *{
-    margin: 0 5px;
+.inputForm > *{
+    margin: 0 4px;
 }
+
+
 main{
     background-color: #f5f5f5;
     display: flex;
@@ -23,7 +27,7 @@ main{
     height: 92vh;
 }
 
-main div{
+.weekday{
     font-size: 1.2em;
     border: 1px  solid #1f6acc;
     border-top: 0;
@@ -32,8 +36,8 @@ main div{
     padding: 10px;
 }
 
-.tarefasDoDia{
+.dayTasks{
     line-height: 1.3em;
     margin-top: 5px;
-    padding: 10px;
+    padding: 16px;
 }
