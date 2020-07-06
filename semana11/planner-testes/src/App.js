@@ -4,7 +4,7 @@ import axios from 'axios';
 import './App.css';
 
 const baseUrl = "https://us-central1-labenu-apis.cloudfunctions.net/generic/planner-mello-eros"
-const weekdays = ["Seg", "Ter", "Qua", "Qui", "Sex", "Sab", "Dom"]
+
     
 
 function App() {
@@ -17,33 +17,26 @@ function App() {
 
     useEffect(() => {
         getAllTasks()
-    }, [])
+    }, [setTasks])
 
+    const getAllTasks = () => {
+        axios.get(baseUrl).then(response => {
+            setTasks(response.data)
+        })
+    }
 
     const handleInputChange = (event) => {
         const { name, value } = event.target
         onChange(name, value)
     } 
 
-    const createTask = async (event) => {
+    const createTask = (event) => {
         event.preventDefault()
-        try {
-            await axios.post(`${baseUrl}`, form)
-            getAllTasks()
-        } catch(error) {
-            
-        }
+        const body = form
         resetForm()
-    }
-
-    const getAllTasks = async () => {
-        try {
-            const response = await axios.get(`${baseUrl}`)
-            console.log(response.data)
-            setTasks(response.data)
-        }catch(error) {
-            console.log(error)
-        }
+        axios.post(baseUrl, body).then(() => {
+            getAllTasks()
+        })
     }
     
     const deleteTask = async (taskId) => {
@@ -59,25 +52,25 @@ function App() {
 
     tasks.forEach(task => {
         switch (task.day) {
-            case "Seg":
+            case "mon":
                 monday.push(task)
                 break;
-            case "Ter":
+            case "tue":
                 tuesday.push(task)
                 break;
-            case "Qua":
+            case "wed":
                 wednesday.push(task)
                 break; 
-            case "Qui":
+            case "thu":
                 thursday.push(task)
                 break; 
-            case "Sex":
+            case "fry":
                 fryday.push(task)
                 break;
-            case "Sab":
+            case "sat":
                 saturday.push(task)
                 break;
-            case "Dom":
+            case "sun":
                 sunday.push(task)
                 break;                        
         }
@@ -96,7 +89,7 @@ function App() {
     }
 
   return (
-    <body>
+    <div>
         <header>
             <form className="inputForm" onSubmit={createTask}>
                 <label htmlFor="task">Tarefa:</label>
@@ -117,53 +110,56 @@ function App() {
                     required
                 >   
                     <option value=""></option>
-                    {weekdays && weekdays.map(day => {
-                        return <option key={day} value={day}>{day}</option>
-                    })}         
+                    <option value="mon">Seg</option>
+                    <option value="tue">Ter</option>
+                    <option value="wed">Qua</option>
+                    <option value="thu">Qui</option>
+                    <option value="fry">Sex</option>
+                    <option value="sat">Sab</option>
+                    <option value="sun">Dom</option>      
                 </select>
                 <button type="submit">Adicionar Tarefa</button>
-                {/* <button onclick="limparTarefas()">Limpar Tarefas</button> */}
             </form>    
         </header>
         <hr/>
         <main >
-            <div data-testid="mon">Segunda-Feira
+            <div className="weekdayDiv" data-testid="mon">Segunda-Feira
                 <ul className="dayTasks">
                     {renderTasksByDay(monday)}
                 </ul>
             </div>
-            <div data-testid="tue">Terça-Feira
+            <div className="weekdayDiv" data-testid="tue">Terça-Feira
                 <ul className="dayTasks">
                     {renderTasksByDay(tuesday)}
                 </ul>
             </div>
-            <div data-testid="wed">Quarta-Feira
+            <div className="weekdayDiv" data-testid="wed">Quarta-Feira
                 <ul className="dayTasks">
                     {renderTasksByDay(wednesday)}
                 </ul>
             </div>
-            <div data-testid="thu">Quinta-Feira
+            <div className="weekdayDiv" data-testid="thu">Quinta-Feira
                 <ul className="dayTasks">
                     {renderTasksByDay(thursday)} 
                 </ul>
             </div>
-            <div data-testid="fry">Sexta-Feira
+            <div className="weekdayDiv" data-testid="fry">Sexta-Feira
                 <ul class="dayTasks">
                     {renderTasksByDay(fryday)}
                 </ul>
             </div>
-            <div data-testid="sat">Sábado
+            <div className="weekdayDiv" data-testid="sat">Sábado
                 <ul className="dayTasks">
                     {renderTasksByDay(saturday)}
                 </ul>
             </div>
-            <div data-testid="sun">Domingo
+            <div className="weekdayDiv" data-testid="sun">Domingo
                 <ul className="dayTasks">
                     {renderTasksByDay(sunday)}
                 </ul>
             </div>
         </main>
-    </body>    
+    </div>    
   )
 }
 

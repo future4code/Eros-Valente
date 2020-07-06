@@ -50,7 +50,7 @@ describe("Renderização inicial", () => {
         axios.get = jest.fn().mockResolvedValue({
             data: [
                 {
-                    day: "seg",
+                    day: "mon",
                     text: "dormir",
                     id: "sYska93dSm"
                 }
@@ -80,22 +80,22 @@ describe("Criar tarefa", () => {
 
         userEvent.selectOptions(select, getByText("Seg").value)
 
-        expect(select).toHaveValue("Seg")
+        expect(select).toHaveValue("mon")
 
         userEvent.selectOptions(select, getByText("Ter").value)
 
-        expect(select).toHaveValue("Ter")
+        expect(select).toHaveValue("tue")
 
         userEvent.selectOptions(select, getByText("Dom").value)
 
-        expect(select).toHaveValue("Dom")
+        expect(select).toHaveValue("sun")
     })
 
     test("Cria tarefa com sucesso ao clicar no botão para adicionar tarefa", async () => {
         axios.get = jest.fn().mockResolvedValue({
             data: [
               {
-                "day": "Ter",
+                "day": "thu",
                 "text": "Estudar testes",
                 "id": "gZCjyGHwww3G9lsNIP"
               }
@@ -107,17 +107,25 @@ describe("Criar tarefa", () => {
         const { getByText, getByTestId, findByText } = await createTask("Lavar louça", "Seg")
 
         expect(axios.post).toHaveBeenCalledWith("https://us-central1-labenu-apis.cloudfunctions.net/generic/planner-mello-eros", {
-            day: "Seg",
+            day: "mon",
             text: "Lavar louça"
         })
 
-        const task = findByText("Lavar louça")
+        const task = await findByText("Lavar louça")
         const dayTasks = getByTestId("mon")
 
-        await wait(() => expect(axios.post).toHaveBeenCalledTimes(1)) 
-        await wait(() => expect(axios.get).toHaveBeenCalledTimes(2))
-        await wait(() => expect(task).toBeInTheDocument())
+        
+        await wait(() => {
+            expect(axios.post).toHaveBeenCalledTimes(1)
+            expect(axios.get).toHaveBeenCalledTimes(2)
+            expect(task).toBeInTheDocument()
+        })    
     })
 
-    test("Ao criar tarefa input é limpo")
+    test("Ao criar tarefa input é limpo", async () => {
+        const { getByLabelText } = await createTask("lavar roupa", "Sab")
+
+        expect(getByLabelText("Tarefa:")).toHaveValue("")
+        expect(getByLabelText("Dia:")).toHaveValue("")
+    })
 })
