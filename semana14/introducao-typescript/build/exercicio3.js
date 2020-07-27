@@ -1,4 +1,4 @@
-var posts = [
+const posts = [
     {
         autor: "Alvo Dumbledore",
         texto: "Não vale a pena viver sonhando e se esquecer de viver"
@@ -20,10 +20,9 @@ var posts = [
         texto: "Avada Kedavra!"
     }
 ];
-//b)
 function buscarPostsPorAutor(posts, autorInformado) {
-    return posts.filter(function (post) {
+    return posts.filter((post) => {
         return post.autor === autorInformado;
     });
 }
-
+//# sourceMappingURL=exercicio3.js.map

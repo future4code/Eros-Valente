@@ -17,7 +17,7 @@ const pokemon2: pokemon = {
   healthPoints: 31
 }
 
-const pokemon2: pokemon = {
+const pokemon3: pokemon = {
   name: "Squirtle",
   types: "Water",
   healthPoints: 35
@@ -28,7 +28,12 @@ const pokemon2: pokemon = {
 /*
 a) Para fazer a transpilação do arquivo .ts par ao arquivo .js daria o comando tsc exercicio-4.ts no terminal, me certificando de que estou dentro da pasta onde o arquivo em TS está
 
-b)
+b) Se a pasta src extiver declarada no arquivo tsconfig.json então só precisamos usar o comando src (sem o nome do arquivo) dentro da pasta onde ele está
+
+c) para transpilar mais de um arquivo basta dar o comando tsc dentro da pasta onde eles estão, ou então nomeá-los separando por espaços
+
+d)
+
 
 
 
