@@ -1,0 +1,16 @@
+{
+  "name": "aula45-exercicio2",
+  "version": "1.0.0",
+  "description": "exercício 2 aula45 (node.js)",
+  "main": "index.js",
+  "scripts": {
+    "start": "tsc && node ./build/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Eros Pinder Valente",
+  "license": "ISC",
+  "dependencies": {
+    "@types/node": "^14.0.27",
+    "typescript": "^3.9.7"
+  }
+}
