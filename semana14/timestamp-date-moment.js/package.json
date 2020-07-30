@@ -4,7 +4,9 @@
   "description": "criar agenda em node.js usando timestamp, date, moment.js",
   "main": "index.js",
   "scripts": {
-    "start": "tsc && node ./build/index.js",
+    "ex2": "tsc && node ./build/exercicio2.js",
+    "ex3": "tsc && node ./build/exercicio3.js",
+    "ex4": "tsc && node ./build/exercicio4.js",
     "test": "jest"
   },
   "keywords": [],
