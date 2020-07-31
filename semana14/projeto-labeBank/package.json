@@ -1,0 +1,20 @@
+{
+  "name": "projeto-labebank",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "tsc && node ./build/index.js",
+    "abrir-conta": "tsc && node ./build/createAccount.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Eros Pinder Valente",
+  "license": "ISC",
+  "dependencies": {
+    "@types/node": "^14.0.27",
+    "colors": "^1.4.0",
+    "moment": "^2.27.0",
+    "typescript": "^3.9.7"
+  }
+}
