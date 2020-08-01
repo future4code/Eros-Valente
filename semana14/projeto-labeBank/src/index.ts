@@ -1,5 +1,6 @@
 import * as fs from 'fs'
 
+
 export function readDatabase(): any {
     try {
         const fileData: string = fs.readFileSync('./data.json').toString()

@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "tsc && node ./build/index.js",
-    "abrir-conta": "tsc && node ./build/createAccount.js",
+    "abrir-conta": "tsc && node ./build/accounts.js",
+    "saldo": "tsc && node ./build/operations.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

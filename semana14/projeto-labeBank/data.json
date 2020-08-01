@@ -1,3 +1,31 @@
 [
-
+  {
+    "name": "Eros Pinder Valente",
+    "cpf": 36830882818,
+    "dateOfBirth": "22/01/1988",
+    "balance": 0,
+    "accountStatement": []
+  },
+  {
+    "name": "Mestre Splinter",
+    "cpf": 28791020910,
+    "dateOfBirth": "01/04/1960",
+    "balance": 400,
+    "accountStatement": [
+      {
+        "type": "Depósito",
+        "amount": 200,
+        "date": 1596247160,
+        "description": "Depósito em dinheiro",
+        "completed": true
+      },
+      {
+        "type": "Depósito",
+        "amount": 200,
+        "date": 1596247267,
+        "description": "Depósito em dinheiro",
+        "completed": true
+      }
+    ]
+  }
 ]
