@@ -1,27 +1,13 @@
-import { writeToDatabase, readDatabase } from "./index"
+import { writeToDatabase } from "./index"
+import { getAllAccounts } from "./getAllAccounts"
 import { Account } from "./types"
 import moment from "moment"
 
 var colors = require('colors/safe')
 
-export const getAllAccounts = (): Account[] => {
-    const accountsArray: Account[] = readDatabase()
-    return accountsArray.map((response: any): Account => {
-        return {
-            name: response.name,
-            cpf: response.cpf,
-            dateOfBirth: response.dateOfBirth,
-            balance: response.balance,
-            accountStatement: response.accountStatement
-        }
-    })
-}
 
-
-
-const createAccount = (name: string, cpf: string, dateOfBirth: string): void => {
+export const createAccount = (name: string, cpf: string, dateOfBirth: string): void => {
     const accountsArray: Account[] = getAllAccounts()
-    console.log(accountsArray)
     const accountIndex: number = accountsArray.findIndex(
         (costumer => costumer.cpf === Number(cpf)) 
     )
@@ -64,3 +50,4 @@ const createAccount = (name: string, cpf: string, dateOfBirth: string): void => 
     console.log("Conta criada com sucesso.")
 }
 
+createAccount(process.argv[2], process.argv[3], process.argv[4])

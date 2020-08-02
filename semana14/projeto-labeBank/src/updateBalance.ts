@@ -1,5 +1,5 @@
 import moment from "moment"
-import { getAllAccounts } from "./accounts"
+import { getAllAccounts } from "./getAllAccounts"
 import { writeToDatabase } from "./index"
 
 var colors = require('colors/safe')
@@ -21,3 +21,4 @@ export const updateBalance = (): void => {
     console.log(colors.green("Saldos atualizados com sucesso"))
 }
 
+updateBalance()

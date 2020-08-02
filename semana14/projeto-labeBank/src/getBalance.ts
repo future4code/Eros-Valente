@@ -1,9 +1,9 @@
-import { getAllAccounts } from "./accounts"
+import { getAllAccounts } from "./getAllAccounts"
 import { Account } from "./types"
 
 var colors = require('colors/safe')
 
-const getBalance = (name: string, cpf: string): void => {
+export const getBalance = (name: string, cpf: string): void => {
     const accountsArray: Account[] = getAllAccounts()
     
     const accountIndex: number = accountsArray.findIndex(
@@ -20,7 +20,7 @@ const getBalance = (name: string, cpf: string): void => {
     }
 }
 
-
+getBalance(process.argv[2], process.argv[3])
 
 
 

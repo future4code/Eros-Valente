@@ -1,4 +1,10 @@
 import * as fs from 'fs'
+import { createAccount } from "./createAccount"
+import { addBalance } from "./addBalance"
+import { getBalance } from "./getBalance"
+import { payBill } from "./payBill"
+import { updateBalance } from "./updateBalance"
+import { performTransfer } from "./performTransfer"
 
 
 export function readDatabase(): any {
@@ -21,3 +27,31 @@ export function writeToDatabase(data: any): void {
     }
 }
 
+const main = (args: string[]): void => {
+    switch (args[2]) {
+        case "create":
+            createAccount(args[3], args[4], args[5])          
+            break;
+        case "deposit":
+            addBalance(args[3], args[4], args[5])          
+            break;
+        case "balance":
+            getBalance(args[3], args[4])          
+            break;
+        case "pay":
+            payBill(args[3], args[4], args[5])          
+            break;
+        case "transfer":
+            performTransfer()
+
+
+        case "update":
+            updateBalance()          
+            break;
+                                            
+        default:
+            break;
+    }
+}
+
+main(process.argv)

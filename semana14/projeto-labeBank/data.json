@@ -41,5 +41,12 @@
         "completed": false
       }
     ]
+  },
+  {
+    "name": "Goku",
+    "cpf": 777,
+    "dateOfBirth": "25/12/1986",
+    "balance": 0,
+    "accountStatement": []
   }
 ]

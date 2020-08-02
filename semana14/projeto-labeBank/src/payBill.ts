@@ -1,12 +1,12 @@
 import moment from "moment"
-import { getAllAccounts } from "./accounts"
+import { getAllAccounts } from "./getAllAccounts"
 import { writeToDatabase } from "./index"
 import { Account, Transaction, TransactionsEnum } from "./types"
 
 var colors = require('colors/safe')
 
-const payBill = (cpf: string, description: string, value: string, date?: string): void => {
-    const accountsArray = getAllAccounts()
+export const payBill = (cpf: string, description: string, value: string, date?: string): void => {
+    const accountsArray: Account[] = getAllAccounts()
 
     const accountIndex: number = accountsArray.findIndex(
         (costumer => costumer.cpf === Number(cpf)) 
@@ -47,4 +47,4 @@ const payBill = (cpf: string, description: string, value: string, date?: string)
     }    
 }
 
-
+payBill(process.argv[2], process.argv[3], process.argv[4], process.argv[5])
