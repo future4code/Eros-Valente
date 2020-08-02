@@ -23,7 +23,7 @@ export const payBill = (cpf: string, description: string, value: string, date?: 
     }
 
 
-    if (Number(value) > accountsArray[accountIndex].balance) {
+    if (Number(value) > accountsArray[accountIndex].balance || accountsArray[accountIndex].balance === 0) {
         console.log(colors.red("Saldo insuficiente"))
         return
     }
@@ -46,5 +46,3 @@ export const payBill = (cpf: string, description: string, value: string, date?: 
         console.log(colors.green("Pagamento realizado"))
     }    
 }
-
-payBill(process.argv[2], process.argv[3], process.argv[4], process.argv[5])

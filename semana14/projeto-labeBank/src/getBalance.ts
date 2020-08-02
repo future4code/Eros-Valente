@@ -20,7 +20,6 @@ export const getBalance = (name: string, cpf: string): void => {
     }
 }
 
-getBalance(process.argv[2], process.argv[3])
 
 
 

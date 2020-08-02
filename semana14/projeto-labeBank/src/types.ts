@@ -1,7 +1,8 @@
 export enum TransactionsEnum {
     ADD_BALANCE = "Depósito",
     PAY_BILL = "Pagamento",
-    TRANSFER = "Transferência"    
+    TRANSFER_MADE = "Transferência realizada",
+    TRANSFER_RECIEVED = "Tranferência recebida"    
 }
 
 

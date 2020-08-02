@@ -1,6 +1,7 @@
 import moment from "moment"
 import { getAllAccounts } from "./getAllAccounts"
 import { writeToDatabase } from "./index"
+import { TransactionsEnum } from "./types"
 
 var colors = require('colors/safe')
 
@@ -11,7 +12,11 @@ export const updateBalance = (): void => {
         account.accountStatement.forEach((transaction) => {
             if (transaction.date <= moment().unix() && transaction.completed === false) {
                 transaction.completed = true
-                account.balance -= transaction.value
+                if(transaction.type === TransactionsEnum.TRANSFER_MADE) {
+                    account.balance -= transaction.value
+                } else if (transaction.type === TransactionsEnum.TRANSFER_RECIEVED) {
+                    account.balance += transaction.value
+                }
             }
         })
     }
@@ -21,4 +26,3 @@ export const updateBalance = (): void => {
     console.log(colors.green("Saldos atualizados com sucesso"))
 }
 
-updateBalance()

@@ -33,4 +33,3 @@ export const addBalance = (name: string, cpf: string, value: string): void => {
     console.log(colors.green("Depósito realizado com sucesso"))
 }
 
-addBalance(process.argv[2], process.argv[3], process.argv[4])

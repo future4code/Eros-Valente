@@ -24,13 +24,14 @@ export const createAccount = (name: string, cpf: string, dateOfBirth: string): v
         return
     }
 
-    // checagem de maioridade  
+    // checagem de formato de data 
     if(dateOfBirth !== (moment(dateOfBirth, "DD/MM/YYYY").format("DD/MM/YYYY"))) {
         console.log(colors.red("O formato da data de nascimento deve ser DD/MM/YYYY"))
         return
     }
-
-    // checagem de formato de data
+    
+    //checagem de maioridade
+    
     if (moment().diff(moment(dateOfBirth, "DD/MM/YYYY"), "year") < 18) {
         console.log(colors.red("Cliente precisa ser maior de 18 anos"))
         return
@@ -47,7 +48,6 @@ export const createAccount = (name: string, cpf: string, dateOfBirth: string): v
     )
     
     writeToDatabase(accountsArray)
-    console.log("Conta criada com sucesso.")
+    console.log(colors.green("Conta criada com sucesso."))
 }
 
-createAccount(process.argv[2], process.argv[3], process.argv[4])

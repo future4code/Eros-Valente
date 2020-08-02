@@ -42,13 +42,11 @@ const main = (args: string[]): void => {
             payBill(args[3], args[4], args[5])          
             break;
         case "transfer":
-            performTransfer()
-
-
-        case "update":
-            updateBalance()          
+            performTransfer(args[3], args[4], args[5], args[6], args[7], args[8], args[9])
             break;
-                                            
+            case "update":
+            updateBalance()          
+            break;                                  
         default:
             break;
     }
