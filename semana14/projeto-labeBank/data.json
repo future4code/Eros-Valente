@@ -10,7 +10,7 @@
     "name": "Mestre Splinter",
     "cpf": 123,
     "dateOfBirth": "01/04/1960",
-    "balance": 400,
+    "balance": 300,
     "accountStatement": [
       {
         "type": "Depósito",
@@ -31,7 +31,7 @@
         "value": 100,
         "date": 1596384988,
         "description": "pizza",
-        "completed": false
+        "completed": true
       },
       {
         "type": "Pagamento",
