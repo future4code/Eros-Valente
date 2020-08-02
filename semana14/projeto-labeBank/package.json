@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "moment": "tsc && node ./build/moment.js",
     "start": "tsc && node ./build/index.js",
     "abrir-conta": "tsc && node ./build/accounts.js",
     "saldo": "tsc && node ./build/operations.js",

@@ -15,7 +15,7 @@ export type Account = {
 
 export type Transaction = {
     type: TransactionsEnum
-    amount: number,
+    value: number,
     date: number
     description: string,
     completed: boolean

@@ -23,7 +23,7 @@ const getBalance = (name: string, cpf: string): void => {
 
 }
 
-const addBalance = (name: string, cpf: string, amount: string): void => {
+const addBalance = (name: string, cpf: string, value: string): void => {
     const accountsArray: Account[] = getAllAccounts()
     
     const accountIndex: number = accountsArray.findIndex(
@@ -37,17 +37,59 @@ const addBalance = (name: string, cpf: string, amount: string): void => {
 
     const transaction: Transaction = {
         type: TransactionsEnum.ADD_BALANCE,
-        amount: Number(amount),
+        value: Number(value),
         date: moment().unix(),
         description: "Depósito em dinheiro",
         completed: true,
     }
 
     accountsArray[accountIndex].accountStatement.push(transaction)
-    accountsArray[accountIndex].balance += transaction.amount
+    accountsArray[accountIndex].balance += transaction.value
 
     writeToDatabase(accountsArray)
 
     console.log(colors.green("Depósito realizado com sucesso"))
+}
+
+const payBill = (cpf: string, description: string, value: string, date?: string): void => {
+    const accountsArray = getAllAccounts()
+
+    const accountIndex: number = accountsArray.findIndex(
+        (costumer => costumer.cpf === Number(cpf)) 
+    )
+    
+    if (accountIndex === -1) {
+        console.log(colors.red("Dados inválidos"))
+        return
+    }     
+
+    if (moment(date, "DD/MM/YYYY").unix() < moment().unix()) {
+        console.log(colors.red("Data inválida, deve ser maior do que a data atual"))
+        return
+    }
+
+
+    if (Number(value) > accountsArray[accountIndex].balance) {
+        console.log(colors.red("Saldo insuficiente"))
+        return
+    }
+
+    const transaction: Transaction = {
+        type: TransactionsEnum.PAY_BILL,
+        value: Number(value),
+        date: date ? moment(date, "DD/MM/YYYY").unix() : moment().unix(),
+        description: description,
+        completed: false,
+    }
+
+    accountsArray[accountIndex].accountStatement.push(transaction)
+
+    writeToDatabase(accountsArray)
+
+    if (date) {
+        console.log(colors.green("Agendamento de pagamento realizado com sucesso!"))
+    } else {
+        console.log(colors.green("Pagamento realizado"))
+    }    
 }
 
