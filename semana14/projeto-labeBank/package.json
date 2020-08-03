@@ -1,0 +1,29 @@
+{
+  "name": "projeto-labebank",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "ts-node ./src/index.ts",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "accountHomer": "ts-node ./src/index.ts create \"Homer Simpson\" 101 05/05/1970",
+    "accountLois": "ts-node ./src/index.ts create \"Lois Griffin\" 201 07/08/1980",
+    "createAgeError": "ts-node ./src/index.ts create \"Bobby Generic\" 404 23/07/2010",
+    "deposit": "ts-node ./src/index.ts deposit \"Lois Griffin\" 201 1000",
+    "balance": "ts-node ./src/index.ts balance \"Lois Griffin\" 201",
+    "paymentError": "ts-node ./src/index.ts pay 101 \"donnuts e cerveja\" 1000000",
+    "transfer": "ts-node ./src/index.ts transfer \"Lois Griffin\" 201 \"Homer Simpson\" 101 100 Empréstimo",
+    "loisPay": "ts-node ./src/index.ts pay 201 \"Fraldas pro Stewie\" 200",
+    "update": "ts-node ./src/index.ts update"
+  },
+  "keywords": [],
+  "author": "Eros Pinder Valente",
+  "license": "ISC",
+  "dependencies": {
+    "@types/node": "^14.0.27",
+    "colors": "^1.4.0",
+    "moment": "^2.27.0",
+    "ts-node": "^8.10.2",
+    "typescript": "^3.9.7"
+  }
+}
