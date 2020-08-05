@@ -1,6 +1,8 @@
 import { User } from "./User"
 
 export class Employee extends User {
+    static BENEFITS_VALUE: number = 400
+    
     protected admissionDate: Date;
     protected baseSalary: number;
 
@@ -27,7 +29,7 @@ export class Employee extends User {
 
     public calculateTotalSalary(): number {
         const employeeSalaray: number = this.baseSalary
-        return employeeSalaray + 400
+        return employeeSalaray + Employee.BENEFITS_VALUE
     }
 }
 

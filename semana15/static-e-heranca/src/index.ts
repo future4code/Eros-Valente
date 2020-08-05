@@ -52,3 +52,4 @@ console.log(seller1.getSalesQuantity())
 
 
 console.log(seller1.calculateTotalSalary())
+
