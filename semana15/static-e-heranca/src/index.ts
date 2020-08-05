@@ -33,7 +33,16 @@ import { Seller } from "./Seller"
 //console.log("Exercício 7 \nSalário total:", employee1.calculateTotalSalary().toFixed(2))
 
 // 8 a)
-
 const seller1: Seller = new Seller("123", "seller1@email.com", "Teddy", "0987", new Date("01/02/2000"), 1500)
 
+// 8 b) foi possível imprimir todas as propriedades da classe Employee menos password que é uma propriedade privada da classe User, pai da classe Customer, portando a classe Seller herda essas caracteristicas.
+
 console.log(`Exercício 8 - b) \nid: ${seller1.getId()} \nEmail: ${seller1.getEmail()} \nName: ${seller1.getName()} \nAdmission date: ${seller1.getAdmissionDate()} \nBase salary: ${seller1.getBaseSalary()}`)
+
+// 9 a) Sim, pois foi criado um método publico para nos retornar essa propriedade que está como privada dentro da classe Seller
+
+seller1.setSalesQuantity(5)
+console.log(seller1.getSalesQuantity())
+
+seller1.setSalesQuantity(5)
+console.log(seller1.getSalesQuantity())
