@@ -28,5 +28,17 @@ console.log("Cep store: ", store.getCep())
 console.log("Cep factory: ", factory.getCep())
 
 console.log("nº de moradores de home ", home.getResidentsQuantity())
-console.log("nº de moradores de home ", store.getFloorsQuantity() )
-console.log("nº de moradores de home ", factory.getMachinesQuantity() )
+console.log("nº de moradores de home ", store.getFloorsQuantity())
+console.log("nº de moradores de home ", factory.getMachinesQuantity())
+
+// 4 a) 
+//        propriedade: herdados de Client: name, registrationNumber, consumedEnergy
+//                   herdado de Place: cep
+//                   herdado de Residence: residentsQuantity
+//                   exclusivo da ResidentialClient: cpf
+//     
+//     metodos:     herdados de Client: calculateBill
+//                  herdado de Place: getCep
+//                  herdado de Residence: getResidentsQuantity
+//                  exclusivo da ResidentialClient: getCpf
+
