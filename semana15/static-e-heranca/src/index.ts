@@ -19,10 +19,13 @@ import { Employee } from "./Employee"
 // console.log(`id: ${costumer1.getId()} \nemail: ${costumer1.getEmail()} \nname: ${costumer1.getName()} \ncredit card: ${costumer1.getCreditCard()}`)
 
 // 4 e 5
-// console.log(costumer1.introduceYourself())
+// console.log("Exercício 5 - b) \n", costumer1.introduceYourself())
 
 // 6 a) Uma vez, pois o super convoca o construtor da classe pai User
 
+// 6 b) Todos os dados passados menos password que é um dado privado e sem método criado para acessá-lo
 const employee1: Employee = new Employee("10", "joão@email.com", "João", "0000000", new Date("01/01/1980"), 2000)
 
-console.log(`id: ${employee1.getId()} \nEmail: ${employee1.getEmail()} \nName: ${employee1.getName()} \nAdmission date: ${employee1.getAdmissionDate()} \nBase salary: ${employee1.getBaseSalary()}`)
+// console.log(`Exercicio 6 - b) \nid: ${employee1.getId()} \nEmail: ${employee1.getEmail()} \nName: ${employee1.getName()} \nAdmission date: ${employee1.getAdmissionDate()} \nBase salary: ${employee1.getBaseSalary()}`)
+
+console.log("Exercício 7 \nSalário total:", employee1.calculateTotalSalary().toFixed(2))

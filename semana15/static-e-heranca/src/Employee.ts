@@ -24,5 +24,10 @@ export class Employee extends User {
     public getBaseSalary(): number {
         return this.baseSalary
     }
+
+    public calculateTotalSalary(): number {
+        const employeeSalaray: number = this.baseSalary
+        return employeeSalaray + 400
+    }
 }
 
