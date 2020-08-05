@@ -11,13 +11,14 @@ const client: Client = {
 
     calculateBill: () => 2
 }
+// Exercício 1
+// a) Todas as propriedades podem ser acessadas e impressas pois interfaces não possuem encapsulamento, tudo é publico.
 
-// 1 a) Todas as propriedades podem ser acessadas e impressas pois interfaces não possuem encapsulamento, tudo é publico.
+// Exercício 2
+// a) O typescript retorna o erro "Cannot create an instance of an abstract class." 
+// b) As classes filhas da classe abstrata devem implementar os atributos e metodos da classe abstrata. Deve-se então criar uma instancia dessa classe filha
 
-// 2 a) O typescript retorna o erro "Cannot create an instance of an abstract class." 
-// 2 b) As classes filhas da classe abstrata devem implementar os atributos e metodos da classe abstrata. Deve-se então criar uma instancia dessa classe filha
-
-// 3 )
+// Exercício 3
 
 const home: Residence = new Residence(4, "09510-021")
 const store: Commerce = new Commerce(2, "08717-000")
@@ -31,8 +32,9 @@ console.log("nº de moradores de home ", home.getResidentsQuantity())
 console.log("nº de moradores de home ", store.getFloorsQuantity())
 console.log("nº de moradores de home ", factory.getMachinesQuantity())
 
-// 4 a) 
-//        propriedade: herdados de Client: name, registrationNumber, consumedEnergy
+// Exercício 4
+// a) 
+//    propriedade: herdados de Client: name, registrationNumber, consumedEnergy
 //                   herdado de Place: cep
 //                   herdado de Residence: residentsQuantity
 //                   exclusivo da ResidentialClient: cpf
@@ -42,3 +44,11 @@ console.log("nº de moradores de home ", factory.getMachinesQuantity())
 //                  herdado de Residence: getResidentsQuantity
 //                  exclusivo da ResidentialClient: getCpf
 
+// Exercício 5
+// a) Ambas são subclasses de Place e implementam a interface Client
+// b) Ela tem uma propriedade que é o Cnpj e não CPf e por sua vez um método que retorna esse cnpj. Além disso o multiplicador do calculateBill é diferente
+
+// Exercício 6
+// a) Ela é filha da classe Industry.
+// b) Interface Client, pois precisará das propriedades dessa interface e do método calculateBill.
+// c) 
