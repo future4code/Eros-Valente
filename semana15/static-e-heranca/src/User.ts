@@ -12,6 +12,7 @@ export class User {
           name: string,
           password: string
       ){
+        console.log("Chamando o construtor da classe User")
           this.id = id
           this.email = email
           this.name = name 
