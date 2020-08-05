@@ -11,6 +11,8 @@ export class Seller extends Employee {
        return this.salesQuantity
    }
 
-
-
+   public calculateTotalSalary(): number {
+    const salaryWithBenefits: number = super.calculateTotalSalary()
+    return salaryWithBenefits + (this.salesQuantity * 5)
+   }
 }

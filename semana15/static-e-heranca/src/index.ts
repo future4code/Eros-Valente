@@ -42,7 +42,13 @@ console.log(`Exercício 8 - b) \nid: ${seller1.getId()} \nEmail: ${seller1.getEm
 // 9 a) Sim, pois foi criado um método publico para nos retornar essa propriedade que está como privada dentro da classe Seller
 
 seller1.setSalesQuantity(5)
+
 console.log(seller1.getSalesQuantity())
 
 seller1.setSalesQuantity(5)
+
+
 console.log(seller1.getSalesQuantity())
+
+
+console.log(seller1.calculateTotalSalary())
