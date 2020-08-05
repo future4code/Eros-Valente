@@ -5,13 +5,18 @@ import { Customer } from "./Customer"
 
 // 1 b) Uma vez apenas.
 
-// const user1: User = new User(String(Date.now() * Math.random()), "email@email.com", "João", "senha_super_segura")
+const user1: User = new User("1", "email@email.com", "João", "senha_super_segura")
 
 // 2 a) Mensagem impressa uma vez no terminal.
 
 // 2 b) Mensagem impressa uma vez no terminal. O super da classe Costumer convoca o construtor da classe pai User.
 
-// const user2: Customer = new Customer("8394030494", "user2@email.com", "sem nome", "passwor_nao_muito_seguro", "123456")
+const costumer: Customer = new Customer("2", "user2@email.com", "sem nome", "password_nao_muito_seguro", "123456")
 
+// 3 a) Não, pois a propriedade password é definida como private e não existe nenhum método na classe User que nos possibilite acessar o dado.
 
+// console.log(`id: ${user2.getId()} \nemail: ${user2.getEmail()} \nname: ${user2.getName()} \ncredit card: ${user2.getCreditCard()}`)
+
+// 4 
+console.log(costumer.introduceYourself())
 

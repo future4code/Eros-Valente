@@ -12,7 +12,6 @@ export class Customer extends User {
       creditCard: string
     ) {
       super(id, email, name, password);
-      console.log("Chamando o construtor da classe Customer");
       this.creditCard = creditCard;
     }
   
