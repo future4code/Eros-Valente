@@ -11,7 +11,7 @@ const user1: User = new User("1", "email@email.com", "João", "senha_super_segur
 
 // 2 b) Mensagem impressa uma vez no terminal. O super da classe Costumer convoca o construtor da classe pai User.
 
-const costumer: Customer = new Customer("2", "user2@email.com", "sem nome", "password_nao_muito_seguro", "123456")
+const costumer: Customer = new Customer("2", "jose@email.com", "José", "password_muito_seguro", "123456")
 
 // 3 a) Não, pois a propriedade password é definida como private e não existe nenhum método na classe User que nos possibilite acessar o dado.
 
