@@ -2,7 +2,7 @@ import { Client } from "./Client"
 import { Industry } from "./Industry";
 
 
-class IndustriallClient extends Industry implements Client{
+export class IndustrialClient extends Industry implements Client{
     constructor (
         public name: string,
         public registrationNumber: number,

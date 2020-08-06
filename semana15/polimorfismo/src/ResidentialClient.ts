@@ -2,7 +2,7 @@ import { Residence } from "./Residence";
 import { Client } from "./Client"
 
 
-class ResidencialClient extends Residence implements Client{
+export class ResidentialClient extends Residence implements Client{
     constructor (
         public name: string,
         public registrationNumber: number,

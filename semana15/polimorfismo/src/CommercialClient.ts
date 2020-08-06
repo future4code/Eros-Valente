@@ -1,7 +1,7 @@
 import { Commerce } from "./Commerce"
 import { Client } from "./Client"
 
-class CommercialClient extends Commerce implements Client {
+export class CommercialClient extends Commerce implements Client {
     constructor (
         public name: string,
         public registrationNumber: number,
