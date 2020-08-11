@@ -141,4 +141,47 @@ A query busca por todas as linhas da tabela e procura nas colunas name, nomes qu
 
 ## Exercício 5
 
+### a) 
+```sh
+CREATE TABLE Movies (
+  id VARCHAR(255) PRIMARY KEY,
+  title VARCHAR(255) UNIQUE NOT NULL,
+  synopsis TEXT NOT NULL,
+  release_date DATE NOT NULL,
+  raitings FLOAT NOT NULL
+  )
+```
+Tabela Movies, todas as colunas terão que ter valor (NOT NULL), title tem ainda a restrição UNIQUE para evitar nomes repetidos, sinopse do filme é um TEXT (sem limite de caractéres), data de lançamento (DATE) e a avaliação um número FLOAT que receberá valores de 1 a 10.
+
+## Exercício 6
+
+### a) 
+` SELECT id, title, rating from Movies WHERE id = "003" `
+
+### b)
+` SELECT * FROM Movies WHERE title = "O Cheiro do Ralo" `
+
+### c) 
+` SELECT id, title, synopsis FROM Movies WHERE rating >= 7 `
+
+## Exercício 7
+
+### a)
+` SELECT * FROM Movies WHERE title LIKE "%vida%" `
+
+### b) 
+` SELECT * FROM Movies WHERE title LIKE "%ralo%" OR synopsis LIKE "%casamento%"  `
+
+### c)
+`SELECT * FROM Movies WHERE release_date < "2020-08-11" `
+
+### d)
+```sh
+SELECT * FROM Movies 
+WHERE (release_date < "2020-08-11") AND
+      (title LIKE "%amor%" OR synopsis LIKE "%casada%") AND rating > 7
+```
+
+
+
 
