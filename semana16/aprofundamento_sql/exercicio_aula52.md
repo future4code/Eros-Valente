@@ -76,5 +76,17 @@ Resposta ao rodar a query
 
 Ao tentar atualizar um dado que não existe ele não da erro, a operação é feita com sucesso, porém a mensagem informa que nenhuma linha foi afetada, pois não houve correspondência então nada foi alterado.
 
+## Exercício 3
 
+#### a)
+```sql
+DELETE FROM Actor
+WHERE name = "Fernanda Montenegro";
+```
+
+#### b)
+```sql
+DELETE FROM Actor
+WHERE salary > 1000000 AND gender = "male";
+```
 
