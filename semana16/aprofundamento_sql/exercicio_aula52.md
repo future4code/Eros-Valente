@@ -143,3 +143,37 @@ GROUP BY gender;
 ```
 
 ## Exercício 6
+#
+#### a)
+```sql
+ALTER TABLE Movies
+ADD playing_limit_date DATE;
+```
+
+#### b)
+Quando eu criei a tabela já criei com FLOAT, mas o comando seria o seguinte.
+
+```sql
+ALTER TABLE Movie CHANGE rating rating FLOAT;
+```
+
+#### c)
+
+Query para filme ainda em cartaz:
+```sql
+UPDATE Movies
+SET playing_limit_date = "2020-09-10"
+WHERE id = "004";
+```
+Query para filme fora de cartaz:
+```sql
+UPDATE Movies
+SET playing_limit_date = "2020-05-25"
+WHERE id = "002";
+```
+
+#### d)
+> 0 row(s) affected Rows matched: 0  Changed: 0  Warnings: 0
+
+Ao tentar atualizar um ainformação de uma linha já deletada a resposta não é um erro, a operação é realizada porém como nada é encontrado e nenhuma linha é alterada
+
