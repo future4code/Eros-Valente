@@ -177,3 +177,41 @@ WHERE id = "002";
 
 Ao tentar atualizar um ainformação de uma linha já deletada a resposta não é um erro, a operação é realizada porém como nada é encontrado e nenhuma linha é alterada
 
+## Exercício 7
+
+#### a)
+```sql 
+SELECT * FROM Movies
+WHERE rating > 7.5;
+```
+
+#### b)
+```sql
+SELECT AVG(rating) AS "Media de avaliações"
+FROM Movies;
+```
+
+#### c)
+```sql
+SELECT COUNT(*) AS "Quantidade de filmes em cartaz"
+FROM Movies;
+```
+
+#### d)
+```sql
+SELECT COUNT(*) AS "Próximos lançamentos"
+FROM Movies
+WHERE release_date > CURDATE();
+```
+#### e)
+```sql
+SELECT MAX(rating) AS "Maior avaliação"
+FROM Movies;
+```
+
+#### f)
+```sql
+SELECT MIN(rating) AS "Maior avaliação"
+FROM Movies;
+```
+
