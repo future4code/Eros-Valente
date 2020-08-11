@@ -91,7 +91,7 @@ WHERE salary > 1000000 AND gender = "male";
 ```
 
 ## Exercício 4
-
+#
 #### a)
 ```sql
 SELECT MAX(salary) AS "Maior Salario"
@@ -115,3 +115,31 @@ SELECT SUM(salary) AS "Soma dos salários"
 FROM Actor; 
 ```
 
+## Exercício 5
+#
+#### a)
+A query em questão faz a contagem de atores dividindo a contagem dentro dos dois generos existentes dentro da coluna gender.
+
+#### b)
+```sql
+SELECT id, name  FROM Actor ORDER BY name DESC;
+```
+
+#### c)
+```sql
+SELECT * FROM Actor ORDER BY salary;
+```
+
+#### d)
+```sql
+SELECT * FROM Actor ORDER BY salary DESC LIMIT 3;
+```
+
+#### e)
+```sql
+SELECT AVG(salary) AS "Media de salario por genero", gender
+FROM Actor 
+GROUP BY gender;
+```
+
+## Exercício 6
