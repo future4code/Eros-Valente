@@ -1,0 +1,25 @@
+{
+  "name": "knex-express",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "@types/express": "^4.17.0",
+    "@types/node": "^14.0.27",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.0",
+    "knex": "^0.21.4",
+    "mysql": "^2.18.1",
+    "node": "^14.7.0",
+    "ts-node": "^8.10.2",
+    "typescript": "^3.9.7"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "ts-node ./src/index.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
