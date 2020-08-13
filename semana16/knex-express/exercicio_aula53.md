@@ -99,5 +99,169 @@ Essa linha do bloco catch indica o status como 400, portanto, que houve um erro 
 
 ### c)
 
+```ts
+app.get("/actor", async (req: Request, res: Response) => {
+    try {
+        const gender = req.query.gender
+        const countByGender = await countActorsByGender(gender as string)
+        res.status(200).send({
+            quantity: countByGender
+        })
+    } catch (error) {
+        res.status(400).send({
+            message: error.message
+        })
+    }           
+})     
+```
+----------
+ ## Exercício 4
+
+ #### a)
+ ```ts
+ app.put("/actor", async (req: Request, res: Response) => {
+    try {
+        await updateSalary(req.body.id, req.body.salary)
+        res.status(200).send({
+            message: "Success",
+        })
+    } catch (error) {
+        res.status(400).send({
+            message: error.message,
+        })
+    }
+})
+```
+
+#### b)
+```ts
+app.delete("/actor/:id", async (req: Request, res: Response) => {
+    try {
+        await deleteActor(req.params.id)
+        res.status(200).send({
+            message: "Successfully deleted",
+        })
+    } catch (error) {
+        res.status(400).send({
+            message: error.message,
+        }) 
+    }
+})
+```
+----
+
+## Exercício 5
+
+#### a)
+
+> função banco de dados
+```ts
+const createMovie = async (
+    id: string,
+    title: string,
+    synopsis: string,
+    releaseDate: Date,
+    rating: number,
+    playingLimitDate: Date    
+): Promise<void> => {
+    await connection
+        .insert({
+            id,
+            title,
+            synopsis,
+            release_date: releaseDate,
+            rating,
+            playing_limit_date: playingLimitDate
+        })
+        .into("Movies")
+}
+```
+
+> Função express
+```ts
+app.post("/movie", async (req: Request, res: Response) => {
+    try {
+        await createMovie(
+            req.body.id,
+            req.body.title,
+            req.body.synopsis,
+            req.body.release_date,
+            req.body.rating,
+            req.body.playing_limit_date
+        )
+        res.status(200).send({
+            message: "Success"
+        })
+    } catch (error) {
+        res.status(400).send({
+            message: error.message
+        })
+    }
+})
+```
+
+------
+## Exercício 6
+
+> Função banco de dados
+
+```ts
+const getAllMovies = async (): Promise<any> => {
+    const result = await connection("Movies")
+        .select("*")
+        .limit(15)
     
+    return result
+}
+```
+
+> Função express (endpoint)
+
+```ts 
+app.get("/movie", async (req: Request, res: Response) => {
+    try {
+        const movies = await getAllMovies()
+        res.status(200).send({
+            movies: movies,
+        })
+    } catch (error) {
+        res.status(400).send({
+            message: error.message
+        })
+    }
+})
+```
+----
+
+## Exercício 7
+
+> Função query
+
+```ts
+const searchMovie = async (searchTerm: string): Promise<any> => {
+    const result = await connection("Movies")
+        .select("*")
+        .where("title", "LIKE", `%${searchTerm}%`)
+        .orWhere("synopsis", "LIKE", `%${searchTerm}%`)
+        .orderBy("release_date", "asc")
+        
+    return result    
+}
+```
+
+> Função express (endpoint)
+```ts
+app.get("/movie/search", async (req: Request, res: Response) => {
+    try {
+        const movies = await searchMovie(req.query.searchTerm as string)
+        res.status(200).send({
+            movies: movies
+        })
+    } catch (error) {
+        res.status(400).send({
+            message: error.message
+        })    
+    }
+})
+```
      
