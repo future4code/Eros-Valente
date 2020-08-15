@@ -1,6 +1,7 @@
 import knex from "knex";
 import express, { Request, Response } from "express";
 import dotenv from "dotenv";
+import moment from "moment"
 import { AddressInfo } from "net";
 import { REPLCommand } from "repl";
 import { connect } from "http2";
@@ -37,32 +38,20 @@ const server = app.listen(process.env.PORT || 3003, () => {
   }
 });
 
+
 /**************************************************************/
 
-app.get('/', testEndpoint)
-
-async function testEndpoint(req:Request, res:Response): Promise<void>{
-  try {
-    const result = await connection.raw(`
-      SELECT * FROM Actor
-    `)
-
-    res.status(200).send(result)
-  } catch (error) {
-    res.status(400).send(error.message)
-  }
+function idGenerator(): string {
+    return String(Date.now() + Math.random())
 }
-
-/**************************************************************/
 
 // 1. Criar usuário
 
 const createUser = async (name: string, nickname: string, email: string): Promise<void> => {
-    const id: string = String(Date.now() + Math.random())
     if( name.replace(/\s/g, "") && nickname.replace(/\s/g, "") && email.replace(/\s/g, "") ) {
         await connection.raw(`
             INSERT INTO UsersList VALUES (
-                "${id}",
+                ${idGenerator()},
                 "${name}",
                 "${nickname}",
                 "${email}"
@@ -147,6 +136,44 @@ app.post("/user/edit/:id", async (req: Request, res: Response) => {
         })
     } catch (error) {
         res.status(400).send(error.messageNotFound ? {message: error.messageNotFound} : error )
+    }
+})
+
+/**************************************************************/
+
+// 4. Criar tarefa
+
+const createTask = async (title: string, description: string, limitDate: string, creatorUserId: string): Promise<void> => {
+    if (title.replace(/\s/g, "") && description.replace(/\s/g, "") && limitDate && creatorUserId.replace(/\s/g, "")) {
+        await connection.raw(`
+            INSERT INTO Tasks (id, title, description, limit_date, creator_user_id) 
+            VALUES (
+                "${idGenerator()}",
+                "${title}",
+                "${description}",
+                "${limitDate.split("/").reverse().join("-")}",
+                "${creatorUserId}"
+            )
+        `)
+        
+    } else {
+        throw { message: "Preencha todos os campos" }
+    }
+}
+
+app.put("/task", async (req:Request, res: Response) => {
+    try {
+        await createTask(
+            req.body.title,
+            req.body.description,
+            req.body.limitDate,
+            req.body.creatorUserId
+        )
+        res.status(200).send({
+            message: "Tarefa criada"
+        })
+    } catch (error) {
+        res.status(400).send(error.sqlMessage ? {message: error.sqlMessage} : error)
     }
 })
 
