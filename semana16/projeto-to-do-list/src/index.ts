@@ -5,6 +5,7 @@ import moment from "moment"
 import { AddressInfo } from "net";
 import { REPLCommand } from "repl";
 import { connect } from "http2";
+import { promises } from "fs";
 
 /**************************************************************/
 
@@ -81,7 +82,7 @@ app.put("/user", async (req: Request, res: Response) => {
 const getUserById = async (id: string): Promise<any> => {
     if(id.replace(/\s/g, "")) {
         const result = await connection.raw(`
-            SELECT * FROM UsersList WHERE id = "${id}"
+            SELECT id, nickname FROM UsersList WHERE id = "${id}"
         `)
         return result[0][0]
     } else {
@@ -197,12 +198,41 @@ const getTaskById = async (id: string): Promise<any> => {
 app.get("/task/:id", async (req: Request, res: Response) => {
     try {
         const response = await getTaskById(req.params.id)
+        response.limit_date = moment(response.limit_date).format("DD/MM/YYYY")
         res.status(200).send({
-            response
+            title: response.title,
+	        description: response.description,
+	        limitDate: response.limit_date,
+	        creatorUserId: response.creator_user_id
         })
     } catch (error) {
         res.status(400).send(
             error.messageNotFound ? { message: error.messageNotFound } : error
         )
+    }
+})
+
+/**************************************************************/
+
+/*******     DESAFIOS     *******/
+
+// 6. Pegar todos os usuários
+
+const getAllUsers = async (): Promise<any> => {
+    const response = await connection.raw(`
+        SELECT id, nickname FROM UsersList
+    `)
+    
+    return response[0] 
+}
+
+app.get("/users/all", async (req: Request, res: Response) => {
+    try {
+        const response = await getAllUsers()
+        res.status(200).send({users: response})
+    } catch (error) {
+        res.status(400).send({
+            users: []
+        })   
     }
 })
