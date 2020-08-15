@@ -177,3 +177,32 @@ app.put("/task", async (req:Request, res: Response) => {
     }
 })
 
+/**************************************************************/
+
+// 5. Pegar tarefa pelo id
+
+const getTaskById = async (id: string): Promise<any> => {
+    const task = await connection.raw(`
+        SELECT * FROM Tasks
+        WHERE id = "${id}"
+    `)
+
+    if (task[0][0] !== undefined) {
+        return task[0][0]
+    } else {
+        throw { messageNotFound: "Tarefa não encontrada"}
+    }
+}
+
+app.get("/task/:id", async (req: Request, res: Response) => {
+    try {
+        const response = await getTaskById(req.params.id)
+        res.status(200).send({
+            response
+        })
+    } catch (error) {
+        res.status(400).send(
+            error.messageNotFound ? { message: error.messageNotFound } : error
+        )
+    }
+})
