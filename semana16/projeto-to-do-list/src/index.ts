@@ -3,6 +3,7 @@ import express, { Request, Response } from "express";
 import dotenv from "dotenv";
 import { AddressInfo } from "net";
 import { REPLCommand } from "repl";
+import { connect } from "http2";
 
 /**************************************************************/
 
@@ -58,7 +59,7 @@ async function testEndpoint(req:Request, res:Response): Promise<void>{
 
 const createUser = async (name: string, nickname: string, email: string): Promise<void> => {
     const id: string = String(Date.now() + Math.random())
-    if( name.replace(/\s/g, "") || nickname.replace(/\s/g, "") || email.replace(/\s/g, "") ) {
+    if( name.replace(/\s/g, "") && nickname.replace(/\s/g, "") && email.replace(/\s/g, "") ) {
         await connection.raw(`
             INSERT INTO UsersList VALUES (
                 "${id}",
@@ -112,3 +113,40 @@ app.get("/user/:id", async (req: Request, res: Response) => {
            .send(error)
     }
 })
+
+/**************************************************************/
+
+// 3. Editar usuário
+
+const editUser = async (id: string, name: string, nickname: string): Promise<void> => {
+    const user = await connection.raw(`
+        SELECT * FROM UsersList
+        WHERE id = "${id}"
+    `)
+
+    if (user[0][0] === undefined) {
+        throw { messageNotFound: "Usuário não encontrado"}
+    }
+
+    if(name.replace(/\s/g, "") && nickname.replace(/\s/g, "")) {
+        await connection.raw(`
+        UPDATE UsersList
+        SET name = "${name}", nickname = "${nickname}"
+        WHERE id = "${id}"
+        `)
+    } else {
+        throw { message: "Preencha todos os campos" }
+    }
+}
+
+app.post("/user/edit/:id", async (req: Request, res: Response) => {
+    try {
+        await editUser(req.params.id, req.body.name, req.body.nickname)
+        res.status(200).send({
+            message: "Usuário editado com sucesso"
+        })
+    } catch (error) {
+        res.status(400).send(error.messageNotFound ? {message: error.messageNotFound} : error )
+    }
+})
+
