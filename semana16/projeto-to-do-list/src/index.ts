@@ -54,9 +54,11 @@ async function testEndpoint(req:Request, res:Response): Promise<void>{
 
 /**************************************************************/
 
+// 1. Criar usuário
+
 const createUser = async (name: string, nickname: string, email: string): Promise<void> => {
     const id: string = String(Date.now() + Math.random())
-    if( name || nickname || email ) {
+    if( name.replace(/\s/g, "") || nickname.replace(/\s/g, "") || email.replace(/\s/g, "") ) {
         await connection.raw(`
             INSERT INTO UsersList VALUES (
                 "${id}",
@@ -65,7 +67,6 @@ const createUser = async (name: string, nickname: string, email: string): Promis
                 "${email}"
             )
         `)
-        console.log("usuário criado com sucesso")
     } else {
         throw { message: "Preencha todos os campos" }
     }
@@ -75,13 +76,39 @@ app.put("/user", async (req: Request, res: Response) => {
     try {
         await createUser(req.body.name, req.body.nickname, req.body.email)
         res.status(200).send({
-            message: "User created successfully"
+            message: "Usuário criado com sucesso"
         })
     } catch (error) {
-        res
-           .status(400)
+        res.status(400)
            .send(error)
     }
 })
 
+/**************************************************************/
 
+// 2. Pegar usuário pelo id
+
+const getUserById = async (id: string): Promise<any> => {
+    if(id.replace(/\s/g, "")) {
+        const result = await connection.raw(`
+            SELECT * FROM UsersList WHERE id = "${id}"
+        `)
+        return result[0][0]
+    } else {
+        throw { message: "Id não informado"}
+    }
+}
+
+app.get("/user/:id", async (req: Request, res: Response) => {
+    try {
+        const response = await getUserById(req.params.id)
+        if(response === undefined) {
+            res.status(400).send({ message: "Usuário não encontrado"})
+        } else {
+            res.status(200).send(response)
+        }
+    } catch (error) {
+        res.status(400)
+           .send(error)
+    }
+})
