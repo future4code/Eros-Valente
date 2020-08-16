@@ -267,3 +267,29 @@ app.get("/task", async (req: Request, res: Response) => {
     }
 })
 
+/**************************************************************/
+
+// 8. Pesquisar usuário
+
+const searchUser = async (query: string): Promise<any> => {
+    if(query) {
+        const response = await connection.raw(`
+        SELECT id, nickname FROM UsersList
+        WHERE nickname LIKE "%${query}%" 
+        OR email LIKE "%${query}%"
+        `)
+        return response[0]
+    } else {
+        throw { message: "Digite o termo de busca" }
+    }
+}
+
+app.get("/user", async (req: Request, res: Response) => {
+    try {
+        const response = await searchUser(req.query.query as string)
+        res.status(200).send({ users: response })
+
+    } catch (error) {
+        res.status(400).send(error)
+    }
+})
