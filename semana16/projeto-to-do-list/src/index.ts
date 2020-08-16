@@ -180,17 +180,26 @@ app.put("/task", async (req:Request, res: Response) => {
 
 /**************************************************************/
 
-// 5. Pegar tarefa pelo id
+// 5 e 11 Pegar tarefa pelo id
 
-const getTaskById = async (id: string): Promise<any> => {
-    const task = await connection.raw(`
-        SELECT * FROM Tasks
-        WHERE id = "${id}"
+const getTaskById = async (taskId: string): Promise<any> => {
+    const creatorUser = connection.raw(`
+        SELECT Tasks.id AS taskId, title, description, limit_date AS limitDate, creator_user_id AS creatorUserId, status, UsersList.nickname AS creatorUserNickname
+        FROM Tasks JOIN UsersList ON Tasks.creator_user_id = UsersList.id
+        WHERE Tasks.id = "${taskId}"
     `)
-
-    if (task[0][0] !== undefined) {
-        return task[0][0]
-    } else {
+    
+    const responsibleUsers =  await connection.raw(`
+        SELECT ul.id, ul.nickname
+        FROM ResponsibleUserTasks rut JOIN UsersList ul
+        ON rut.responsible_user = ul.id
+        WHERE rut.task_id = "${taskId}" 
+    `)
+    
+    const values = await Promise.all([creatorUser, responsibleUsers])
+    if(values[0][0][0] !== undefined) {
+        return { ...values[0][0][0], responsibleUsers: values[1][0]}
+    } else { 
         throw { messageNotFound: "Tarefa não encontrada"}
     }
 }
@@ -198,13 +207,10 @@ const getTaskById = async (id: string): Promise<any> => {
 app.get("/task/:id", async (req: Request, res: Response) => {
     try {
         const response = await getTaskById(req.params.id)
-
-        res.status(200).send({
-            title: response.title,
-	        description: response.description,
-	        limitDate: moment(response.limit_date).format("DD/MM/YYYY"),
-	        creatorUserId: response.creator_user_id
-        })
+        if (response) {
+            response.limitDate = moment(response.limitDate).format("DD/MM/YYYY")
+            res.status(200).send(response)
+        }
     } catch (error) {
         res.status(400).send(
             error.messageNotFound ? { message: error.messageNotFound } : error
@@ -249,7 +255,7 @@ const getTasksByUserId = async (id: string): Promise<any> => {
             WHERE "${id}" = ul.id
         `)
         return response[0]   
-    } else {
+    } else {    
         throw { message: "Informe o id" }
     }
 }
@@ -349,3 +355,7 @@ app.get("/task/:id/responsible", async (req: Request, res: Response) => {
         res.status(400).send(error)
     }
 })
+
+/**************************************************************/
+
+// 11. (ex 5 atualizado)
