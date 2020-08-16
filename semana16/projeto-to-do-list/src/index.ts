@@ -293,3 +293,29 @@ app.get("/user", async (req: Request, res: Response) => {
         res.status(400).send(error)
     }
 })
+
+/**************************************************************/
+
+// 9. Atribuir um usuário responsável a uma tarefa
+
+const assignUserToTask = async (taskId: string, userId: string): Promise<void> => {
+    if (taskId.replace(/\s/g, "") && userId.replace(/\s/g, "")) {
+        await connection.raw(`
+            INSERT INTO ResponsibleUserTasks 
+            VALUE ("${taskId}", "${userId}")
+        `)
+    } else {
+        throw { message: "Informe os IDs"}
+    }
+}
+
+app.post("/task/responsible", async (req: Request, res: Response) => {
+    try {
+        await assignUserToTask(req.body.task_id, req.body.responsible_user_id)
+        res.status(200).send({message: "Tarefa atribuída ao usuário"})
+    } catch (error) {
+        res.status(400).send(
+            (error.sqlMessage ? { message: error.sqlMessage } : error)
+        )
+    } 
+})
