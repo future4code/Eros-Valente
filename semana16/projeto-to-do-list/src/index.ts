@@ -319,3 +319,33 @@ app.post("/task/responsible", async (req: Request, res: Response) => {
         )
     } 
 })
+
+/**************************************************************/
+
+// 10. Pegar usuários responsáveis por uma tarefa
+
+const getResponsibleUsersByTaskId = async (taskId: string): Promise<any> => {
+    if(taskId) {
+        const response = await connection.raw(`
+            SELECT ul.id, ul.nickname
+            FROM ResponsibleUserTasks rut JOIN UsersList ul
+            ON rut.responsible_user = ul.id
+            WHERE rut.task_id = "${taskId}" 
+        `)
+        
+        return response[0]
+    } else {
+        throw { message: "Id não informado" }
+    }
+}
+
+app.get("/task/:id/responsible", async (req: Request, res: Response) => {
+    try {
+        const response = await getResponsibleUsersByTaskId(req.params.id)
+        res.status(200).send({
+            users: response
+        })
+    } catch (error) {
+        res.status(400).send(error)
+    }
+})
