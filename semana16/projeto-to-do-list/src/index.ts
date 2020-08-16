@@ -359,3 +359,39 @@ app.get("/task/:id/responsible", async (req: Request, res: Response) => {
 /**************************************************************/
 
 // 11. (ex 5 atualizado)
+
+/**************************************************************/
+
+// 12. Atualizar status
+
+const updateTaskStatus = async (taskId: string, status: string): Promise<void> => {
+    const result = await connection.raw(`
+    SELECT * FROM Tasks WHERE id = '${taskId}'
+    `)
+    if(result[0][0] === undefined) {
+        throw { messageNotFound: "Tarefa não encontrada"}
+    }
+    
+    if (taskId && status.replace(/\s/g, "")) {
+        await connection.raw(`
+            UPDATE Tasks 
+            SET status = '${status}'
+            WHERE id = '${taskId}'
+        `)
+    } else {
+        throw {message: "Preencha todos os campos necessários"}
+    }
+}
+
+app.post("/task/:id/status/edit", async (req: Request, res: Response) => {
+    try {
+        await updateTaskStatus(req.params.id, req.body.status)
+        res.status(200).send({
+            message: "Status atualizado"
+        })
+    } catch (error) {
+        res.status(400).send(
+            error.sqlMessage ? { message: error.sqlMessage } : error
+        )
+    }
+})
