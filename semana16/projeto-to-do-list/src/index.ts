@@ -264,7 +264,7 @@ app.get("/task", async (req: Request, res: Response) => {
     try {
         const response = await getTasksByUserId(req.query.creatorUserId as string)
         for (let task of response) {
-            task.limitDate = moment(response.limitDate).format("DD/MM/YYYY")
+            task.limitDate = moment(task.limitDate).format("DD/MM/YYYY")
         }
         
         res.status(200).send({ tasks: response })
@@ -421,3 +421,29 @@ app.get("/tasks", async (req:Request, res: Response) => {
         res.status(400).send(error)
     }
 })
+
+/**************************************************************/
+
+// 14. Pegar todas as tarefas atrasadas
+
+const delayedTasks = async (): Promise<any>=> {
+    const result = await connection.raw(`
+        SELECT t.id AS taskId, t.title, t.description, t.limit_date AS limitDate, t.creator_user_id AS creatorUserId, ul.nickname AS creatorUserNickname
+        FROM Tasks t JOIN UsersList ul ON t.creator_user_id = ul.id
+        WHERE t.limit_date < CURDATE() AND t.status = "to_do"
+    `)
+    return result[0]
+}
+
+app.get("/tasks/delayed", async (req: Request, res: Response) => {
+    try {
+        const response = await delayedTasks()
+        for (let task of response) {
+            task.limitDate = moment(task.limitDate).format("DD/MM/YYYY")
+        }
+        res.status(200).send({ tasks: response })
+    } catch (error) {
+        res.status(400).send(error)   
+    }
+})
+
