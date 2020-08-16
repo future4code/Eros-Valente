@@ -114,7 +114,7 @@ const editUser = async (id: string, name: string, nickname: string): Promise<voi
         WHERE id = "${id}"
     `)
 
-    if (user[0][0] === undefined) {
+    if (!user[0][0]) {
         throw { messageNotFound: "Usuário não encontrado"}
     }
 
@@ -197,7 +197,7 @@ const getTaskById = async (taskId: string): Promise<any> => {
     `)
     
     const values = await Promise.all([creatorUser, responsibleUsers])
-    if(values[0][0][0] !== undefined) {
+    if(values[0][0][0]) {
         return { ...values[0][0][0], responsibleUsers: values[1][0]}
     } else { 
         throw { messageNotFound: "Tarefa não encontrada"}
@@ -368,7 +368,7 @@ const updateTaskStatus = async (taskId: string, status: string): Promise<void> =
     const result = await connection.raw(`
     SELECT * FROM Tasks WHERE id = '${taskId}'
     `)
-    if(result[0][0] === undefined) {
+    if(!result[0][0]) {
         throw { messageNotFound: "Tarefa não encontrada"}
     }
     
@@ -393,5 +393,31 @@ app.post("/task/:id/status/edit", async (req: Request, res: Response) => {
         res.status(400).send(
             error.sqlMessage ? { message: error.sqlMessage } : error
         )
+    }
+})
+
+/**************************************************************/
+
+// 13. Pegar tarefas por status
+
+const getTasksByStatus = async (status: string): Promise<any> => {
+    if (status.replace(/\s/g, "")) {
+        const result = await connection.raw(`
+            SELECT t.id AS taskId, t.title, t.description, t.limit_date AS limitDate, t.creator_user_id AS creatorUserId, ul.nickname AS creatorUserNickname
+            FROM Tasks t JOIN UsersList ul ON t.creator_user_id = ul.id
+            WHERE t.status = '${status}'
+        `)
+        return result[0]
+    } else {
+        throw { message: "Informe o status" }
+    }
+}
+
+app.get("/tasks", async (req:Request, res: Response) => {
+    try {
+        const response = await getTasksByStatus(req.query.status as string)
+        res.status(200).send({ tasks: response })        
+    } catch (error) {
+        res.status(400).send(error)
     }
 })
