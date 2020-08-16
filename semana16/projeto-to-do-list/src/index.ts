@@ -198,11 +198,11 @@ const getTaskById = async (id: string): Promise<any> => {
 app.get("/task/:id", async (req: Request, res: Response) => {
     try {
         const response = await getTaskById(req.params.id)
-        response.limit_date = moment(response.limit_date).format("DD/MM/YYYY")
+
         res.status(200).send({
             title: response.title,
 	        description: response.description,
-	        limitDate: response.limit_date,
+	        limitDate: moment(response.limit_date).format("DD/MM/YYYY"),
 	        creatorUserId: response.creator_user_id
         })
     } catch (error) {
@@ -236,3 +236,34 @@ app.get("/users/all", async (req: Request, res: Response) => {
         })   
     }
 })
+
+/**************************************************************/
+
+// 7. Pegar tarefas criadas por um usuário
+
+const getTasksByUserId = async (id: string): Promise<any> => {
+    if (id) {
+        const response = await connection.raw(`
+            SELECT t.id AS taskId, t.title, t.description, t.limit_date AS limitDate, t.creator_user_id AS creatorUserId, t.status, ul.nickname AS creatorUserNickname
+            FROM Tasks t JOIN UsersList ul ON t.creator_user_id = ul.id
+            WHERE "${id}" = ul.id
+        `)
+        return response[0]   
+    } else {
+        throw { message: "Informe o id" }
+    }
+}
+
+app.get("/task", async (req: Request, res: Response) => {
+    try {
+        const response = await getTasksByUserId(req.query.creatorUserId as string)
+        for (let task of response) {
+            task.limitDate = moment(response.limitDate).format("DD/MM/YYYY")
+        }
+        
+        res.status(200).send({ tasks: response })
+    } catch (error) {
+        res.status(400).send(error)
+    }
+})
+
