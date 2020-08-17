@@ -31,5 +31,8 @@ const server = app.listen(process.env.PORT || 3003, () => {
   }
 });;
 
+const user1: UserDatabase = new UserDatabase()
+
+user1.createUserDb("outroteste@teste.com", "senhasegura2" )
 
 
