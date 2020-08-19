@@ -123,6 +123,28 @@ app.get("/user/profile", async (req: Request, res: Response) => {
   await BaseDatabase.destroyConnection();
 });
 
+app.get("/user/:id", async (req: Request, res: Response) => {
+  try {
+    const token = req.headers.authorization as string
+
+    Authenticator.getData(token)
+
+    const userDb = new UserDatabase()
+    const user = await userDb.getUserById(req.params.id)
+
+    res.status(200).send({
+      id: user.id,
+      email: user.email
+    })
+  } catch (error) {
+    res.status(401).send({
+      message: error.message
+    })
+  }
+  await BaseDatabase.destroyConnection();
+  
+})
+
 app.delete("/user/:id", async (req: Request, res: Response) => {
   try {
       const token = req.headers.authorization as string
@@ -153,3 +175,5 @@ const server = app.listen(process.env.PORT || 3003, () => {
     console.error(`Failure upon starting server.`);
   }
 });
+
+
