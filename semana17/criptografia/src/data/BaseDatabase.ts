@@ -3,7 +3,7 @@ import knex from "knex";
 export default abstract class BaseDB {
     private static connection: knex | null = null
 
-    public getConnection() {
+    protected getConnection() {
         if (!BaseDB.connection) {
 
             BaseDB.connection = knex({
@@ -21,7 +21,7 @@ export default abstract class BaseDB {
         return BaseDB.connection
     }
 
-    public async destroyConnection(){
+    public static async destroyConnection(){
         if(BaseDB.connection){
             await BaseDB.connection.destroy()
 

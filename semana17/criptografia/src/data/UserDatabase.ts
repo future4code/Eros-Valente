@@ -1,6 +1,8 @@
 import knex from "knex";
+import BaseDatabase from "./BaseDatabase"
 
-export default class UserDatabase {
+
+export default class UserDatabase extends BaseDatabase {
   private connection = knex({
     client: "mysql",
     connection: {
@@ -17,13 +19,15 @@ export default class UserDatabase {
   public async createUser(
     id: string,
     email: string,
-    password: string
+    password: string,
+    role?: string
   ): Promise<void> {
-    await this.connection
+    await this.getConnection()
       .insert({
         id,
         email,
         password,
+        role
       })
       .into(UserDatabase.TABLE_NAME);
   }
@@ -38,11 +42,19 @@ export default class UserDatabase {
   }
 
   public async getUserById(id: string): Promise<any> {
-    const result = await this.connection
+    const result = await this.getConnection()
       .select("*")
       .from(UserDatabase.TABLE_NAME)
       .where({ id });
 
     return result[0];
   }
-}
+
+  public async deleteUser(id: string): Promise<void> {
+   await this.getConnection()
+       .delete()
+       .from(UserDatabase.TABLE_NAME)
+       .where({ id })
+ }
+
+} 
