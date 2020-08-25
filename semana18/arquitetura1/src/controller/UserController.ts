@@ -55,6 +55,48 @@ export default class UserController {
         }
     }
     
+    async getAllUsers(req: Request, res: Response) {
+        try {
+            const token = req.headers.authorization as string
+            const userBusiness: UserBusiness = new UserBusiness()
+            const allUsers = await userBusiness.getAllUsers(token)
+
+            res.status(200).send({
+                users: allUsers
+            })
+        } catch (error) {
+            res.status(400).send({
+                error: error.message
+            })
+        } finally {
+            await BaseDatabase.destroyConnection()
+        }
+    }
+
+    async deleteUser(req: Request, res: Response) {
+        try {
+            const userBusiness: UserBusiness = new UserBusiness()
+            const token = req.headers.authorization as string
+            
+            const input = {
+                token: token,
+                id: req.params.id
+            }
+
+            await userBusiness.deleteUser(input)
+
+            res.status(200).send({
+                message: "User successfully deleted"
+            })
+
+        } catch (error) {
+            res.status(400).send({
+                error: error.message
+            })
+        } finally {
+            await BaseDatabase.destroyConnection()
+        }
+    }
 
 
 

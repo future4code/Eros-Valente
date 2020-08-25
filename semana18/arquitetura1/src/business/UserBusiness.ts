@@ -62,6 +62,27 @@ export class UserBusiness {
         return token
     }
 
+    public async getAllUsers(token: string): Promise<any[]> {
+        const authenticator = new Authenticator()
+        const authenticationData = authenticator.getData(token)
+
+        if(!authenticationData) {
+            throw new Error("User is not logged");
+        }
+
+        return this.userDatabase.getAllUsers()
+    }
+
+    public async deleteUser(input: any): Promise<void> {
+        const authenticator = new Authenticator
+        const authenticationData = authenticator.getData(input.token)
+
+        if (authenticationData.role !== "ADMIN") {
+            throw new Error("Only admin users can delete another user");
+        }
+
+        return await this.userDatabase.deleteUser(input.id)
+    }
 
 
 }

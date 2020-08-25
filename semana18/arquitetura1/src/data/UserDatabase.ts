@@ -37,7 +37,28 @@ export class UserDatabase extends BaseDatabase {
     } catch (error) {
       throw new Error(error.sqlMessage || error.message);
     }
+  }
 
+  public async getAllUsers(): Promise<any[]> {
+    try {
+      const result: any[] = await this.getConnection().raw(`
+        SELECT * FROM ${UserDatabase.TABLE_NAME}
+      `)
+      return result[0]
+    }  catch (error) {
+      throw new Error(error.sqlMessage || error.message);
+    }
+  }
+
+  public async deleteUser(id: string): Promise<void> {
+    try {
+      await this.getConnection().raw(`
+        DELETE FROM ${UserDatabase.TABLE_NAME}
+        WHERE id = "${id}"
+      `)
+    } catch (error) {
+      throw new Error(error.sqlMessage || error.message); 
+    }
   }
 
 
