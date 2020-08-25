@@ -12,7 +12,7 @@ interface UserInfo {
     name: string,
     email: string,
     password: string,
-    role: USER_ROLE,
+    role: string,
 }
 
 export class UserBusiness {
@@ -25,7 +25,7 @@ export class UserBusiness {
         const authenticator = new Authenticator();
 
         try {
-            if(!user.name || !user.email || !user.password || !user.role){
+            if(!user.name || !user.email || !user.password){
                 throw new Error("Please fill all the fields");
             }
 

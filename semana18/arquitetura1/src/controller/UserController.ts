@@ -18,9 +18,9 @@ export default class UserController {
                 role
             }
 
-            await userBusiness.signup(input)
+            const token = await userBusiness.signup(input)
             res.status(200).send({
-                message: "Usuário criado com sucesso"
+                token: token 
             })
         } catch (error) {
             res.status(400).send({
