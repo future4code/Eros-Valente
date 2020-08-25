@@ -9,31 +9,41 @@ export class UserDatabase extends BaseDatabase {
     name: string,
     email: string,
     password: string,
-    role?: string
+    role: string
   ): Promise<void> {
     try {
       await super.getConnection().raw(`
-      INSERT INTO User_Arq (id, name, email, password ${role ? ", role" : ""})
+      INSERT INTO ${UserDatabase.TABLE_NAME} (id, name, email, password, role)
       VALUE(
         "${id}",
         "${name}",
         "${email}",
-        "${password}"
-        ${role ? `,"${role}"` : ""}
+        "${password}",
+        "${role}"
       )
     `)
     } catch (error) {
       throw new Error(error.sqlMessage || error.message);
     }
+  }
 
-
-
-
+  public async getUserByEmail(email: string): Promise<any> {
+    try {
+      const result = await this.getConnection().raw(`
+        SELECT * FROM ${UserDatabase.TABLE_NAME}
+        WHERE email = "${email}"
+      `)
+      return result[0][0]
+    } catch (error) {
+      throw new Error(error.sqlMessage || error.message);
+    }
 
   }
-    
-    
 
-  
+
+
+
+
+
 
 }

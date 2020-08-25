@@ -30,6 +30,30 @@ export default class UserController {
             await BaseDatabase.destroyConnection()
         }
     }
+
+    async login(req: Request, res: Response) {
+        try {
+            const loginData = {
+                email: req.body.email,
+                password: req.body.password
+            }
+
+            const userBusiness: UserBusiness = new UserBusiness()
+            
+            const token = await userBusiness.login(loginData.email, loginData.password)
+
+            res.status(200).send({
+                token: token
+            })
+
+        } catch (error) {
+            res.status(400).send({
+                error: error.message
+            })
+        } finally {
+            await BaseDatabase.destroyConnection()
+        }
+    }
     
 
 
