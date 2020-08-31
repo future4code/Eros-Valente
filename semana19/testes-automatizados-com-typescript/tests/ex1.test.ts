@@ -18,7 +18,7 @@ describe("Testing exercise one", () => {
     test("Testing balance less than value", () => {
         const user: User = {
             name: "Eros",
-            balance: 200
+            balance: 100
         }
 
         const result = performPurchase(user, 400)
