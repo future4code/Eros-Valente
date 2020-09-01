@@ -24,6 +24,17 @@ describe("Testing excersise one", () => {
         expect(result).toBe(true)
     })
 
+    test("should returning true for strength 0", () => {
+        const result: boolean = validateCharacter({
+            name: "Aldebaran",
+            life: 1300,
+            strength: 0,
+            defense: 300
+        }) 
+
+        expect(result).toBe(true)
+    })
+
     
 
 
