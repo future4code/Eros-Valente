@@ -31,6 +31,11 @@ export const performAttack = (
 }
 ```
 
-### intem c
+### item c
 
 A diferença entre as funções é que na segunda foi feita uma inversão de dependencias, passando a função validateInputCharacter como parâmetro da função, dessa forma se torna possível realizar um teste unitário da função performAttack.
+
+## Exercício 4
+### item a
+
+O mock será da função validateChacacter, pois ela é a dependência da função performAttack. Assim podemos testar a  performAttack de forma isolada, garantindo que o teste seja especifico apenas para a função que testamos.
