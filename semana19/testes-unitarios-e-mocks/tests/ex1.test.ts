@@ -16,7 +16,7 @@ describe("Testing excersise one", () => {
     test("should returning false for empty life", () => {
         const result: boolean = validateCharacter({
             name: "Aldebaran",
-            life: undefined,
+            life: Number(undefined),
             strength: 100,
             defense: 300
         }) 
@@ -28,7 +28,7 @@ describe("Testing excersise one", () => {
         const result: boolean = validateCharacter({
             name: "Aldebaran",
             life: 1300,
-            strength: undefined,
+            strength: Number(undefined),
             defense: 300
         }) 
 
@@ -40,7 +40,7 @@ describe("Testing excersise one", () => {
             name: "Aldebaran",
             life: 1300,
             strength: 300,
-            defense: undefined
+            defense: Number(undefined)
         }) 
 
         expect(result).toBe(false)

@@ -1,18 +1,27 @@
 export interface Character {
     name: string,
-    life: number | undefined,
-    strength: number | undefined,
-    defense: number | undefined 
+    life: number,
+    strength: number,
+    defense: number
 }
 
 export function validateCharacter(input: Character): boolean {
+    let characterPass = true
     if (
         !input.name ||
-        input.life === undefined ||
-        input.strength === undefined ||
-        input.defense === undefined
+        !input.life ||
+        !input.strength ||
+        !input.defense
     ) {
-        return false
+        characterPass = false
+    }
+
+    if (
+        input.life === 0 || 
+        input.defense === 0 || 
+        input.strength === 0
+    ) {
+        characterPass = true
     }
 
     if (
@@ -20,8 +29,8 @@ export function validateCharacter(input: Character): boolean {
         input.defense < 0 || 
         input.strength < 0
     ) {
-        return false
+        characterPass = false
     }
 
-    return true
+    return characterPass
 }
