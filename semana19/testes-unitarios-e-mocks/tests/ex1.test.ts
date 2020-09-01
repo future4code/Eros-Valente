@@ -13,38 +13,60 @@ describe("Testing excersise one", () => {
         expect(result).toBe(false)
     })
 
-    test("should returning true for life 0", () => {
+    test("should returning false for empty life", () => {
         const result: boolean = validateCharacter({
             name: "Aldebaran",
-            life: 0,
+            life: undefined,
             strength: 100,
             defense: 300
         }) 
 
-        expect(result).toBe(true)
+        expect(result).toBe(false)
     })
 
-    test("should returning true for strength 0", () => {
+    test("should returning false for empty strength", () => {
         const result: boolean = validateCharacter({
             name: "Aldebaran",
             life: 1300,
-            strength: 0,
+            strength: undefined,
             defense: 300
         }) 
 
-        expect(result).toBe(true)
+        expect(result).toBe(false)
     })
 
-    test("should returning true for defence 0", () => {
+    test("should returning false for empty defense", () => {
         const result: boolean = validateCharacter({
             name: "Aldebaran",
             life: 1300,
             strength: 300,
-            defense: 0
+            defense: undefined
         }) 
 
-        expect(result).toBe(true)
+        expect(result).toBe(false)
     })
+
+    test("Should return true for life 0", () => {
+        const result = validateCharacter({
+          name: "Aldebaran",
+          life: 0,
+          strength: 400,
+          defense: 600,
+        });
+    
+        expect(result).toBe(true);
+      });
+
+      test("Should return true for all valid inputs", () => {
+        const result = validateCharacter({
+          name: "Aldebaran",
+          life: 1500,
+          strength: 400,
+          defense: 600,
+        });
+    
+        expect(result).toBe(true);
+      });
 
     
 
