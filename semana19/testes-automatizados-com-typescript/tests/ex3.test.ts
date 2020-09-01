@@ -19,5 +19,82 @@ describe("Testing exrcise three", () => {
 
     }) 
 
-    
+    test("Testing 1 american allowed", () => {
+        const americanUser: User = {
+            name: "Jon Doe",
+            age: 32,
+            nacionality: NACIONALITY.AMERICAN
+        }
+
+        const casino: Casino = {
+            name: "Cassino Clandestino Brasileiro",
+            location: LOCATION.BRAZIL
+        }
+
+        const result = verifyAge(casino, [americanUser])
+        expect(result.americans.allowed).toEqual([americanUser.name])
+
+    }) 
+
+    test("no one allowed", () => {
+        const brazilianUser: User = {
+            name: "Pedro",
+            age: 19,
+            nacionality: NACIONALITY.BRAZILIAN
+        }
+
+        const americanUser: User = {
+            name: "Jon Doe",
+            age: 19,
+            nacionality: NACIONALITY.AMERICAN
+        }
+
+        const casino: Casino = {
+            name: "Caesars Palace",
+            location: LOCATION.EUA
+        }
+
+        const result = verifyAge(casino, [brazilianUser, americanUser])
+        expect(result.brazilians.unallowed).toEqual([brazilianUser.name])
+        expect(result.americans.unallowed).toEqual([americanUser.name])
+        expect(result.brazilians.allowed.length).toBe(0)
+        expect(result.americans.allowed).toEqual([])
+    }) 
+
+    test("2 american allowed and 2 brazilians unallowed", () => {
+        const brazilianUser1: User = {
+            name: "Pedro",
+            age: 19,
+            nacionality: NACIONALITY.BRAZILIAN
+        }
+
+        const brazilianUser2: User = {
+            name: "João",
+            age: 19,
+            nacionality: NACIONALITY.BRAZILIAN
+        }
+
+        const americanUser1: User = {
+            name: "Jon Doe",
+            age: 21,
+            nacionality: NACIONALITY.AMERICAN
+        }
+
+        const americanUser2: User = {
+            name: "Albert",
+            age: 21,
+            nacionality: NACIONALITY.AMERICAN
+        }
+
+        const casino: Casino = {
+            name: "Caesars Palace",
+            location: LOCATION.EUA
+        }
+
+        const result = verifyAge(casino, [brazilianUser1, americanUser1, brazilianUser2, americanUser2])
+        expect(result.brazilians.unallowed).toEqual([brazilianUser1.name, brazilianUser2.name])
+        expect(result.americans.unallowed).toEqual([])
+        expect(result.brazilians.allowed).toEqual([])
+        expect(result.americans.allowed).toEqual([americanUser1.name, americanUser2.name])
+    }) 
 })
