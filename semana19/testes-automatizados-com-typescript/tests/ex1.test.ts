@@ -23,6 +23,20 @@ describe("Testing exercise one", () => {
 
         const result = performPurchase(user, 400)
         expect (result).toEqual(undefined)
-    } )
+    })
+
+    test("Testing balance equal to the value", () => {
+        const user: User = {
+            name: "Eros",
+            balance: 100
+        }
+
+        const result = performPurchase(user, 100)
+        expect (result).toEqual({
+            ...user,
+            balance: 0
+        })
+
+    })
 
 })
