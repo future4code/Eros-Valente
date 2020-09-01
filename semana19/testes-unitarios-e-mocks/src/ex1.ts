@@ -1,8 +1,8 @@
 export interface Character {
     name: string,
-    life?: number,
-    strength?: number,
-    defense?: number 
+    life: number | undefined,
+    strength: number | undefined,
+    defense: number | undefined 
 }
 
 export function validateCharacter(input: Character): boolean {
