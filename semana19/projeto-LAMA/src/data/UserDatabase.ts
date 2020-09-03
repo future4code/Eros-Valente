@@ -5,21 +5,15 @@ export class UserDatabase extends BaseDatabase {
 
   private static TABLE_NAME = "user";
 
-  public async createUser(
-    id: string,
-    name: string,
-    email: string,
-    password: string,
-    role: string
-  ): Promise<void> {
+  public async createUser(user: User): Promise<void> {
     try {
       await this.getConnection()
         .insert({
-          id,
-          name,
-          email,
-          password,
-          role
+          id: user.getId(),
+          name: user.getName(),
+          email: user.getEmail(),
+          password: user.getPassword(),
+          role: user.getRole()
         })
         .into(UserDatabase.TABLE_NAME);
     } catch (error) {
@@ -36,4 +30,11 @@ export class UserDatabase extends BaseDatabase {
     return User.toUserModel(result[0]);
   }
 
+
+  public async deleteUser(id: string): Promise<any> {
+    await this.getConnection()
+      .delete()
+      .from(UserDatabase.TABLE_NAME)
+      .where({ id });
+  }
 }

@@ -29,13 +29,15 @@ export class UserBusiness {
 		const id = this.idGenerator.generate();
 
 		const hashPassword = await this.hashManager.hash(user.password);
-
+			
 		await this.userDatabase.createUser(
-			id,
-			user.name,
-			user.email,
-			hashPassword,
-			user.role
+			new User(
+				id,
+				user.name,
+				user.email,
+				hashPassword,
+				User.stringToUserRole(user.role)
+			)
 		);
 
 		const accessToken = this.authenticator.generateToken({
@@ -47,17 +49,14 @@ export class UserBusiness {
 	}
 
 	async getUserByEmail(user: LoginInputDTO) {
-		const userDatabase = new UserDatabase();
-		const userFromDB = await userDatabase.getUserByEmail(user.email);
+		const userFromDB = await this.userDatabase.getUserByEmail(user.email);
 
-		const hashManager = new HashManager();
-		const hashCompare = await hashManager.compare(
+		const hashCompare = await this.hashManager.compare(
 			user.password,
 			userFromDB.getPassword()
 		);
 
-		const authenticator = new Authenticator();
-		const accessToken = authenticator.generateToken({
+		const accessToken = this.authenticator.generateToken({
 			id: userFromDB.getId(),
 			role: userFromDB.getRole(),
 		});
