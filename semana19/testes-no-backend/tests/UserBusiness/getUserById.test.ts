@@ -2,6 +2,7 @@ import { UserBusiness } from "../../src/business/UserBusiness"
 import { User, stringToUserRole, UserRole } from "../../src/model/User"
 
 
+
 describe("Testing UserBusiness.getUserById", () => {
     let userDatabase = {}
     let idGenerator = {}
@@ -32,7 +33,7 @@ describe("Testing UserBusiness.getUserById", () => {
     test("Should return an user object with id, name, email and role", async () => {
         const getUserById = jest.fn((id: string) => 
             new User(
-                "12345",
+                id,
                 "Eros",
                 "eros@email.com",
                 "senha",
