@@ -6,7 +6,7 @@ import { TokenGenerator } from "../services/tokenGenerator";
 import { NotFoundError } from "../errors/NotFoundError";
 import { InvalidParameterError } from "../errors/InvalidParameterError";
 export class UserBusiness {
-
+ 
   constructor(
     private userDatabase: UserDatabase,
     private idGenerator: IdGenerator,
