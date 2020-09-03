@@ -1,7 +1,7 @@
 {
   "name": "lama-template",
   "version": "1.0.0",
-  "description": "Template para o projeto LAMA",
+  "description": "projeto LAMA",
   "main": "index.js",
   "scripts": {
     "test": "node ./node_modules/jest/bin/jest.js",
@@ -12,7 +12,7 @@
     "api",
     "labook"
   ],
-  "author": "João Alves",
+  "author": "Eros Pinder Valente",
   "license": "ISC",
   "dependencies": {
     "@types/bcryptjs": "^2.4.2",
