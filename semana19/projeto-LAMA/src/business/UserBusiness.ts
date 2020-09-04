@@ -4,6 +4,7 @@ import { IdGenerator } from "../services/IdGenerator";
 import { HashManager } from "../services/HashManager";
 import { Authenticator } from "../services/Authenticator";
 import { InvalidParameterError } from "../error/InvalidParameterError";
+import { NotFoundError } from "../error/NotFoundError";
 
 export class UserBusiness {
 	constructor(
@@ -49,21 +50,31 @@ export class UserBusiness {
 	}
 
 	async getUserByEmail(user: LoginInputDTO) {
+		if (!user.email || !user.password) {
+			throw new InvalidParameterError("Fill all the fields");
+		}
+
 		const userFromDB = await this.userDatabase.getUserByEmail(user.email);
+		
+		if (!userFromDB) {
+			throw new NotFoundError("User Not Found");
+		}
 
 		const hashCompare = await this.hashManager.compare(
 			user.password,
 			userFromDB.getPassword()
 		);
 
+		if (!hashCompare) {
+			throw new Error("Invalid Password!");
+		}
+		
 		const accessToken = this.authenticator.generateToken({
 			id: userFromDB.getId(),
 			role: userFromDB.getRole(),
 		});
 
-		if (!hashCompare) {
-			throw new Error("Invalid Password!");
-		}
+		
 
 		return accessToken;
 	}
