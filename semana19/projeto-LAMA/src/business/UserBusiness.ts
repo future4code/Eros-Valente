@@ -14,9 +14,9 @@ export class UserBusiness {
 		private authenticator: Authenticator
 	) {}
 
-	async createUser(user: UserInputDTO) {
+	async createUser(user: UserInputDTO): Promise<string> {
 		if (!user.name || !user.email || !user.password || !user.role) {
-			throw new InvalidParameterError("Missing input");
+			throw new InvalidParameterError("Fill all the fields");
 		}
 
 		if (user.email.indexOf("@") === -1) {
@@ -49,7 +49,7 @@ export class UserBusiness {
 		return accessToken;
 	}
 
-	async getUserByEmail(user: LoginInputDTO) {
+	async getUserByEmail(user: LoginInputDTO): Promise<string> {
 		if (!user.email || !user.password) {
 			throw new InvalidParameterError("Fill all the fields");
 		}

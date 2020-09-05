@@ -32,7 +32,7 @@ export class UserController {
 
         } catch (error) {
             
-            res.status(error.errorCode).send({ error: error.message || error.sqlMessage });
+            res.status(error.errorCode).send({ error: error.message});
         }
 
         await BaseDatabase.destroyConnection();

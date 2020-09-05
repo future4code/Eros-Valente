@@ -12,7 +12,7 @@ describe("Testando o signup na camada UserBusiness", () => {
     let authenticator = {}
 
     test("Deve retornar erro ao receber um nome vazio", async () => {
-        expect.assertions(1);
+        expect.assertions(2);
 
         const userBusiness = new UserBusiness(
             userDatabase as any,
