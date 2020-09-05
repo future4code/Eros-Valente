@@ -31,6 +31,8 @@ export class BandController {
 
             await BandController.BandBunsiness.createBand(input, token)
 
+            res.status(200).send({message: "Success"})
+
         }catch (error) {
             res.status(error.errorCode || 400).send({
                 error: error.message
