@@ -18,7 +18,6 @@ export class UserController {
 
     async signup(req: Request, res: Response) {
         try {
-
             const input: UserInputDTO = {
                 name: req.body.name,
                 email: req.body.email,
@@ -41,7 +40,6 @@ export class UserController {
     async login(req: Request, res: Response) {
 
         try {
-
             const loginData: LoginInputDTO = {
                 email: req.body.email,
                 password: req.body.password
@@ -49,7 +47,7 @@ export class UserController {
 
             const token = await UserController.UserBusiness.getUserByEmail(loginData)
 
-            res.status(200).send({ token });
+            res.status(201).send({ token });
 
         } catch (error) {
             res.status(error.errorCode || 400).send({ error: error.message });

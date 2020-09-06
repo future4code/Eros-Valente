@@ -51,3 +51,15 @@ export interface BandInputDTO{
     responsible: string;
 }
 
+export interface BandInfoInputDTO{
+    id?: string,
+    name?: string
+}
+
+export interface BandInfoOutputDTO {
+    id: string,
+    name: string,
+    musicGenre: string,
+    responsible: string,
+    eventDay: string
+}

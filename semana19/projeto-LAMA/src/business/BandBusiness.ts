@@ -1,4 +1,4 @@
-import { Band, BandInputDTO } from "../model/Band";
+import { Band, BandInputDTO, BandInfoOutputDTO, BandInfoInputDTO } from "../model/Band";
 import { BandDatabase } from "../data/BandDatabase";
 import { IdGenerator } from "../services/IdGenerator";
 import { InvalidParameterError } from "../error/InvalidParameterError";
@@ -6,6 +6,7 @@ import { Authenticator } from "../services/Authenticator";
 import { UnauthorizedError } from "../error/UnauthorizedError";
 import { ForbiddenError } from "../error/ForbiddenError";
 import { UserBusiness } from "./UserBusiness";
+import { NotFoundError } from "../error/NotFoundError";
 
 
 
@@ -41,11 +42,27 @@ export class BandBusiness {
                 band.responsible
             )
         )
-
-
-
-
     }
+
+    async getBandByInfoByIdOrName(band: BandInfoInputDTO, token: string ): Promise<BandInfoOutputDTO> {
+        if (!band.id && !band.name) {
+            throw new InvalidParameterError("Fill at least one field");
+        }
+
+        if (!token) {
+            throw new UnauthorizedError("User must be logged in");
+        }
+        
+        this.authenticator.getData(token)
+
+        const bandInfo: BandInfoOutputDTO  = await this.bandDatabase.getBandInfoByIdOrName(band)
+
+        if(!bandInfo) {
+            throw new NotFoundError("Band not found")
+        }
+
+        return bandInfo
+	}
 
 
 

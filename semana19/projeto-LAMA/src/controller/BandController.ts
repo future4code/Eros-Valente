@@ -3,7 +3,7 @@ import { BandBusiness } from "../business/BandBusiness"
 import { IdGenerator } from "../services/IdGenerator"
 import { Authenticator } from "../services/Authenticator"
 import { BandDatabase } from "../data/BandDatabase"
-import { Band, BandInputDTO } from "../model/Band"
+import { Band, BandInputDTO, BandInfoInputDTO } from "../model/Band"
 import { BaseDatabase } from "../data/BaseDatabase"
 
 
@@ -31,7 +31,7 @@ export class BandController {
 
             await BandController.BandBunsiness.createBand(input, token)
 
-            res.status(200).send({message: "Success"})
+            res.sendStatus(201)
 
         }catch (error) {
             res.status(error.errorCode || 400).send({
@@ -41,6 +41,26 @@ export class BandController {
         await BaseDatabase.destroyConnection();
     }
 
+    async bandInfo(req:Request, res: Response) {
+        try{
+            const token = req.headers.authorization as string
+            const {id, name} = req.query as any
+
+            const input: BandInfoInputDTO = {
+                id: id,
+                name: name
+            }
+
+            const response = await BandController.BandBunsiness.getBandByInfoByIdOrName(input, token)
+            
+
+            res.status(200).send(response)
+        } catch (error) {
+            res.status(error.errorCode).send({
+                error: error.message || error.sqlMessage
+            })
+        }
+    }
 
 
 
