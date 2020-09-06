@@ -6,6 +6,8 @@ import { UserDatabase } from "./data/UserDatabase";
 import { bandRouter } from "./routes/bandRouter";
 import { BandDatabase } from "./data/BandDatabase";
 import { BandInfoInputDTO } from "./model/Band";
+import { ConcertDatabase } from "./data/ConcertDatabase";
+import { concertRouter } from "./routes/concertRouter";
 dotenv.config();
 const app = express();
 
@@ -13,6 +15,8 @@ app.use(express.json());
 
 app.use("/user", userRouter);
 app.use("/band", bandRouter)
+app.use("/concert", concertRouter)
+
 
 
 

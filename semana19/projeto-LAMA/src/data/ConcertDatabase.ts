@@ -11,7 +11,7 @@ export class ConcertDatabase extends BaseDatabase {
             await this.getConnection()
               .insert({
                   id: concert.getId(),
-                  weekday: concert.getWeekday(),
+                  weekday: concert.getWeekDay(),
                   start_time: concert.getStartTime(),
                   end_time: concert.getEndTime(),
                   band_id: concert.getBandId()
@@ -22,5 +22,15 @@ export class ConcertDatabase extends BaseDatabase {
         }
     }
     
-    async getConcertByDayAndStartTime(weekday: string)
+    async chekScheduleAvailability(weekDay: string, startTime: number, endTime: number): Promise<Boolean> {
+       
+        const result = await this.getConnection()
+        .select("*")
+        .from(ConcertDatabase.TABLE_NAME)
+        .where({week_day: weekDay})
+        .andWhereBetween("start_time", [startTime, endTime])
+        .orWhereBetween("end_time", [startTime, endTime])
+        
+        return !Boolean(result[0])
+    }
 }
