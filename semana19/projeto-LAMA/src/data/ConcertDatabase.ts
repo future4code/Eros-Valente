@@ -24,13 +24,15 @@ export class ConcertDatabase extends BaseDatabase {
     
     async chekScheduleAvailability(weekDay: string, startTime: number, endTime: number): Promise<Boolean> {
        
-        const result = await this.getConnection()
-        .select("*")
-        .from(ConcertDatabase.TABLE_NAME)
-        .where({week_day: weekDay})
-        .andWhereBetween("start_time", [startTime, endTime])
-        .orWhereBetween("end_time", [startTime, endTime])
+        const result = await this.getConnection().raw(`
+            SELECT * FROM ${ConcertDatabase.TABLE_NAME}
+            WHERE week_day = "${weekDay}"
+            AND ((start_time BETWEEN "${startTime}" AND "${endTime}")
+                OR (end_time BETWEEN "${startTime}" AND "${endTime}")
+            )
+        `)
         
-        return !Boolean(result[0])
+        console.log(result[0][0])
+        return Boolean(result[0][0])
     }
 }

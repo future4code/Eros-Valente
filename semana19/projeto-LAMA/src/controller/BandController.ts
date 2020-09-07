@@ -3,13 +3,8 @@ import { BandBusiness } from "../business/BandBusiness"
 import { IdGenerator } from "../services/IdGenerator"
 import { Authenticator } from "../services/Authenticator"
 import { BandDatabase } from "../data/BandDatabase"
-import { Band, BandInputDTO, BandInfoInputDTO } from "../model/Band"
+import { BandInputDTO, BandInfoInputDTO } from "../model/Band"
 import { BaseDatabase } from "../data/BaseDatabase"
-
-
-
-
-
 
 export class BandController {
 
@@ -52,7 +47,7 @@ export class BandController {
             }
 
             const response = await BandController.BandBunsiness.getBandByInfoByIdOrName(input, token)
-            
+
 
             res.status(200).send(response)
         } catch (error) {

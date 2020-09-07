@@ -65,14 +65,14 @@ export class Concert{
 
 export interface ConcertInputDTO{
     bandId: string;
-    weekDay: ConcertDay;
+    weekDay: string;
     startTime: number;
     endTime: number
 }
 
 export enum ConcertDay{
-    FRYDAY = "Fryday",
-    SATURDAY = "Saturday",
-    SUNDAY = "Sunday"
+    FRYDAY = "fryday",
+    SATURDAY = "saturday",
+    SUNDAY = "sunday"
 }
 

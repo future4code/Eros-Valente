@@ -1,5 +1,5 @@
 import express from "express";
-import { ConcertController } from "../controller/BandController";
+import { ConcertController } from "../controller/ConcertController";
 
 
 export const concertRouter = express.Router();

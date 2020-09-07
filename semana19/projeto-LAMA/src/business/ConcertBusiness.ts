@@ -5,6 +5,7 @@ import { ConcertInputDTO, Concert } from "../model/Concert";
 import { UnauthorizedError } from "../error/UnauthorizedError";
 import { InvalidParameterError } from "../error/InvalidParameterError";
 import { GenericError } from "../error/GenericError";
+import { BandDatabase } from "../data/BandDatabase";
 
 
 export class ConcertBusiness {
@@ -19,7 +20,7 @@ export class ConcertBusiness {
             throw new UnauthorizedError("User must be logged in to register a concert");
         }
 
-        if(!concert.bandId || !concert.weekDay || !concert.startTime || concert.endTime) {
+        if(!concert.bandId || !concert.weekDay || !concert.startTime || !concert.endTime) {
             throw new InvalidParameterError("Fill all the fields");
         }
 
@@ -29,13 +30,19 @@ export class ConcertBusiness {
 
         this.authenticator.getData(token)
 
+        const bandDB = await new BandDatabase().getBandById(concert.bandId)
+
+        if(!bandDB) {
+            throw new InvalidParameterError("This band is not registered");
+        }
+
         const avaibleDateAndTime = await this.concertDatabase.chekScheduleAvailability(
             concert.weekDay,
             concert.startTime,
             concert.endTime
         )
 
-        if(!avaibleDateAndTime) {
+        if(avaibleDateAndTime) {
             throw new GenericError("There is already a show scheduled for that time");
         }
 
@@ -44,7 +51,7 @@ export class ConcertBusiness {
         await this.concertDatabase.createConcert(
             new Concert(
                 id,
-                concert.weekDay,
+                Concert.stringToConcertWeekDay(concert.weekDay),
                 concert.startTime,
                 concert.endTime,
                 concert.bandId

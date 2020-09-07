@@ -32,4 +32,15 @@ export class BandDatabase extends BaseDatabase {
         return result[0][0];
     }
 
+    public async getBandById(id: string):Promise<Band | undefined> {
+
+        const result = await this.getConnection().raw(`
+            SELECT * FROM ${BandDatabase.TABLE_NAME}
+            WHERE id = "${id}"
+        `)   
+           
+        if(!result[0][0]) return
+  
+    return Band.toBandModel(result[0][0])
+    }
 }
