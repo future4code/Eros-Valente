@@ -45,7 +45,7 @@ export class Concert{
 
     static stringToConcertWeekDay(input: string): ConcertDay{
         switch (input) {
-            case "fryday":
+            case "friday":
               return ConcertDay.FRYDAY;
             case "saturday":
               return ConcertDay.SATURDAY;
@@ -70,8 +70,13 @@ export interface ConcertInputDTO{
     endTime: number
 }
 
+export interface ConcertsByDayOutputDTO {
+    bandName: string,
+    musicalGenre: string
+}
+
 export enum ConcertDay{
-    FRYDAY = "fryday",
+    FRYDAY = "friday",
     SATURDAY = "saturday",
     SUNDAY = "sunday"
 }

@@ -1,5 +1,5 @@
 import { BaseDatabase } from "./BaseDatabase";
-import { Concert } from "../model/Concert";
+import { Concert, ConcertDay , ConcertsByDayOutputDTO } from "../model/Concert";
 
 
 export class ConcertDatabase extends BaseDatabase {
@@ -11,7 +11,7 @@ export class ConcertDatabase extends BaseDatabase {
             await this.getConnection()
               .insert({
                   id: concert.getId(),
-                  weekday: concert.getWeekDay(),
+                  week_day: concert.getWeekDay(),
                   start_time: concert.getStartTime(),
                   end_time: concert.getEndTime(),
                   band_id: concert.getBandId()
@@ -20,6 +20,18 @@ export class ConcertDatabase extends BaseDatabase {
         } catch (error) {
             throw new Error(error.sqlMessage);
         }
+    }
+
+    async getAllConcertsByDaY(weekDay: string): Promise<ConcertsByDayOutputDTO[] | undefined> {
+        const result = await this.getConnection().raw(`
+            SELECT  b.name AS bandName, b.music_genre AS musicalGenre 
+            FROM ${ConcertDatabase.TABLE_NAME} c
+            JOIN band b ON b.id = c.band_id
+            WHERE week_day = "${weekDay}"
+            ORDER BY c.start_time    
+        `)
+        
+        return result[0]
     }
     
     async chekScheduleAvailability(weekDay: string, startTime: number, endTime: number): Promise<Boolean> {
