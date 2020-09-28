@@ -52,8 +52,7 @@ export interface BandInputDTO{
 }
 
 export interface BandInfoInputDTO{
-    id?: string,
-    name?: string
+    idOrName: string
 }
 
 export interface BandInfoOutputDTO {

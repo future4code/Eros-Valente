@@ -74,8 +74,6 @@ export class UserBusiness {
 			role: userFromDB.getRole(),
 		});
 
-		
-
 		return accessToken;
 	}
 }
