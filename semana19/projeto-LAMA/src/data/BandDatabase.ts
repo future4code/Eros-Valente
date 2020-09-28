@@ -25,7 +25,7 @@ export class BandDatabase extends BaseDatabase {
         const result = await this.getConnection().raw(`
             SELECT b.*, GROUP_CONCAT(c.week_day," - ",c.start_time,"h00" SEPARATOR";") AS event_day
             FROM band b JOIN concert c ON b.id = c.band_id
-            WHERE b.id = "${input.id}" OR b.name = "${input.name}"
+            WHERE b.id = "${input.idOrName}" OR b.name = "${input.idOrName}"
             GROUP BY b.id;
         `)   
            

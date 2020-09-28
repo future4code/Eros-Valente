@@ -39,11 +39,10 @@ export class BandController {
     async bandInfo(req:Request, res: Response) {
         try{
             const token = req.headers.authorization as string
-            const {id, name} = req.query as any
+            const idOrName = req.query as any
 
             const input: BandInfoInputDTO = {
-                id: id,
-                name: name
+                idOrName,
             }
 
             const response = await BandController.BandBunsiness.getBandByInfoByIdOrName(input, token)
